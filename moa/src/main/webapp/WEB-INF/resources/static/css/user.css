@@ -1,0 +1,41 @@
+@charset "UTF-8";
+
+
+
+
+.position{
+	position: absolute;
+	top: 100px; left: 0;
+}
+
+.mainMenu{
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.mainMenu>li{
+	float: left;
+	color: #495057;
+}
+
+.gnb-hover:hover{
+	border-bottom: 3px solid #f33f3f;
+	box-sizing: border-box;
+}
+
+.f-size{
+	display: inline-block;
+  padding-top: 0.3125rem;
+  padding-bottom: 0.3125rem;
+  margin-right: 1rem;
+  font-size: 3rem;
+  font-weight: 2em;
+  line-height: inherit;
+  white-space: nowrap;
+  color: #fff;
+}
+
+.f-size:hover {
+  text-decoration: none;
+}

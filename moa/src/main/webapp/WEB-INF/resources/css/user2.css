@@ -1,0 +1,223 @@
+﻿.mxw500{
+	max-width: 500px;	
+}
+.mxw550{
+	max-width: 550px;	
+}
+.mxw600{
+	max-width: 600px;	
+}
+.mxw650{
+	max-width: 650px;	
+}
+.mxw700{
+	max-width: 700px;	
+}
+.mxw750{
+	max-width: 750px;	
+}
+.mxw800{
+	max-width: 800px;	
+}
+.mxw900{
+	max-width: 900px;	
+}
+/* 디스플레이 */
+.inblock{
+	display: inline-block;
+}
+/* 마진클래스 */
+
+.mgt0 {
+	margin-top: 0px;
+}
+.mgt10 {
+	margin-top: 10px;
+}
+.mgt20 {
+	margin-top: 20px;
+}
+.mgt30 {
+	margin-top: 30px;
+}
+.mgt40 {
+	margin-top: 40px;
+}
+.mgt60 {
+	margin-top: 60px;
+}
+.mgb0 {
+	margin-bottom: 0px;
+}
+.mgb10 {
+	margin-bottom: 10px;
+}
+.mgb20 {
+	margin-bottom: 20px;
+}
+.mgb60 {
+	margin-bottom: 60px;
+}
+.mgl0 {
+	margin-left: 0px;
+}
+.mgl10 {
+	margin-left: 10px;
+}
+.mgl20 {
+	margin-left: 20px;
+}
+.mgl30 {
+	margin-left: 30px;
+}
+.mgl40 {
+	margin-left: 40px;
+}
+.mgl50 {
+	margin-left: 50px;
+}
+
+.mgr40 {
+	margin-right: 40px;
+}
+/* 패딩 클래스 */
+.pdAll20 {
+	padding: 20px;
+}
+.pdAll10 {
+	padding: 10px;
+}
+
+.pdb10 {
+	padding-bottom: 10px;
+}
+
+.pdt10 {
+	padding-top: 10px;
+}
+.pdl0 {
+	padding-left: 0px;
+}
+.pdl10 {
+	padding-left: 10px;
+}
+.pdl20 {
+	padding-left: 20px;
+}
+.pdl40 {
+	padding-left: 40px;
+}
+.pdr20 {
+	padding-right: 20px;
+}
+.pdr30 {
+	padding-right: 30px;
+}
+
+.pdv30{
+	padding-top:30px;
+	padding-bottom:30px;
+}
+
+
+/* size */
+.box250 {
+	width: 250px;
+	height: 250px;
+}
+.box {
+	width: 550px;
+	height: 200px;
+}
+.box120 {
+	width: 120px;
+	height: 120px;
+}
+.avtBox100 {
+	width: 100px;
+	height: auto;
+}
+.w550 {
+	width: 550px;
+}
+.w250 {
+   width: 250px;
+}
+.w150 {
+	width: 150px;
+}
+.w120 {
+	width: 120px;
+}
+.w100 {
+	width: 100px;
+}
+.h20 {
+	height: 20px;
+}
+.h1100per {
+	height: 100px;
+}
+
+.cntnt100 {
+	width: 100px;
+	height: 100px;
+	
+}
+.imgBox230{
+	width: 230px;
+	height: auto;
+}
+.img210 {
+	width: 230px;
+	height: auto;
+}
+.img100 {
+	width: 100px;
+	height: auto;
+}
+
+.imgBox100 {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+}
+.height50 {
+	height: 50px;
+}
+.height40 {
+	height: 40px;
+}
+
+.ft8 {
+	font-size: 8pt;
+}
+
+.ft10 {
+	font-size: 10pt;
+}
+.ft12 {
+	font-size: 12pt;
+}
+.ft14 {
+	font-size: 14pt;
+	font-weight: bold;
+}
+
+.clrgrey {
+	color: #aaaaaa;
+}
+
+.noresize {
+	resize: none;
+}
+
+.ftw {
+	font-size: 25px;
+	font-weight: bold;
+	
+}
+.por{
+	position:relative; 
+	bottom: 320px;
+}

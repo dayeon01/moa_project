@@ -1,0 +1,128 @@
+
+
+************************참고하세용*************************
+
+
+
+
+
+
+
+
+
+###############               진                    석            #################################################
+
+# 메인
+/main.moa=com.mono.moa.controller.Main
+
+# 회원가입 폼보기
+/member/join.moa=com.mono.moa.controller.member.Join
+
+# 회원가입 처리
+/member/joinProc.moa=com.mono.moa.controller.member.JoinProc
+
+# 회원로그인 폼보기
+/member/login.moa=com.mono.moa.controller.member.Login
+
+# 회원로그인 처리
+/member/loginProc.moa=com.mono.moa.controller.member.LoginProc
+
+# 회원로그아웃 처리
+/member/logout.moa=com.mono.moa.controller.member.Logout
+
+# 회원아이디찾기 폼보기
+/member/loginFindId.moa=com.mono.moa.controller.member.LoginFindId
+
+# 회원비번찾기 폼보기
+/member/loginFindPw.moa=com.mono.moa.controller.member.LoginFindPw
+
+# 마이페이지 폼보기
+/member/myPage.moa=com.mono.moa.controller.member.MyPage
+
+# 나의정보보기 폼보기
+/member/myInfo.moa=com.mono.moa.controller.member.MyInfo
+
+# 나의정보수정 폼보기
+/member/myInfoEdit.moa=com.mono.moa.controller.member.MyInfoEdit
+
+# 나의정보수정 처리
+/member/myInfoEditProc.moa=com.mono.moa.controller.member.MyInfoEditProc
+
+# 회원탈퇴 폼보기
+/member/myInfoDel.moa=com.mono.moa.controller.member.MyInfoDel
+
+# 회원탈퇴 처리
+/member/myInfoDelProc.moa=com.mono.moa.controller.member.MyInfoDelProc
+
+# 나의 1:1문의 리스트 폼보기
+/review/qnaList.moa=com.mono.moa.controller.review.QnaList
+
+# 나의 1:1문의 리스트 상세보기
+/review/qnaListDetail.moa=com.mono.moa.controller.review.QnaListDetail
+
+# 나의 1:1문의 작성 폼보기
+/review/qnaWrite.moa=com.mono.moa.controller.review.QnaWrite
+
+# 나의 1:1문의 작성 처리
+/review/qnaWriteProc.moa=com.mono.moa.controller.review.QnaWriteProc
+
+# 나의 1:1문의 수정 폼보기
+/review/qnaEdit.moa=com.mono.moa.controller.review.QnaEdit
+
+# 나의 1:1문의 수정 처리
+/review/qnaEditProc.moa=com.mono.moa.controller.review.QnaEditProc
+
+# 나의 1:1문의 삭제 처리
+/review/qnaDel.moa=com.mono.moa.controller.review.QnaDel
+
+
+###############               다                    연            #################################################
+
+
+# 고객센터 > 전체 게시판 리스트 폼보기
+/board/allboardlist.moa=com.mono.moa.controller.board.AllBoardList
+
+##################서브페이지########################
+# 서브페이지 > 이벤트페이지 폼보기
+/subpage/eventpage.moa=com.mono.moa.controller.subpage.EventPage
+
+# 서브페이지 > 결제페이지 폼보기
+/subpage/paypage.moa=com.mono.moa.controller.subpage.PayPage
+
+
+###############               수                    연            #################################################
+
+
+# 서브페이지 > 검색 페이지
+/subpage/searchpage.moa=com.mono.moa.controller.subpage.SearchPage
+
+# 서브페이지 > 메뉴 페이지
+/menupage/menu1.moa=com.mono.moa.controller.menupage.Menu_1
+/menupage/menu2.moa=com.mono.moa.controller.menupage.Menu_2
+/menupage/menu3.moa=com.mono.moa.controller.menupage.Menu_3
+
+
+
+###############               기                    은            #################################################
+
+# 전시 안내 페이지 > 페이지 내부 이동(상세 정보)
+/exhibit/sang.moa=com.mono.moa.controller.exhibit.Sang
+
+# 전시 안내 페이지 > 페이지 내부 이동(전시 위치)
+/exhibit/jun.moa=com.mono.moa.controller.exhibit.Jun
+
+# 전시 안내 페이지 > 페이지 내부 이동(관람자 리뷰)
+/exhibit/kwan.moa=com.mono.moa.controller.exhibit.Kwan
+
+
+
+###############               병                    환            #################################################
+
+# 마이페이지 구매내역 확인 처리
+/mypage/myPageCheck.moa=com.mono.moa.controller.mypage.MyPageCheck
+
+# 마이페이지 찜목록 확인 처리
+/mypage/myPageJim.moa=com.mono.moa.controller.mypage.MyPageJim
+
+# 마이페이지 리뷰목록 확인 처리
+/mypage/myPageReviewList.moa=com.mono.moa.controller.mypage.MyPageReviewList
