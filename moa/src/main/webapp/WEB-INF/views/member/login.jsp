@@ -1,20 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+
+	<!-- head -->
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value=""/> 
 	</jsp:include>
-</head>
 
 <script>
 	$(document).ready(function() {		
+		
+		
 		
 		if( '${MSG}' == 'false') {
 			 alert('아이디와 비번을 확인하세요');
 		 }
 		
 		$('#sbtn').click(function(){
+			if(!($('#id').val())){
+				alert('아이디를 입력하세요');
+				$('#id').focus();
+				return;
+			} 	
+			if(!($('#pw').val())){
+				alert('패스워드를 입력하세요');
+				$('#pw').focus();
+				return;
+			}
 			$('#frm').submit();
 		});
 	
@@ -30,9 +43,10 @@
 </script>
 
 <body>
-<!-- Navigator -->
+	
+	<!-- Navigator -->
 	<jsp:include page="../a_nav/nav.jsp">
-		<jsp:param name="active" value="로그인"/>
+		<jsp:param name="" value=""/>
 	</jsp:include>
 
 	<!-- Page Content-->
@@ -74,12 +88,11 @@
 
 	
 
-<!-- Footer-->
-<footer class="py-5 bg-blight">
+	<!-- Footer-->
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</footer>
+
 
 </body>
 </html>

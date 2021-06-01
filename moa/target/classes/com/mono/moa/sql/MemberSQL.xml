@@ -5,4 +5,105 @@
 
 <mapper namespace="mSQL">
 
+	<select id="idCheck" resultType="int" parameterType="string">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			id = #{sid}
+	</select>
+	
+	<select id="getLogin" resultType="int" parameterType="mVO">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			isshow = 'Y'
+			AND id = #{id}
+			AND pw = #{pw}
+	</select>
+	
+	<insert id="addMember" parameterType="mVO">
+		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(mno) + 1, 1001)
+			FROM
+				member
+		</selectKey>
+		INSERT INTO
+			member(mno, id, pw, name, email, tel, gen, birth)
+		VALUES(
+			#{mno}, #{id}, #{pw}, #{name}, 
+			#{email}, #{tel}, #{gen}, #{birth}
+		)
+	</insert>
+	
+	<select id="getMyInfo" resultType="mVO" parameterType="string">
+		SELECT
+			mno, id, pw, name, email, tel, gen, birth, jdate
+		FROM
+			member
+		WHERE
+			id=#{id}
+	</select>
+	
+	<update id="myInfoEdit" parameterType="mVO">
+		UPDATE
+			member
+		<set>
+			name = #{name},
+			pw = #{pw},
+			tel = #{tel},
+			email = #{email},
+			gen = #{gen},
+			birth = #{birth},
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<update id="myInfoDel" parameterType="string">
+		UPDATE
+			member
+		<set>
+			isshow='N'
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<select id="loginFindId" resultType="mVO" parameterType="mVO">
+		SELECT
+			id, email
+		FROM
+			member
+		WHERE
+			name = #{name}
+			AND tel = #{tel}
+			AND isshow='Y'
+	</select>
+	
+	<select id="loginFindPw" resultType="String" parameterType="mVO">
+		SELECT
+			email
+		FROM
+			member
+		WHERE
+			id = #{id}
+			AND tel = #{tel}
+			AND isshow='Y'
+	</select>
+	
+		<update id="editPw" parameterType="mVO">
+		UPDATE
+			member
+		<set>
+			pw = #{pw}
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
 </mapper>

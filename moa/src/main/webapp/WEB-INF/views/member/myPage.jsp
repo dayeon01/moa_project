@@ -3,16 +3,17 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-<head>
+	<!-- head -->
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</head>
+
 
 <body>
-<!-- Navigator -->
+
+	<!-- Navigator -->
 	<jsp:include page="../a_nav/nav.jsp">
-		<jsp:param name="active" value="마이페이지"/>
+		<jsp:param name="" value=""/>
 	</jsp:include>
 
 	<!-- Page Content-->
@@ -27,76 +28,49 @@
 
 					</ol>
 					<!-- Content Row-->
-					<!-- Sidebar Column-->
 					<div class="row ">
-
-						<jsp:include page="../mypage/SideBar.jsp">
+						
+						<!-- Sidebar-->
+						<jsp:include page="../a_nav/member/SideBar.jsp">
 							<jsp:param name="" value="" />
 						</jsp:include>
 
 
 						<!-- Content Column-->
-
-						<fieldset disabled="" style="margin-left: 500px; width: 200px;">
-							<label class="form-label" for="disabledInput">회원님의 잔여 포인트</label>
-							<input class="form-control" id="disabledInput" type="text"
-								placeholder="10,000 P" disabled="">
-						</fieldset>
-
-
-
-						<div class="col-lg-4 col-sm-6 mb-4 por"
-							style="margin-left: 300px;">
-							<div class="card h-100">
-								<a href="#!"><img class="card-img-top"
-									src="https://via.placeholder.com/700x400" alt="..."></a>
-								<div class="card-body">
-									<h4 class="card-title">
-										<a href="#!">최근 본 전시</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-
-
-						<div class="col-lg-4 col-sm-6 mb-4 por" style="margin-left: 30px;">
-							<div class="card h-100">
-								<a href="#!"><img class="card-img-top"
-									src="https://via.placeholder.com/700x400" alt="..."></a>
-								<div class="card-body">
-									<h4 class="card-title">
-										<a href="#!">최근 본 이벤트</a>
-									</h4>
-								</div>
-							</div>
-						</div>
-
-						<div class="col-lg-4 col-sm-6 mb-4 por"
-							style="margin-left: 300px;">
-							<div class="card h-100">
-								<a href="#!"><img class="card-img-top"
-									src="https://via.placeholder.com/700x400" alt="..."></a>
-								<div class="card-body">
-									<h4 class="card-title">
-										<a href="#!">찜목록</a>
-									</h4>
-									<button type="button" class="btn btn-outline-secondary">더보기</button>
-								</div>
-							</div>
-						</div>
-
+						<div class="col-lg-8">
+                            <div class="row gx-5 row-cols-1 row-cols-md-2">
+                                <div class="col mb-5 h-100">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-collection"></i></div>
+                                    <h2 class="h5">회원님의 잔여 포인트</h2>
+                                    <p class="mb-0">10,000 P</p>
+                                </div>
+                                <div class="col mb-5 h-100">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-building"></i></div>
+                                    <h2 class="h5">Featured title</h2>
+                                    <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                </div>
+                                <div class="col mb-5 mb-md-0 h-100">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                                    <h2 class="h5">Featured title</h2>
+                                    <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                </div>
+                                <div class="col h-100">
+                                    <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-toggles2"></i></div>
+                                    <h2 class="h5">Featured title</h2>
+                                    <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                                </div>
+                            </div>
+                        </div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
-<!-- Footer-->
-<footer class="py-5 bg-blight">
+	<!-- Footer-->
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</footer>
 
 </body>
 </html>

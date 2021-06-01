@@ -3,11 +3,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-<head>
+	<!-- head -->
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</head>
 
 <script>
 $(document).ready(function(){
@@ -31,9 +30,10 @@ $(document).ready(function(){
 </script>
 
 <body>
-<!-- Navigator -->
+	
+	<!-- Navigator -->
 	<jsp:include page="../a_nav/nav.jsp">
-		<jsp:param name="active" value="마이페이지"/>
+		<jsp:param name="" value=""/>
 	</jsp:include>
 
 	<!-- Page Content-->
@@ -48,7 +48,9 @@ $(document).ready(function(){
 					</ol>
 					<!-- Content Row-->
 					<div class="row">
-						<jsp:include page="../mypage/SideBar.jsp">
+					
+						<!-- SideBar -->
+						<jsp:include page="../a_nav/member/SideBar.jsp">
 							<jsp:param name="" value="" />
 						</jsp:include>
 						<!-- Content Column-->
@@ -115,11 +117,9 @@ $(document).ready(function(){
 	</section>
 
 	<!-- Footer-->
-<footer class="py-5 bg-blight">
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</footer>
 
 </body>
 </html>

@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+
+	<!-- head -->
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value=""/> 
 	</jsp:include>
-</head>
 
 <script>
 	$(document).ready(function() {
@@ -25,7 +26,7 @@
 		}
 		if(telCk()){
 			$.ajax({
-				url : '/moa/member/loginFindIdProc.cls',
+				url : '/moa/member/loginFindIdProc.moa',
 				type : 'post',
 				dataType : 'json',
 				data : {
@@ -33,7 +34,7 @@
 					tel : stel			
 				},
 				success : function(data) {
-					if(data.result == 'NoCnt'){
+					if(data.result == 'NO'){
 						alert('일치하는 회원정보가 없습니다');
 					} else {
 						alert('인증번호가 정상 발송되었습니다.');				
@@ -55,6 +56,7 @@
 	$('#ibtn').click(function(){
 		var sname = $('#name').val();
 		var stel = $('#tel').val();
+		var smail = $('#mail1').val();
 		if(!sname){
 			alert('이름을 입력하세요');
 			return;
@@ -63,15 +65,16 @@
 			alert('휴대폰번호를 입력하세요');
 			return;
 		}
-		if($('#result1').val()==$('#mail1').val()){
-			$('#idconfirm').val($('#result2').val());
-		} else{
-			if(!$('#mail1').val()){
-				alert('인증번호를 입력하세요');
-				return;
-			}
-			alert("인증번호가 다릅니다. 다시 한번 확인하세요");
+		if(!smail){
+			alert('인증번호를 입력하세요');
+			return;
 		}
+
+		if(smail == $('#result1').val()){
+			$('#idconfirm').val($('#result2').val());
+		} else {
+			alert('인증번호가 일치하지 않습니다.');
+		}	
 	});
 	
 	function telCk(){
@@ -93,9 +96,9 @@
 
 <body>
 
-<!-- Navigator -->
+	<!-- Navigator -->
 	<jsp:include page="../a_nav/nav.jsp">
-		<jsp:param name="active" value="로그인"/>
+		<jsp:param name="" value="로그인"/>
 	</jsp:include>
 
 	<!-- Page Content-->
@@ -125,7 +128,7 @@
 							<label for="mail1">메일인증번호 : </label>
 							<div class="input-group mb-3">
 								<input type="text" class="form-control" id="mail1" name="mail1">
-								<button class="btn btn-primary mb-3" type="button" id="mailbtn">이메일
+								<button class="btn btn-primary" type="button" id="mailbtn">이메일
 									발송</button>
 							</div>
 							<p class="help-block" id="mail1msg"></p>
@@ -165,12 +168,10 @@
 		  </div>
 		</div>
 
-<!-- Footer-->
-<footer class="py-5 bg-blight">
+	<!-- Footer-->
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</footer>
 
 </body>
 </html>
