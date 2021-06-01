@@ -234,18 +234,18 @@ public class Member {
 	@RequestMapping("/loginFindIdProc.moa")
 	@ResponseBody
 	public HashMap<String, String> loginFindIdProc(MemberVO mVO) {
+		
 		MemberVO tVO = mDao.loginFindId(mVO);
-		String id = tVO.getId();
-		String email = tVO.getEmail();
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "NO");
-		if(id != null) {
-		
-			String tmp = MailUtil.gmailSend(email);
-			map.put("result", "OK");
-			map.put("result1", tmp);
-			map.put("result2", id);
-		}		
+		if(tVO == null) {
+			return map;
+		}
+		String tmp = MailUtil.gmailSend(tVO.getEmail());
+		map.put("result", "OK");
+		map.put("result1", tmp);
+		map.put("result2", tVO.getId());	
 		return map;
 	}
 	
