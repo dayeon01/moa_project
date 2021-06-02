@@ -24,6 +24,10 @@ public class PageUtil {
 	}
 	
 	public PageUtil(int nowPage, int total, int pageRow, int pageGroup) {
+		setPage(nowPage, total, pageRow, pageGroup);
+	}
+
+	public void setPage(int nowPage, int total, int pageRow, int pageGroup) {
 		this.nowPage = nowPage;
 		this.total = total;
 		this.pageRow = pageRow;
@@ -33,7 +37,7 @@ public class PageUtil {
 		calcEndPage();
 		calcCont();
 	}
-
+	
 	public void calcPage() {
 		totalPage = (total % pageRow) == 0 ? ((total == 0) ? 1 : total / pageRow) : (total / pageRow + 1) ;
 	}
