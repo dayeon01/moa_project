@@ -5,8 +5,42 @@
 
 <mapper namespace="bSQL">
 
-
-
+	<!-- 총 게시글 조회 질의명령 -->
+	<!-- <select id="totalCnt" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			nboard
+		WHERE
+			isshow = 'Y'
+	</select> -->
+	
+	
+	<!-- 게시글 리스트 조회 질의명령 -->
+	<!-- <select id="nboardList" resultType="bVO" parameterType="page">
+		SELECT
+			nno, ntitle, nbody, ndate, code
+		FROM
+			(
+				SELECT
+					ROWNUM rno, nno, ntitle, nbody, ndate, code
+				FROM
+					(
+						SELECT
+							nno, ntitle, nbody, ndate, code
+						FROM
+							nboard
+						WHERE
+							isshow = 'Y'
+						ORDER BY
+							wdate DESC		
+					)
+			)
+		WHERE
+			rno BETWEEN #{startCont} AND #{endCont}	 
+	</select>
+			-->
+			
 
 
 

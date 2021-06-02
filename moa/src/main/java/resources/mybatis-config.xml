@@ -19,6 +19,8 @@
 		<typeAlias alias="mVO" type="com.mono.moa.vo.MemberVO" />
 		<typeAlias alias="pVO" type="com.mono.moa.vo.PointVO" />
 		<typeAlias alias="rVO" type="com.mono.moa.vo.ReviewVO" />
+
+		<typeAlias alias="page" type="com.mono.moa.util.PageUtil" />
 	
 	</typeAliases> 
 	
