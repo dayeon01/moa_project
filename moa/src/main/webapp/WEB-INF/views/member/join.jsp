@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+
+	<!-- head -->
+	
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</head>
+	
 
 <script>
 	$(document).ready(function() {
@@ -32,7 +35,6 @@
 	$('#id').keyup(function() {
 		if (idCk()) {
 			$('#idmsg').removeClass('w3-text-red').addClass('w3-text-orange').html('유효한 아이디 입니다. 아이디 중복체크를 해주세요');
-			$('#idck').addClass('w3-button');
 			$('#idck').prop('disabled', false);
 		} else {
 			$('#idmsg').removeClass('w3-text-green').addClass('w3-text-red').html('특수문자를 제외한 3~20자리를 입력하세요. ');
@@ -43,7 +45,7 @@
 	$('#idck').click(function() {
 		var sid = $('#id').val();
 		$.ajax({
-				url : '/moa/member/idCheck.cls',
+				url : '/moa/member/idCheck.moa',
 				type : 'post',
 				dataType : 'json',
 				data : {
@@ -187,9 +189,10 @@
 </script>
 
 <body>
-<!-- Navigator -->
+
+	<!-- Navigator -->
 	<jsp:include page="../a_nav/nav.jsp">
-		<jsp:param name="active" value="회원가입"/>
+		<jsp:param name="" value=""/>
 	</jsp:include>
 
 	<!-- Page Content-->
@@ -198,6 +201,7 @@
 		<div class="container">
 			
 			<!-- 이용약관 -->
+			
 			<div id="joinCheck">
 				<jsp:include page="joinCheck.jsp">
 					<jsp:param name="" value="" />
@@ -220,7 +224,7 @@
 						<label for="id">아이디 : </label>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" id="id" name="id">
-							<button class="btn btn-primary mb-3" type="button" id="idck"
+							<button class="btn btn-primary" type="button" id="idck"
 								disabled>중복체크</button>
 						</div>
 						<p class="help-block" id="idmsg"></p>
@@ -276,11 +280,9 @@
 	</section>
 
 	<!-- Footer-->
-<footer class="py-5 bg-blight">
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</footer>
 
 </body>
 </html>

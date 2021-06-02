@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html lang="ko"><head>
+<html lang="ko">
+
+	<!-- head -->
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value=""/> 
 	</jsp:include>
-</head>
 
 <script>
 	$(document).ready(function() {
@@ -26,7 +27,7 @@
 		if(telCk()){
 			
 			$.ajax({
-				url : '/moa/member/loginFindPwProc.cls',
+				url : '/moa/member/loginFindPwProc.moa',
 				type : 'post',
 				dataType : 'json',
 				data : {
@@ -34,7 +35,7 @@
 					tel : stel			
 				},
 				success : function(data) {
-					if(data.result == 'NoCnt'){
+					if(data.result == 'NO'){
 						alert('일치하는 아이디와 휴대폰번호가 없습니다');
 					} else {
 						alert('임시비밀번호가 발송 발송되었습니다.');
@@ -125,12 +126,11 @@
 		  </div>
 		</div>
 
-<!-- Footer-->
-<footer class="py-5 bg-blight">
+	
+	<!-- Footer-->
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</footer>
 
 </body>
 </html>
