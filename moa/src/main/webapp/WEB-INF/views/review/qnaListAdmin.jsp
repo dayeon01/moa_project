@@ -39,7 +39,7 @@ $(document).ready(function() {
 				$('#nowPage').val(tmp);
 				break;
 		}
-		$('#frm').attr('action', '/moa/review/qnaListAdmin.moa');
+		$('#frm').attr('action', '/moa/review/qnaList.moa');
 		$('#frm').submit();
 	});
 	
@@ -56,7 +56,7 @@ $(document).ready(function() {
 
 <body>
 
-<form method="POST" action="/moa/review/qnaListDetailAdmin.moa" id="frm" name="frm">
+<form method="POST" action="/moa/review/qnaListDetail.moa" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage">
 		<input type="hidden" name="bno" id="bno">
 </form>
@@ -80,7 +80,7 @@ $(document).ready(function() {
 					<!-- Content Row-->
 					<div class="row">
 						<!-- Sidebar Column-->
-						<jsp:include page="SideBar.jsp">
+						<jsp:include page="../a_nav/member/SideBar.jsp">
 							<jsp:param name="" value="" />
 						</jsp:include>
 						<!-- Content Column-->
@@ -102,8 +102,8 @@ $(document).ready(function() {
 										<tr class="trow" id="b${data.bno}">
 											<th scope="row">${data.bno}</th>
 											<td>${data.title}</td>
-											<td>${data.reply.equals('Y') ? '답변완료' : '미답변'}</td>
-											<td>${data.sdate}</td>
+											<td>${null eq data.reply ? "미답변" : "답변"}</td>
+											<td>${data.wdate}</td>
 										</tr>
 </c:forEach>
 								</tbody>								

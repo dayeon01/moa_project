@@ -108,8 +108,10 @@ $(document).ready(function() {
 										<tr class="trow" id="b${data.bno}">
 											<th scope="row">${data.bno}</th>
 											<td>${data.title}</td>
-											<td>${data.reply.equals('Y') ? '답변완료' : '미답변'}</td>
-											<td>${data.sdate}</td>
+											<td>
+											${null eq data.reply ? "미답변" : "답변"}
+											</td>
+											<td>${data.wdate}</td>
 										</tr>
 
 </c:forEach>

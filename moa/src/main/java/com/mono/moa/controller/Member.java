@@ -120,9 +120,10 @@ public class Member {
 	@RequestMapping("/myPage.moa")
 	public ModelAndView myPage(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
-		if(isLogin(session)) {	
+		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
 			mv.setView(rv);
+			return mv;
 		}
 		mv.addObject(session.getAttribute("SID"));
 		mv.setViewName("member/myPage");

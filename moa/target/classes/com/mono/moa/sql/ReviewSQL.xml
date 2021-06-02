@@ -5,4 +5,130 @@
 
 <mapper namespace="reSQL">
 
+	<select id="getTotal" resultType="int" parameterType="rVO">
+		SELECT
+			count(*)
+		FROM
+			iqBoard
+			WHERE
+			isShow = 'Y'
+		<if test="id != 'admin'">
+			AND iqmno = (
+					    SELECT
+							mno
+						FROM
+							member
+						WHERE
+							id=#{id})
+    	</if>	
+		
+	</select>
+	
+	<select id="qnaList" resultType="rVO" parameterType="page">
+		SELECT
+			rno, bno, title, body, mno, wdate, reply, redate
+        FROM
+		(
+		        SELECT
+				ROWNUM rno, iqbno bno, iqtitle title, iqbody body, iqmno mno, iqwdate wdate, iqreply reply, iqredate redate
+		        FROM
+					(SELECT
+					    iqbno, iqtitle, iqbody, iqmno, iqwdate, iqreply, iqredate
+					FROM
+						iqboard
+			        WHERE
+			            isshow='Y'
+			    <if test="id != 'admin'">        
+			         AND iqmno = (
+					    SELECT
+							mno
+						FROM
+							member
+						WHERE
+							id=#{id})
+				</if>
+					ORDER BY iqwdate DESC)
+					)
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<select id="qnaListDetail" resultType="rVO" parameterType="rVO">
+		SELECT
+			iqbno bno, iqtitle title, iqbody body, iqmno mno, iqwdate wdate, iqreply reply, iqredate redate
+		FROM
+			iqBoard
+		WHERE
+			iqbno = #{bno}
+	</select>
+	
+	<select id="getId" resultType="string" parameterType="int">
+		SELECT
+			id
+		FROM
+			member
+		WHERE
+			mno = (SELECT iqmno FROM iqboard WHERE iqbno = #{bno})
+	</select>
+	
+	<insert id="qnaWrite" parameterType="rVO">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(iqbno) + 1, 10001)
+			FROM
+				iqboard
+		</selectKey>
+		INSERT INTO
+			iqboard(iqbno, iqtitle, iqbody, iqmno)
+		VALUES(
+			#{bno}, #{title}, #{body}, (SELECT
+							mno
+						FROM
+							member
+						WHERE
+							id=#{id})
+		)
+	</insert>
+	
+	<update id="qnaWriteAdmin" parameterType="rVO">
+		UPDATE
+			iqboard
+		<set>
+			iqreply = #{reply},
+			iqredate = sysdate
+		</set>
+		WHERE
+			iqbno = #{bno}
+	</update>
+	
+	<update id="qnaEdit" parameterType="rVO">
+		UPDATE
+			iqboard
+		<set>
+			iqtitle = #{title},
+			iqbody = #{body},
+		</set>
+		WHERE
+			iqbno = #{bno}
+	</update>
+	
+	<update id="qnaEditAdmin" parameterType="rVO">
+		UPDATE
+			iqboard
+		<set>
+			iqreply=#{reply}
+		</set>
+		WHERE
+			iqbno = #{bno}
+	</update>
+	
+	<update id="qnaDel" parameterType="int">
+		UPDATE
+			iqboard
+		<set>
+			isshow='N'
+		</set>
+		WHERE
+			iqbno = #{bno}
+	</update>
 </mapper>
