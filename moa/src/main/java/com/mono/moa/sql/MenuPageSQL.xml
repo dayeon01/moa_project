@@ -5,4 +5,94 @@
 
 <mapper namespace="mpSQL">
 
+	<!-- 전시회 총 개수 조회 질의명령 -->
+	<select id="getTotal" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			exinfo
+		WHERE
+			isShow = 'Y'
+	</select>
+	
+	<!-- 일반전시 정보 조회 질의명령  -->
+	<select id="exiList" resultType="eVO" parameterType="page">
+		SELECT
+		    exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		        FROM
+		            (
+		                SELECT
+		                    exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		                FROM
+		                    exinfo, image
+		                WHERE
+		                    imgno = exino
+		                    AND exinfo.isshow = 'Y'
+		                    AND image.isshow = 'Y'
+		                ORDER BY
+		                    exisdate DESC
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<!-- 미술전 정보 조회 질의명령  -->
+	<select id="artList" resultType="eVO" parameterType="page">
+		SELECT
+		    exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		        FROM
+		            (
+		                SELECT
+		                    exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		                FROM
+		                    exinfo, image
+		                WHERE
+		                    imgno = exino
+		                    AND exinfo.isshow = 'Y'
+		                    AND image.isshow = 'Y'
+		                    AND exiecno = 1
+		                ORDER BY
+		                    exisdate DESC
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<!-- 테마전 정보 조회 질의명령  -->
+	<select id="themeList" resultType="eVO" parameterType="page">
+		SELECT
+		    exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		        FROM
+		            (
+		                SELECT
+		                    exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname
+		                FROM
+		                    exinfo, image
+		                WHERE
+		                    imgno = exino
+		                    AND exinfo.isshow = 'Y'
+		                    AND image.isshow = 'Y'
+		                    AND exiecno = 3
+		                ORDER BY
+		                    exisdate DESC
+		            )
+		    )
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+
 </mapper>

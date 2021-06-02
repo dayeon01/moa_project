@@ -11,7 +11,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-$('#nowPage').val('${PAGE.nowPage}');
+		$('#nowPage').val('${PAGE.nowPage}');
 		
 		if('${PAGE.startPage}' == 1){
 			$('#pre').removeClass('page-item');
@@ -51,6 +51,10 @@ $('#nowPage').val('${PAGE.nowPage}');
 	</jsp:include>
 
 <!-- 메뉴별 페이지 -->
+<form method="POST" action="/moa/menupage/menu2.moa" id="frm" name="frm">
+	<input type="hidden" name="nowPage" id="nowPage">
+</form>
+
 <section class="py-5 bg-light inGnbPage">
     <div class="container menu-h">
         <h2 class="mb-4">미술전</h2>
@@ -71,7 +75,7 @@ $('#nowPage').val('${PAGE.nowPage}');
 </c:forEach>        
         </div>
 
-         <!-- 페이징 처리 -->
+        <!-- 페이징 처리 -->
         <div class="user-paging">
 		<ul class="pagination justify-content-center">
 				<li class="page-item" id="pre"><a class="page-link"
