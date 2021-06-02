@@ -6,7 +6,7 @@
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-</head>
+</head> 
 
 <script type="text/javascript">
 	$(document).ready(function(){
