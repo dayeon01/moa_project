@@ -54,6 +54,7 @@ $(document).ready(function(){
 							<br>
 							<form method="post" id="frm" name="frm"
 								action="/moa/review/qnaWriteProc.moa">
+								<input type="hidden" name="nowPage" id="nowPage" value=${nowPage}>
 								<label for="title">제목 : </label>
 								<div class="input-group mb-3">
 									<input type="text" class="form-control" id="title" name="title"

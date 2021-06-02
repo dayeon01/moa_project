@@ -6,13 +6,19 @@ import java.text.SimpleDateFormat;
 
 public class ReviewVO {
 
-	private int rno, bno, mno, upno;
+	private int rno, bno, mno, upno, nowPage;
 	private String id, name, title, body, sdate, reply;
-	
 	private Date wdate;
+	private Date redate;
 	private Time wtime;
 	
 	
+	public int getNowPage() {
+		return nowPage;
+	}
+	public void setNowPage(int nowPage) {
+		this.nowPage = nowPage;
+	}
 	public String getReply() {
 		return reply;
 	}
@@ -88,6 +94,12 @@ public class ReviewVO {
 	}
 	public void setWdate(Date wdate) {
 		this.wdate = wdate;
+	}
+	public Date getRedate() {
+		return redate;
+	}
+	public void setRedate(Date redate) {
+		this.redate = redate;
 	}
 	public Time getWtime() {
 		return wtime;

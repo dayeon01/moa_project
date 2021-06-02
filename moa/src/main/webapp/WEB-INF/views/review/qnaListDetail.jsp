@@ -26,7 +26,7 @@ $(document).ready(function() {
 	});
 	
 	$('#ebtn').click(function(){
-		if('${DATA1.body}'){
+		if('${DATA.reply}'){
 			alert('답변이 완료된 게시글은 수정하실 수 없습니다.');
 			return;
 		}
@@ -92,12 +92,12 @@ $(document).ready(function() {
 									<tr>
 										<th scope="row">${SID}님의 문의내용</th>
 										<td colspan=2>${DATA.body}</td>
-										<td>${DATA.sdate}</td>
+										<td>${DATA.wdate}</td>
 									</tr>
 									<tr>
 										<th scope="row">관리자 답변</th>
-										<td colspan=2>${DATA1.body}</td>
-										<td>${DATA1.sdate}</td>
+										<td colspan=2>${DATA.reply}</td>
+										<td>${DATA.redate}</td>
 									</tr>
 								</tbody>
 							</table>

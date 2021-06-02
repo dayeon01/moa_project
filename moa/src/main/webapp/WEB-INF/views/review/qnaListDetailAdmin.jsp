@@ -13,13 +13,7 @@
 $(document).ready(function() {
 	
 	$('#nowPage').val('${nowPage}');
-	$('#bno').val('${DATA1.bno}');
-	
-	if(!($('#body').val() == " ")){
-		$('.tmp1').css('display', 'none');
-	} else {
-		$('.tmp2').css('display', 'none');
-	}
+	$('#bno').val('${DATA.bno}');
 	
 	$('#wbtn').click(function(){
 		var stitle = $('#body').val();
@@ -29,14 +23,14 @@ $(document).ready(function() {
 	
 	$('#ebtn').click(function(){
 		$('#reply').val($('#body').val());
-		$('#frm').attr('action', '/moa/review/qnaEditProcAdmin.moa');
+		$('#frm').attr('action', '/moa/review/qnaEditProc.moa');
 		$('#frm').submit();
 	});
 	
 	$('#dbtn').click(function(){
 		var result = confirm('정말로 삭제 하시겠습니까?');
 		if(result){
-			$('#frm').attr('action', '/moa/review/qnaDelAdmin.moa');
+			$('#frm').attr('action', '/moa/review/qnaDel.moa');
 			$('#frm').submit();
 		}	
 	});	
@@ -45,7 +39,7 @@ $(document).ready(function() {
 
 <body>
 
-<form method="post" action="/moa/review/qnaWriteProcAdmin.moa" id="frm" name="frm">
+<form method="post" action="/moa/review/qnaWriteProc.moa" id="frm" name="frm">
 		<input type="hidden" name="nowPage" id="nowPage">
 		<input type="hidden" name="bno" id="bno">
 		<input type="hidden" name="reply" id="reply">
@@ -69,7 +63,7 @@ $(document).ready(function() {
 					<!-- Content Row-->
 					<div class="row">
 						<!-- Sidebar Column-->
-						<jsp:include page="SideBar.jsp">
+						<jsp:include page="../a_nav/member/SideBar.jsp">
 							<jsp:param name="" value="" />
 						</jsp:include>
 						<!-- Content Column-->
@@ -78,28 +72,28 @@ $(document).ready(function() {
 							<table class="table">
 								<thead>
 									<tr>
-										<th scope="col">글번호(${DATA1.bno})</th>
-										<th scope="col" colspan=2>제목 : ${DATA1.title}</th>
+										<th scope="col">글번호(${DATA.bno})</th>
+										<th scope="col" colspan=2>제목 : ${DATA.title}</th>
 										<th scope="col">등록일</th>
 									</tr>
 								</thead>
 								<tbody class="w3-margin-top">
 									<tr>
-										<th scope="row">ID : ${DATA1.id}</th>
-										<td colspan=2>${DATA1.body}</td>
-										<td>${DATA1.sdate}</td>
+										<th scope="row">ID : ${DATA.id}</th>
+										<td colspan=2>${DATA.body}</td>
+										<td>${DATA.wdate}</td>
 									</tr>
 									<tr>
 										<th scope="row">관리자 답변</th>
 										<td colspan=2></td>
-										<td>${DATA2.sdate}</td>
+										<td>${DATA.redate}</td>
 									</tr>
 								</tbody>
 							</table>
 							
 							<textarea name="body" id="body"  rows="7"
 							class="w3-col w3-input w3-round w3-border noresize w3-margin-bottom" 
-							> ${DATA2.body}</textarea><br>
+							> ${DATA.reply}</textarea><br>
 								
 								<button class="btn btn-primary tmp1" id="wbtn">답변등록</button>
 								<button class="btn btn-primary tmp2" id="dbtn">삭제</button>

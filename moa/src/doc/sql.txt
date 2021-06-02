@@ -1,0 +1,51 @@
+-- 2021-06-02
+-- 진석
+
+DROP table iqboard;
+
+CREATE TABLE iqboard(
+iqbno NUMBER(5)
+    CONSTRAINT IQB_NO_PK PRIMARY KEY,
+iqmno NUMBER(4)
+    CONSTRAINT IQB_MNO_FK REFERENCES member(mno)
+    CONSTRAINT IQB_MNO_NN NOT NULL,
+iqtitle VARCHAR2(50)
+    CONSTRAINT IQB_TITLE_NN NOT NULL,
+iqbody VARCHAR2(4000)
+    CONSTRAINT IQB_BODY_NN NOT NULL,
+iqwdate DATE default sysdate					
+CONSTRAINT IQB_WDATE_NN NOT NULL,
+iqreply VARCHAR2(4000),
+iqredate DATE,
+isShow CHAR(1) DEFAULT 'Y'
+    CONSTRAINT IQB_SHOW_CK CHECK(isShow IN ('Y','N'))
+    CONSTRAINT IQB_SHOW_NN NOT NULL
+);
+
+INSERT INTO
+    iqboard(iqbno, iqmno, iqtitle, iqbody)
+VALUES(
+    (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
+    1015, '문의제목1', '문의답글1'
+);
+
+INSERT INTO
+    iqboard(iqbno, iqmno, iqtitle, iqbody)
+VALUES(
+    (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
+    1015, '문의제목2', '문의답글2'
+);
+
+INSERT INTO
+    iqboard(iqbno, iqmno, iqtitle, iqbody)
+VALUES(
+    (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
+    1015, '문의제목3', '문의답글3'
+);
+
+INSERT INTO
+    iqboard(iqbno, iqmno, iqtitle, iqbody)
+VALUES(
+    (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
+    1015, '문의제목4', '문의답글4'
+);
