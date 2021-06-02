@@ -35,7 +35,7 @@ public class PageUtil {
 		calcPage();
 		calcStartPage();
 		calcEndPage();
-		calcCont();
+		calcCont(); 
 	}
 	
 	public void calcPage() {
