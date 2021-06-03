@@ -15,6 +15,25 @@ public class PageUtil {
 	private int startCont;
 	private int endCont;
 	
+	private String id;
+    private int mno;
+      
+    
+    
+   public int getMno() {
+      return mno;
+   }
+   public void setMno(int mno) {
+      this.mno = mno;
+   }
+   
+   public String getId() {
+      return id;
+   }
+   public void setId(String id) {
+      this.id = id;
+   }
+	
 	public PageUtil() {
 		nowPage = 1;
 	}
