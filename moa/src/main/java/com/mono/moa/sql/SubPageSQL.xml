@@ -5,4 +5,51 @@
 
 <mapper namespace="sbSQL">
 
+	<select id="totalCnt" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			event
+		WHERE
+			isshow = 'Y'
+	</select>
+	
+	<select id="eventList" resultType="evnVO" parameterType="page">
+		SELECT
+			 evtno, evtexino, evtcode, evtcontent, sdate, edate, exiname, exiprice, exiperson, idir, imgname
+		FROM
+			(
+				SELECT
+					ROWNUM rno, evtno, evtexino, evtcontent,evtcode, sdate, edate, exiname, exiprice, exiperson, idir, imgname
+				FROM
+					(
+						SELECT
+							 evtno, evtexino, evtcode, evtcontent, sdate, edate, exiname, exiprice, exiperson, idir, imgname
+						FROM
+							 event, exinfo, image
+						WHERE
+							 evtexino(+) = exino
+			              	 AND imgno = exino
+			               	 AND event.isShow = 'Y' 
+			               	 AND exinfo.isShow = 'Y' 
+			               	 AND image.isShow = 'Y' 
+					)
+			)
+		WHERE
+			rno BETWEEN #{startCont} AND #{endCont}
+		ORDER BY
+			edate ASC
+	</select>
+	
+	
+	<!-- 이벤트 가격 설정 질의명령 -->
+	<select id="setPrice" resultType="evnVO">
+		SELECT
+		    exiprice, evtcontent,
+		    decode(evtcode, 'D',  to_char(exiprice * (to_number(evtcontent) / 100)),'P', exiprice)  reprice
+		FROM
+		    event, exinfo
+		WHERE
+		    exino = evtexino
+	</select>
 </mapper>

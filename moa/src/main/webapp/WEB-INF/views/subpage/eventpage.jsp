@@ -13,11 +13,19 @@
 .won{
 	text-decoration: line-through;
 }
+.exlist:hover {
+	border: 1px solid pink;
+}
 </style>
 </head>   
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('img').mouseover(function(){
+		
+		/*  $('.line').mouseover(function(){
+			$(this).css('background','pink');
+		}); 
+		 */
+		 $('img').mouseover(function(){
 			$(this).css('cursor','pointer')
 		});
 		$('img').mouseout(function(){
@@ -30,7 +38,11 @@
 		$('.title').mouseout(function(){
 			$(this).css('cursor','none')
 			$(this).css('text-decoration','none')
-		});
+		}); 
+		
+		
+		
+		
 		
 		$('.w3-button.pbtn').click(function(){
 	    	 var pno =$(this).html();
@@ -104,18 +116,26 @@
          <hr class="hr2 w3-margin-top">
       </div>
       <div class="w3-content w3-margin w3-center">
-   <c:forEach var="data" items="${LIST}">    
-      <div class="w3-content inblock  w3-round w3-margin-top  w3-padding w3-text-left">
-			 <div class="w3-margin-right">
-			  <img src="${data.idir}${data.imgname}" class="img-rounded w3-round" alt="Cinque Terre" width="200" height="236"> 
+      
+ <c:forEach var="data" items="${LIST}">    
+      <div class="w3-content inblock  w3-round w3-margin-top w3-padding w3-text-left exlist">
+			 <div class="w3-margin-right  line">
+			  <img src="${data.idir}${data.imgname}" 
+			  		class="img-rounded w3-round" alt="Cinque Terre" width="200" height="236"> 
 			  <h5 class="w3-margin-top w3-margin-left w3-text-grey title">${data.exiname}</h5>
-			  <p class=" w3-margin-top w3-margin-left">${data.exiperson}</p>            
-			  <p class=" w3-margin-left inblock won"> ${data.exiprice}</p>            
-			  <p class=" w3-margin-left inblock">10000</p>            
+			  <p class=" w3-margin-top w3-margin-left">${data.exiperson}</p> 
+		 <c:if test="${data.evtcode eq 'D' }">	  
+			  <p class=" w3-margin-left inblock won">${data.exiprice}</p>  
+			  <p class=" w3-margin-left inblock">${data.reprice}</p>    
+		</c:if>	          
+		 <c:if test="${data.evtcode eq 'P' }">	  
+			  <p class=" w3-margin-left inblock ">${data.exiprice}</p>  
+		</c:if>	         
+		
 			  <p class=" w3-margin-left w3-text-grey">${data.sdate}</p>            
 			</div>
       </div>
-   </c:forEach>   
+ </c:forEach>   
       
 <!--        <div class="w3-content inblock  w3-round w3-margin-top  w3-padding w3-text-left">
 		 <div class="w3-margin-left ">
@@ -141,7 +161,7 @@
     </div>
   </div>
       
-        <!-- 페이징 처리 -->
+     <!-- 페이징 처리 -->
       <div class="w3-center w3-margin-top w3-margin-bottom ">
       <div class="w3-bar w3-border w3-round w3-margin-top">
     <c:if test="${PAGE.startPage == 1 }">    
@@ -152,47 +172,29 @@
   	</c:if>
   <c:forEach var="page" begin="${PAGE.startPage}" end="${PAGE.endPage }">
      <c:if test="${PAGE.nowPage == page }">       
-            <span class="w3-bar-item w3-button w3-border-right pbtn"id="pagpre">${page }</span>
+            <span class="w3-bar-item w3-button w3-border-right w3-text-blue pbtn"id="pagpre">${page}</span>
      </c:if>
      <c:if test="${PAGE.nowPage != page }">     
-            <span class="w3-bar-item w3-button pbtn" id="pagnext">${page}</span>
+            <span class="w3-bar-item w3-button w3-border-right  pbtn" id="pagnext">${page}</span>
      </c:if>
   </c:forEach>  
      <c:if test="${PAGE.endPage == PAGE.totalPage }">
-            <span class="w3-bar-item w3-border-left ">&gt;</span>
+            <span class="w3-bar-item ">&gt;</span>
      </c:if> 
       <c:if test="${PAGE.endPage != PAGE.totalPage }">  
-            <span class="w3-bar-item w3-button w3-border-left pbtn">&gt;</span>
+            <span class="w3-bar-item w3-button w3-border-left  pbtn">&gt;</span>
       </c:if>   
          </div>
       </div>
+  
       
-     <%-- 	<ul class="pagination justify-content-center">
-			<li class="page-item" id="pre"><a class="page-link"
-				href="#" aria-label="Previous"> <span aria-hidden="true">«</span>
-					<span class="sr-only">Previous</span>
-			</a></li>
-			<c:forEach var="page" begin="${PAGE.startPage}"
-				end="${PAGE.endPage}">
-				<li class="page-item" id="pnum${page}"><a
-					class="page-link" href="#">${page}</a></li>
-			</c:forEach>
-			<li class="page-item" id="nex"><a class="page-link"
-				href="#" aria-label="Next"> <span aria-hidden="true">»</span>
-					<span class="sr-only">Next</span>
-			</a></li>
-		</ul>
-	
-     </div>
-      <hr class="hr2 w3-margin-top w3-margin-bottom">
-      <hr class="w3-darkgrey w3-margin-top w3-margin-bottom">
-	</div> --%>
+   
    
   <!-- Footer-->
-   <footer class="py-5 bg-dark">
+    <footer class="py-5 bg-dark">
        <jsp:include page="../a_nav/footer.jsp">
          <jsp:param name="" value="" />
       </jsp:include>
-   </footer>  
+   </footer>   
 </body>
 </html>

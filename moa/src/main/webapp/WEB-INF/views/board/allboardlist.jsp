@@ -35,6 +35,7 @@ select{
     	 }else if(pno == '&gt;'){
     		 pno ='${PAGE.endPage + 1}';
     	 }
+    	 
     	 $('#nowPage').val(pno);
     	 $('#frm').submit();
       });
@@ -50,8 +51,10 @@ select{
     	 if(result == 'faq'){
     		 $('.N').css('display', 'none');
     		 $('.F').css('display', 'block');
+    		 
     	 } else if(result == 'NF'){
     		 $('.F, .N').css('display', 'block');
+    		 
     	 }else {
     		 $('.F').css('display', 'none');
     		 $('.N').css('display', 'block');
@@ -100,7 +103,7 @@ select{
             	</c:if>
             </span>         
             <span class="w3-col m6 title" > ${data.ntitle} </span> 
-            <span class="w3-col m3"> ${data.wdate }</span>         
+            <span class="w3-col m3"> ${data.sdate }</span>         
             <span class="w3-col mgt20 w3-border w3-border-light-grey body" > ${data.nbody }</span>       
       </div>
  </c:forEach>    
@@ -116,17 +119,17 @@ select{
   	</c:if>
   <c:forEach var="page" begin="${PAGE.startPage}" end="${PAGE.endPage }">
      <c:if test="${PAGE.nowPage == page }">       
-            <span class="w3-bar-item w3-button w3-border-right pbtn"id="pagpre">${page }</span>
+            <span class="w3-bar-item w3-button w3-border-right w3-text-blue pbtn"id="pagpre">${page}</span>
      </c:if>
      <c:if test="${PAGE.nowPage != page }">     
-            <span class="w3-bar-item w3-button pbtn" id="pagnext">${page}</span>
+            <span class="w3-bar-item w3-button w3-border-right  pbtn" id="pagnext">${page}</span>
      </c:if>
   </c:forEach>  
      <c:if test="${PAGE.endPage == PAGE.totalPage }">
-            <span class="w3-bar-item w3-border-left ">&gt;</span>
+            <span class="w3-bar-item ">&gt;</span>
      </c:if> 
       <c:if test="${PAGE.endPage != PAGE.totalPage }">  
-            <span class="w3-bar-item w3-button w3-border-left pbtn">&gt;</span>
+            <span class="w3-bar-item w3-button w3-border-left  pbtn">&gt;</span>
       </c:if>   
          </div>
       </div>

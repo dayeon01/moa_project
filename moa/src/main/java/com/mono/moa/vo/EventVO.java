@@ -7,7 +7,7 @@ import java.text.*;
 
 public class EventVO {
 	private int evtno, evtexino, exiprice, rno;
-	private String evtcode, evtcontent, sdate, exiname, exiperson,idir, imgname;
+	private String evtcode, evtcontent, sdate, exiname, exiperson,idir, imgname, reprice;
 	private Date wdate;
 	private Time wtime;
 	public int getEvtno() {
@@ -21,6 +21,13 @@ public class EventVO {
 	}
 	public void setExiprice(int exiprice) {
 		this.exiprice = exiprice;
+	}
+
+	public String getReprice() {
+		return reprice;
+	}
+	public void setReprice(String reprice) {
+		this.reprice = reprice;
 	}
 	public String getExiname() {
 		return exiname;

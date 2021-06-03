@@ -6,9 +6,8 @@ import java.text.*;
 
 public class BoardVO {
 	private int nno , rno;
-	private String ntitle, nbody, ndate, code;
-	private Date wdate;
-	
+	private String ntitle, nbody, sdate, code;
+	private Date ndate;
 	public int getNno() {
 		return nno;
 	}
@@ -33,15 +32,15 @@ public class BoardVO {
 	public void setNbody(String nbody) {
 		this.nbody = nbody;
 	}
-	public String getNdate() {
-		return ndate;
+	public String getSdate() {
+		return sdate;
 	}
-	public void setNdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
-		ndate = form.format(wdate);
+	public void setSdate() {
+		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일");
+		sdate = form.format(ndate);
 	}
-	public void setNdate(String ndate) {
-		this.ndate = ndate;
+	public void setSdate(String sdate) {
+		this.sdate = sdate;
 	}
 	public String getCode() {
 		return code;
@@ -49,15 +48,16 @@ public class BoardVO {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public Date getWdate() {
-		return wdate;
+	public Date getNdate() {
+		return ndate;
 	}
-	public void setWdate(Date wdate) {
-		this.wdate = wdate;
-		setNdate();
-		
+	public void setNdate(Date ndate) {
+		this.ndate = ndate;
+		setSdate();
 	}
-	
+
 	
 	
 }
+	
+	
