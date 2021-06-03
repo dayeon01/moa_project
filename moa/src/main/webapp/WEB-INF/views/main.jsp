@@ -7,10 +7,10 @@
 		<jsp:param name="" value="" />
 	</jsp:include>
 	
+<!-- 
 <link href="/moa/css/calendar/calendar.css" rel="stylesheet">
 <link href='/moa/css/calendar/core-main.css' rel='stylesheet' />
 <link href='/moa/css/calendar/daygrid-main.css' rel='stylesheet' />
-
 
 <script type="text/javascript">
 		var arr = ${ARR};
@@ -18,7 +18,8 @@
 <script src="/moa/js/calendar/calendar.js"></script>
 <script src='/moa/js/calendar/core.main.js'></script>
 <script src='/moa/js/calendar/interaction.main.js'></script>
-<script src='/moa/js/calendar/daygrid.main.js'></script>
+<script src='/moa/js/calendar/daygrid.main.js'></script> 
+-->
 
 </head>
 <body>
@@ -61,7 +62,7 @@
 <!-- 전시 목록 -->
 <section class="py-5 bg-light">
     <div class="container">
-        <h2 class="mb-4">최근 전시회</h2>
+        <h2 class="mb-4">최신 전시회</h2>
         <div class="row">
             
 <!-- 최근전시정보리스트 -->
@@ -115,7 +116,9 @@
             <div class="col-lg-4 mb-4 mb-lg-0">
                 <div class="card h-100">
                     <h4 class="card-header">공지사항</h4>
-                    <div class="card-body"><p class="card-text">공지사항.</p></div>
+<c:forEach var="data" items="${BRD}">
+                    <div class="card-body nbody"><p class="card-text ntitle">${data.ntitle}</p></div>
+</c:forEach>
                     <div class="card-footer"><a class="btn btn-primary" href="/moa/board/allboardlist.moa">더보기</a></div>
                 </div>
             </div>

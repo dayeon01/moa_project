@@ -154,6 +154,17 @@ nav .logo:hover{
 	cursor:pointer!important;
 }
 
+.nbody{
+	padding:0.75em 1.25em; 
+	border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+.ntitle{
+	cursor:pointer;
+}
+.ntitle:hover{
+	color: #007bff;
+}
+
 
 
 @media (min-width: 576px) {

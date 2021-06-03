@@ -6,18 +6,18 @@
 <mapper namespace="bSQL">
 
 	<!-- 총 게시글 조회 질의명령 -->
-	<!-- <select id="totalCnt" resultType="int">
+	 <select id="totalCnt" resultType="int">
 		SELECT
 			count(*)
 		FROM
 			nboard
 		WHERE
 			isshow = 'Y'
-	</select> -->
+	</select>
 	
 	
 	<!-- 게시글 리스트 조회 질의명령 -->
-	<!-- <select id="nboardList" resultType="bVO" parameterType="page">
+	<select id="nboardList" resultType="bVO" parameterType="page">
 		SELECT
 			nno, ntitle, nbody, ndate, code
 		FROM
@@ -33,22 +33,41 @@
 						WHERE
 							isshow = 'Y'
 						ORDER BY
-							wdate DESC		
+							ndate DESC		
 					)
 			)
 		WHERE
 			rno BETWEEN #{startCont} AND #{endCont}	 
 	</select>
-			-->
-			
-
-
-
-
-
-
-
 
 
 
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

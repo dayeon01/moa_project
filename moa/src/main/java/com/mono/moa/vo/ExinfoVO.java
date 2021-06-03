@@ -60,12 +60,14 @@ public class ExinfoVO {
 	}
 	public void setExisdate(Date exisdate) {
 		this.exisdate = exisdate;
+		startdate = setSdate(exisdate);
 	}
 	public Date getExiedate() {
 		return exiedate;
 	}
 	public void setExiedate(Date exiedate) {
 		this.exiedate = exiedate;
+		enddate = setSdate(exiedate);
 	}
 	public String getStartdate() {
 		return startdate;
