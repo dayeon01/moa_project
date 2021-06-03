@@ -25,10 +25,7 @@ public class SubPageDao {
 		return sqlSession.selectList("sbSQL.eventList",page);
 	}
 
-	//이벤트 가격 설정 전담 처리함수
-	public List getprice() {
-		return sqlSession.selectList("sbSQL.setPrice");
-	}
+	
 	
 	
 	

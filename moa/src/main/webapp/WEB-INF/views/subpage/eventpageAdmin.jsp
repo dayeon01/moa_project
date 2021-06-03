@@ -108,13 +108,17 @@
   </form> 
 
 	<div class="w3-content mxw900 ">
-      <div class="w3-col mgt20 w3-right w3-border-top w3-border-bottom"> </div>
+      <hr class="w3-darkgrey ">
       <div class="w3-content mxw900 ">
          <div class="w3-content m3 w3-margin-top w3-margin-bottom inblock">
             <h1 class="w3-col w3-margin-top w3-margin-left mgb20 inblock w3-left ">이벤트</h1>
          	<h6 class="w3-margin-left w3-text-grey"><small>전시 이벤트 홈페이지 입니다. 이벤트 종료 날짜를 잘 확인해주세요.</small></h6>
          </div>
-         <div class="w3-col w3-right w3-border-top w3-border-bottom"> </div>
+         
+         <div class="w3-col w3-right w3-border-bottom">
+         	<div class="w3-text-right w3-right w3-button w3-border mgb20 w3-padding w3-dark-grey w3-round-large" >이벤트 등록</div>
+         </div>
+        
       </div>
       <div class="w3-content w3-margin w3-center">
       

@@ -1,0 +1,11 @@
+update event set evtcontent = '50' where evtcontent = '50% 할인이벤트';
+update event set evtcontent = '1+1' where evtcontent = '1+1 이벤트';
+
+INSERT INTO
+   event( evtno, evtexino, evtcode, evtcontent, sdate, edate, isShow)
+VALUES(
+            (SELECT NVL(MAX(evtno) +1, 1001) FROM event),10007,'D','50',
+            TO_DATE('2021-05-01 00:00:00','YYYY-MM-DD hh24:mi:ss'),TO_DATE('2021-05-10 00:00:00','YYYY-MM-DD hh24:mi:ss'),
+            'Y'
+);
+commit;

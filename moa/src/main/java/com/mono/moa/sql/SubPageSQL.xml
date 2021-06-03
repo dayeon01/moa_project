@@ -16,8 +16,10 @@
 	
 	<select id="eventList" resultType="evnVO" parameterType="page">
 		SELECT
-			 evtno, evtexino, evtcode, evtcontent, sdate, edate, exiname, exiprice, exiperson, idir, imgname
+			 evtno, evtexino, evtcode, evtcontent, sdate, edate, exiname, exiprice, exiperson, idir, imgname,
+             decode(evtcode, 'D',  to_char(exiprice * (to_number(evtcontent) / 100)),'P', exiprice)  reprice
 		FROM
+            
 			(
 				SELECT
 					ROWNUM rno, evtno, evtexino, evtcontent,evtcode, sdate, edate, exiname, exiprice, exiperson, idir, imgname
@@ -38,18 +40,9 @@
 		WHERE
 			rno BETWEEN #{startCont} AND #{endCont}
 		ORDER BY
-			edate ASC
+			edate ASC    
 	</select>
 	
 	
-	<!-- 이벤트 가격 설정 질의명령 -->
-	<select id="setPrice" resultType="evnVO">
-		SELECT
-		    exiprice, evtcontent,
-		    decode(evtcode, 'D',  to_char(exiprice * (to_number(evtcontent) / 100)),'P', exiprice)  reprice
-		FROM
-		    event, exinfo
-		WHERE
-		    exino = evtexino
-	</select>
+	
 </mapper>
