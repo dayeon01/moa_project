@@ -20,30 +20,10 @@
 </head>   
 <script type="text/javascript">
 	$(document).ready(function(){
-		
-		/*  $('.line').mouseover(function(){
-			$(this).css('background','pink');
-		}); 
-		 */
-		 $('img').mouseover(function(){
-			$(this).css('cursor','pointer')
+		$('.addEvent').click(function(){
+			location.href='/moa/subpage/addEvent.moa';
 		});
-		$('img').mouseout(function(){
-			$(this).css('cursor','none')
-		});
-		$('.title').mouseover(function(){
-			$(this).css('cursor','pointer')
-			$(this).css('text-decoration','underline')
-		});
-		$('.title').mouseout(function(){
-			$(this).css('cursor','none')
-			$(this).css('text-decoration','none')
-		}); 
-		
-		
-		
-		
-		
+
 		$('.w3-button.pbtn').click(function(){
 	    	 var pno =$(this).html();
 	    	 
@@ -56,44 +36,7 @@
 	    	 $('#frm').submit();
 	      });
 		
-	/* 	$(document).ready(function() {
-			if(${PAGE.startPage} == 1){
-				$('#pre').removeClass('page-item');
-			}
-			if(${PAGE.endPage} == ${PAGE.totalPage}){
-				$('#nex').removeClass('page-item');
-			}	
-			if($('#pnum${PAGE.nowPage}>a').html()== ${PAGE.nowPage}){
-				$('#pnum${PAGE.nowPage}>a').addClass('w3-blue');
-			}
-			
-			$('.page-item').click(function(){
-				var sid = $(this).attr('id');
-				
-				switch(sid){
-				case 'pre':
-						$('#nowPage').val('${PAGE.startPage - 1}');
-					break;
-				case 'nex':
-						$('#nowPage').val('${PAGE.endPage + 1}');
-					break;
-				default:
-					tmp=$(this).children().html();
-						$('#nowPage').val(tmp);
-						break;
-				}
-				$('#frm').attr('action', '/moa/review/qnaList.moa');
-				$('#frm').submit();
-			});
-			
-			$('.trow').click(function(){		
-				$('#nowPage').val( '${PAGE.nowPage}');
-				
-				var bno = $(this).attr('id');
-				bno = bno.substring(1);
-				$('#bno').val(bno);
-				$('#frm').submit();
-			}); */
+
 	});
 </script>
 <body>
@@ -112,11 +55,11 @@
       <div class="w3-content mxw900 ">
          <div class="w3-content m3 w3-margin-top w3-margin-bottom inblock">
             <h1 class="w3-col w3-margin-top w3-margin-left mgb20 inblock w3-left ">이벤트</h1>
-         	<h6 class="w3-margin-left w3-text-grey"><small>전시 이벤트 홈페이지 입니다. 이벤트 종료 날짜를 잘 확인해주세요.</small></h6>
+         	<h6 class="w3-margin-left w3-text-grey"><small>이벤트 관리자 페이지.</small></h6>
          </div>
          
          <div class="w3-col w3-right w3-border-bottom">
-         	<div class="w3-text-right w3-right w3-button w3-border mgb20 w3-padding w3-dark-grey w3-round-large" >이벤트 등록</div>
+         	<div class="w3-text-right w3-right w3-button w3-border mgb20 w3-padding w3-dark-grey w3-round-large addEvent" >이벤트 등록</div>
          </div>
         
       </div>
@@ -126,8 +69,8 @@
       <div class="w3-content inblock  w3-round w3-margin-top w3-padding w3-text-left exlist">
 			 <div class="w3-margin-right  line">
 			  <img src="${data.idir}${data.imgname}" 
-			  		class="img-rounded w3-round" alt="Cinque Terre" width="200" height="236"> 
-			  <h5 class="w3-margin-top w3-margin-left w3-text-grey title">${data.exiname}</h5>
+			  		class="img-rounded w3-round" alt="Cinque Terre" width="100" height="136"> 
+			  <h6 class="w3-margin-top w3-margin-left w3-text-grey title">${data.exiname}</h6>
 			  <p class=" w3-margin-top w3-margin-left">${data.exiperson}</p> 
 		 <c:if test="${data.evtcode == 'D' }">	  
 			  <p class=" w3-margin-left inblock won">${data.exiprice}</p>  

@@ -25,6 +25,16 @@ public class SubPageDao {
 		return sqlSession.selectList("sbSQL.eventList",page);
 	}
 
+	//전시 정보 리스트 조회 전담 처리 함수
+	public List getExhiList(PageUtil page) {
+		return sqlSession.selectList("sbSQL.allExhiList", page);
+	}
+	
+	//전시 이벤트 추가 전담 처리 함수
+	public int getAddEvent(EventVO eVO) {
+		return sqlSession.insert("sbSQL.addEvent", eVO);
+		
+	}
 	
 	
 	

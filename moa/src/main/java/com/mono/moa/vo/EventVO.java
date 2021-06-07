@@ -6,9 +6,28 @@ import java.sql.Time;
 import java.text.*;
 
 public class EventVO {
-	private int evtno, evtexino, exiprice, rno;
+	private int exino,exiecno, evtno, evtexino, exiprice, rno, exiexpno;
 	private String evtcode, evtcontent, sdate, edate, exiname, exiperson,idir, imgname, reprice;
 	private Date startdate, enddate;
+	
+	public int getExino() {
+		return exino;
+	}
+	public void setExino(int exino) {
+		this.exino = exino;
+	}
+	public int getExiecno() {
+		return exiecno;
+	}
+	public void setExiecno(int exiecno) {
+		this.exiecno = exiecno;
+	}
+	public int getExiexpno() {
+		return exiexpno;
+	}
+	public void setExiexpno(int exiexpno) {
+		this.exiexpno = exiexpno;
+	}
 	public int getEvtno() {
 		return evtno;
 	}
