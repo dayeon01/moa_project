@@ -71,7 +71,8 @@
 		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>	
 	
-	<!-- 이벤트 등록  -->
+	
+	<!-- 이벤트 등록 질의명령 -->
 	<insert id="addEvent" parameterType="evnVO">
 		<selectKey keyProperty="evtno" resultType="int" order="BEFORE">
 			SELECT
@@ -80,10 +81,21 @@
 				event
 		</selectKey>
 		INSERT INTO
-			event(event, evtexino, evtcode, evtcontent, sdate, edate)
+			event(evtno, evtexino, evtcode, evtcontent, sdate, edate)
 		VALUES(
 			#{evtno}, #{evtexino}, #{evtcode}, #{evtcontent}, 
-			#{sdate}, #{edate}
+			TO_DATE(#{sdate}, 'yyyy/MM/dd hh24:mi:ss'), TO_DATE(#{edate}, 'yyyy/MM/dd hh24:mi:ss') 
 		)
 	</insert>
+	
+	
+	<!-- 이벤트 삭제 질의명령 -->
+	<update id="evtDel"  parameterType="int">
+		UPDATE
+			event
+		SET
+			isshow = 'N'
+		WHERE
+			evtno = #{evtno}
+	</update>
 </mapper>

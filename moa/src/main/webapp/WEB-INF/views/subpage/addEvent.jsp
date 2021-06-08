@@ -34,34 +34,53 @@ input{
 	    	 $('#frm').submit();
 	      });
 		
-		$('.evtinfo').css('display','none');
-		/* $('[name=check]').click(function(){
-			$('.evtinfo').css('display','block')
-		})	;	
-		$('[name=check]').click(function(){
-			$('.evtinfo').css('display','none')
-		})	;	
-		 */
 		
-		$('[name=check]').click(function(){
-			var chk = $(this).is(":checked");
-			if(chk) $('.ch input').proc('cheked', true);
-			else $('.ch input').prop('checked', false);
-		});
+		/* 	
+		$('.evtinfo').css('display','none');
+		$('.ckBox').change(function(){
+			var chked = $(this).is(":checked");
+			if(chked) {
+				$(this).next().next().css('display', 'block');
+			}else{
+				$(this).next().next().css('display', 'none');
+			}
+		}); */
+		
+		
+
 		
 	
+		/* $('[name="check"]').is(':checked'.each( function(index){ */
+			$('.addbtn').click(function(){
+				var tno = $(this).next().val();
+				
+				//var name = $(this).parent().siblings('.name').eq(0).children().eq(0).html();
+//				var person =$(this).parent().siblings('.person').eq(0).children().eq(0).html();
+				var sdate =	$('#sdate'+tno).val();
+				var edate =	$('#edate'+tno).val();
+				var evtcode = $(this).prev().children('[name="evtcode"] option:selected').val();
+				alert(sdate + '--' + edate + '--' + evtcode)
+				
+				
+				alert('tno : ' + tno);
+				if(evtcode == 'D'){
+					$('#ectnt'+tno).val('50');
+				} else {
+					$('#ectnt'+tno).val('1+1');
+				}
+				/*
+				// 데이터 입력
+				$('#sdate'+tno).val(sdate);
+				$('#edate'+tno).val(edate);
+				*/
+				 if(!(sdate && edate && evtcode)){
+					alert("필수 입력사항을 확인하세요.");
+					return;
+				} 
+				$('#add'+tno).submit();
+			});
+		/* }) */
 		
-		function addEvent(){
-			var sdate = $('#evtsdate').val();
-			var edate = $('#evtedate').val();
-			var selectcode = $('select[name=code]').val();
-		
-			if(!(sdate && edate && selectcode)){
-				alert("필수 입력사항을 확인하세요.");
-				return;
-			}
-			$('#add').submit();
-		};
 	});
 </script>
 <body>
@@ -74,16 +93,13 @@ input{
   		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
   		<input type="hidden" name="bno" id="bno">
   </form> 
-  <form method="POST" action="/moa/subpage/addEventProc.moa" name="add"id="add">
-  	
-  </form>
-
+  
 	<div class="w3-content mxw900 ">
       <hr class="w3-darkgrey ">
       <div class="w3-content mxw900 ">
          <div class="w3-content m3 w3-margin-top w3-margin-bottom inblock">
             <h1 class="w3-col w3-margin-top w3-margin-left mgb20 inblock w3-left ">이벤트</h1>
-         	<h6 class="w3-margin-left w3-text-grey"><small>이벤트 관리자 페이지.</small></h6>
+         	<h6 class="w3-margin-left w3-text-red"><small>이벤트 관리자 페이지.</small></h6>
          </div>
          
        <!--   <div class="w3-col w3-right w3-border-bottom">
@@ -91,41 +107,48 @@ input{
          </div> -->
         
       </div>
+
       <div class="w3-content w3-margin w3-center">
       
- <c:forEach var="data" items="${LIST}">    
+ <c:forEach var="data" items="${LIST}"> 
       <div class="w3-content inblock  w3-round w3-margin-top w3-padding w3-text-left exlist">
 			 <div class="w3-margin-right line" >
 				  <div class="w3-border w3-border-blue-grey w3-card-2 w3-round-large w3-padding box">
 						  <div class="w3-content w3-padding inblock">
 							   <img src="${data.idir}${data.imgname}" 
-							  		id="img"class="img-rounded w3-round" alt="Cinque Terre" width="100" height="136"> 
+							  		id="img"class="img-rounded w3-round img" alt="Cinque Terre" width="100" height="136"> 
 						 </div>
-						  <div class="w3-margin-top  w3-text-grey title"id="name"><small>${data.exiname}</small></div>
-						  <div class=" w3-margin-top w3-text-grey"id="person"><small>${data.exiperson}</small></div> 
-						  <div class="w3-padding"id="price">${data.exiprice}</div>  
-						  <div class="  w3-text-grey"id="sdate">${data.sdate}</div>          
-						  <div class="  w3-text-grey"id="edate">${data.edate}</div>  
-						  <input type="checkbox" name="check" value="check" id="check"class="w3-margin">     
+<form method="POST" action="/moa/subpage/addEventProc.moa" id="add${data.exino}"  >
+					  <div class="w3-margin-top  w3-text-grey title name" ><small>${data.exiname}</small></div>
+					  <div class=" w3-margin-top w3-text-grey person"><small>${data.exiperson}</small></div> 
+					  <div class="w3-padding">${data.exiprice}</div>  
+					  <div class=" w3-text-grey sdate">${data.sdate}</div>          
+					  <div class=" w3-text-grey edate">${data.edate}</div>  
 			 		  <hr>
 			 		  <div class="w3-margin-right w3-margin-bottom  evtinfo"> 
-				 		  <span class="w3-margin-right w3-margin-bottom  mgl30"> 이벤트 기간</span>
-					 		  <input type="text" name="evtsdate" id="evtsdate" class="w3-border w3-center w3-round w3-margin-top mgb20 w3-margin-left" placeholder=" YYYY/MM/DD">
-					 		  <input type="text" name="evtedate" id="evtedate" class="w3-border w3-center w3-round mgb20 w3-margin-left" placeholder=" YYYY/MM/DD">
-					 		  <select name="code" class="w3-margin-bottom mgl20 w3-border w3-round evtcode" style="width:108px;height: 25px;">
-					 		  	<option value = "">이벤트적용</option>
-					 		  	<option value = "dc" class="ch">50% 할인</option>
-					 		  	<option value = "plus" class="ch">1+1</option>
-					 		  </select>
-					 		  <input type="button" onclick="addEvent()" value="등록" class="w3-blue-grey w3-round w3-card-2 mgl20">
+				 		  <span class="w3-margin-right w3-margin-bottom  mgl30"> <small>이벤트 기간</small></span>
+				 		  <input type="text" name="sdate" id="sdate${data.exino}" class="w3-border w3-center w3-round w3-margin-top mgb20 w3-margin-left evtsdate" placeholder=" YYYY/MM/DD">
+				 		  <input type="text" name="edate" id="edate${data.exino}" class="w3-border w3-center w3-round mgb20 w3-margin-left evtedate" placeholder=" YYYY/MM/DD">
+				 		  <select name="evtcode" class="w3-margin-bottom mgl20 w3-border w3-round evtcode" style="width:108px;height: 25px;">
+				 		  	<option value ="">이벤트적용</option>
+				 		  	<option value ="D" class="dc">50%</option>
+				 		  	<option value ="P" class="plus">1+1</option>
+				 		  </select>
+<c:if test="${data.exino} ne ${evt.evtexino}"> 
+				 		 <div class="w3-button w3-blue-grey w3-round w3-card-2 mgl20 addbtn" style="cursor:pointer">등록</div>
+</c:if>	 			 		 
+<c:if test="${data.exino} eq ${evt.evtexino}"> 
+				 		 <div class= "w3-brown w3-round w3-card-2 mgl20 " >등록됨</div>
+				 		 <div class="w3-button w3-brown w3-round w3-card-2 mgl20 addbtn"  style="cursor:pointer">삭제하기</div>
+</c:if>				 		 
+						<input type="hidden" name="evtexino" value="${data.exino}">
+						<input type="hidden" name="evtcontent" id="ectnt${data.exino}" value="0">
 			 		  </div>
+</form>
 			  </div>		
 			</div>
       </div>
  </c:forEach>   
- 
-      
-      
     </div>
   </div>
       

@@ -8,4 +8,7 @@ VALUES(
             TO_DATE('2021-05-01 00:00:00','YYYY-MM-DD hh24:mi:ss'),TO_DATE('2021-05-10 00:00:00','YYYY-MM-DD hh24:mi:ss'),
             'Y'
 );
+
+--0607
+alter table event modify (isshow default 'Y');
 commit;

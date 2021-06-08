@@ -19,6 +19,7 @@
 		<typeAlias alias="mVO" type="com.mono.moa.vo.MemberVO" />
 		<typeAlias alias="pVO" type="com.mono.moa.vo.PointVO" />
 		<typeAlias alias="rVO" type="com.mono.moa.vo.ReviewVO" />
+		<typeAlias alias="fVO" type="com.mono.moa.vo.FileVO" />
 
 		<typeAlias alias="page" type="com.mono.moa.util.PageUtil" />
 	
@@ -34,6 +35,7 @@
 		<mapper resource="com/mono/moa/sql/MyPageSQL.xml" />
 		<mapper resource="com/mono/moa/sql/ReviewSQL.xml" />
 		<mapper resource="com/mono/moa/sql/SubPageSQL.xml" />
+		<mapper resource="com/mono/moa/sql/StarSQL.xml" />
 	</mappers> 
 
 </configuration>

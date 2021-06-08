@@ -55,7 +55,7 @@
       <div class="w3-content mxw900 ">
          <div class="w3-content m3 w3-margin-top w3-margin-bottom inblock">
             <h1 class="w3-col w3-margin-top w3-margin-left mgb20 inblock w3-left ">이벤트</h1>
-         	<h6 class="w3-margin-left w3-text-grey"><small>이벤트 관리자 페이지.</small></h6>
+         	<h6 class="w3-margin-left w3-text-red "><small>이벤트 관리자 페이지.</small></h6>
          </div>
          
          <div class="w3-col w3-right w3-border-bottom">

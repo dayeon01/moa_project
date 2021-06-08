@@ -16,5 +16,6 @@
 	<bean id="mypDao" class="com.mono.moa.dao.MyPageDao" />
 	<bean id="reDao" class="com.mono.moa.dao.ReviewDao" />
 	<bean id="sbDao" class="com.mono.moa.dao.SubPageDao" />
+	<bean id="sDao" class="com.mono.moa.dao.StarDao" />
 	
 </beans>

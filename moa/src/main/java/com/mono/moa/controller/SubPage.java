@@ -75,26 +75,35 @@ public class SubPage {
 		page.setPage(page.getNowPage(), total, 6, 6);
 		
 		List list = sbDao.getExhiList(page);
-		
+		List evt = sbDao.getEvnList(page);
 		mv.addObject("PAGE", page);
 		mv.addObject("LIST", list);
+		mv.addObject("EVT", evt);
+		
 		System.out.println("list--" + list);
+		System.out.println("evt--" + evt);
 		mv.setViewName("subpage/addEvent");
 		return mv;
 	}
 	
 	@RequestMapping("/addEventProc.moa")
 	//이벤트 등록 처리 함수
-	public ModelAndView addEventProc(ModelAndView mv, RedirectView rv, HttpSession session, EventVO eVO) {
+	public ModelAndView addEventProc(ModelAndView mv, RedirectView rv, HttpSession session, EventVO evnVO) {
 		String sid = (String) session.getAttribute("SID");
 		if(sid == null) {
-			rv.setUrl("moa/member/login.moa");
+			rv.setUrl("/moa/member/login.moa");
 			mv.setView(rv);
 			return mv;
 		
 		}
-
-		int cnt = sbDao.getAddEvent(eVO);
+/*		
+		if(evnVO.getEvtcode().equals("D")) {
+			evnVO.setEvtcontent("50");
+		} else {
+			evnVO.setEvtcontent("1+1");
+		}
+*/		
+		int cnt = sbDao.getAddEvent(evnVO);
 		
 		if(cnt == 1) {
 			rv.setUrl("moa/subpage/eventpageAdmin.moa");
@@ -103,6 +112,12 @@ public class SubPage {
 		}
 		return mv;
 	}
+	
+	
+	
+	
+	//등록된 이벤트 삭제 전담 처리 함수.
+	
 }
 
 
