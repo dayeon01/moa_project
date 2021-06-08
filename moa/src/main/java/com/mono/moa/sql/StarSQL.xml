@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sSQL">
+
+	<select id="getTotal" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			exinfo
+		WHERE
+			isShow = 'Y'
+	</select>
+	
+	<select id="reviewList" resultType="rVO" parameterType="page">
+		SELECT
+			rno, bno, title, body, wdate, redate
+        FROM
+		(
+		        SELECT
+				ROWNUM rno, exino bno, exiperson title, exiname body, exisdate wdate, exiedate redate
+		        FROM
+					(SELECT
+					    exino, exiperson, exiname, exisdate, exiedate
+					FROM
+						exinfo
+			        WHERE
+			            isshow='Y'
+					ORDER BY exisdate DESC)
+					)
+		WHERE
+		    rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<select id="reviewListDetail" resultType="rVO" parameterType="rVO">
+		SELECT
+		    exino bno, exiperson title, exiname body, exisdate wdate, exiedate redate, idir dir, imgname savename
+		FROM
+			exinfo e, image i
+        WHERE
+            e.isshow='Y'
+            AND exino = imgno
+            AND exino = #{bno}
+	</select>
+	
+	<select id="replyList" resultType="rVO" parameterType="rVO">
+		SELECT
+		    id, rbno bno, rbmno mno, rbdate wdate, rbtitle title, rbbody body, star, exino
+		FROM
+			rboard r, member m
+        WHERE
+            r.isshow='Y'
+            AND exino=#{bno}
+            AND rbmno=mno
+        ORDER BY
+        	rbdate DESC
+	</select>
+	
+	<insert id="addReply" parameterType="rVO">
+		<selectKey keyProperty="rno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(rbno) + 1, 10001)
+			FROM
+				rboard
+		</selectKey>
+		INSERT INTO
+			rboard(rbno, rbmno, rbdate, rbtitle, rbbody, star, exino)
+		VALUES(
+			#{rno}, (SELECT
+							mno
+						FROM
+							member
+						WHERE
+							id=#{id}), sysdate, #{title}, #{body}, 4, #{bno}
+		)
+	</insert>
+	
+	
+	<insert id="addFile" parameterType="fVO">
+		<selectKey keyProperty="fno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(fno) + 1, 100001)
+			FROM
+				upfile
+		</selectKey>
+		INSERT INTO
+		    upfile(fno, oriname, savename, len, dir, fbno)
+		VALUES(
+		    #{fno}, #{oriname}, #{savename}, #{len}, #{dir}, 
+		    (SELECT
+				NVL(MAX(rbno), 100001)
+			FROM
+				rboard)
+		)
+	</insert>
+	
+	<select id="subFile" resultType="fVO" parameterType="int">
+		SELECT
+		    fno, savename
+		FROM
+		    upfile
+		WHERE
+		    fbno = #{bno}
+		    AND isshow = 'Y'
+	</select>
+	
+</mapper>

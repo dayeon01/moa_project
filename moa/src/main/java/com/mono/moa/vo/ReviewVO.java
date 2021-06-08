@@ -3,16 +3,72 @@ package com.mono.moa.vo;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class ReviewVO {
 
-	private int rno, bno, mno, upno, nowPage;
-	private String id, name, title, body, sdate, reply;
+	private int rno, bno, mno, upno, nowPage, exino;
+	private String id, name, title, body, sdate, reply, savename, dir, star;
 	private Date wdate;
 	private Date redate;
 	private Time wtime;
+	private ArrayList<ReviewVO> list;
+	private ArrayList<FileVO> flist;
+	private MultipartFile upfile;
+	private MultipartFile[] file;
 	
 	
+	
+	public ArrayList<FileVO> getFlist() {
+		return flist;
+	}
+	public void setFlist(ArrayList<FileVO> flist) {
+		this.flist = flist;
+	}
+	public MultipartFile getUpfile() {
+		return upfile;
+	}
+	public void setUpfile(MultipartFile upfile) {
+		this.upfile = upfile;
+	}
+	public MultipartFile[] getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile[] file) {
+		this.file = file;
+	}
+	public int getExino() {
+		return exino;
+	}
+	public void setExino(int exino) {
+		this.exino = exino;
+	}
+	public String getStar() {
+		return star;
+	}
+	public void setStar(String star) {
+		this.star = star;
+	}
+	public ArrayList<ReviewVO> getList() {
+		return list;
+	}
+	public void setList(ArrayList<ReviewVO> list) {
+		this.list = list;
+	}
+	public String getDir() {
+		return dir;
+	}
+	public void setDir(String dir) {
+		this.dir = dir;
+	}
+	public String getSavename() {
+		return savename;
+	}
+	public void setSavename(String savename) {
+		this.savename = savename;
+	}
 	public int getNowPage() {
 		return nowPage;
 	}

@@ -49,3 +49,31 @@ VALUES(
     (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
     1015, '문의제목4', '문의답글4'
 );
+
+
+
+-- 2012-06-07
+-- 진석
+
+ALTER TABLE rboard
+ADD exino number(5) constraint 
+REB_EXINO_FR REFERENCES exinfo(exino);
+
+ALTER TABLE rboard
+MODIFY exino CONSTRAINT REB_EXINO_NN NOT NULL;
+
+ALTER TABLE rboard DROP COLUMN rbview;
+
+CREATE TABLE upfile(
+fno NUMBER(6)													
+    CONSTRAINT UPF_NO_PK PRIMARY KEY,
+fbno NUMBER(6)					
+    CONSTRAINT UPF_FBNO_FK REFERENCES exinfo(exino),
+oriname VARCHAR2(20),						
+savename VARCHAR2(20),                    
+len NUMBER(20),                                     		
+dir VARCHAR2(20), 
+fdate DATE default sysdate,					                                                     
+isShow CHAR(1) default 'Y'						
+    CONSTRAINT UPF_IS_CK CHECK(isShow IN('Y', 'N'))
+);

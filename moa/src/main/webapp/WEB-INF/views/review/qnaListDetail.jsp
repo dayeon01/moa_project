@@ -74,7 +74,7 @@ $(document).ready(function() {
 					<!-- Content Row-->
 					<div class="row">
 						<!-- Sidebar Column-->
-						<jsp:include page="../mypage/SideBar.jsp">
+						<jsp:include page="../a_nav/member/SideBar.jsp">
 							<jsp:param name="" value="" />
 						</jsp:include>
 						<!-- Content Column-->

@@ -45,7 +45,7 @@ $(document).ready(function(){
 					</ol>
 					<!-- Content Row-->
 					<div class="row">
-						<jsp:include page="../mypage/SideBar.jsp">
+						<jsp:include page="../a_nav/member/SideBar.jsp">
 							<jsp:param name="" value="" />
 						</jsp:include>
 						<!-- Content Column-->
