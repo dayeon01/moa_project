@@ -30,6 +30,6 @@
 	
 	<context:component-scan base-package="com.mono.home" />
 	
-	
+	<!-- 진석형님 -->
 	
 </beans:beans>
