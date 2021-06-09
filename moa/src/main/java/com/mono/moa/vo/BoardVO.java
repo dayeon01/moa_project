@@ -36,7 +36,7 @@ public class BoardVO {
 		return sdate;
 	}
 	public void setSdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy/ MM/ dd");
+		SimpleDateFormat form = new SimpleDateFormat("yyyy/MM/dd");
 		sdate = form.format(ndate);
 	}
 	public void setSdate(String sdate) {

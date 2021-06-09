@@ -7,9 +7,8 @@ import java.text.*;
 
 public class EventVO {
 	private int exino,exiecno, evtno, evtexino, exiprice, rno, exiexpno;
-	private String evtcode, evtcontent, sdate, edate, exiname, exiperson,idir, imgname, reprice;
-	private Date startdate, enddate;
-	
+	private String evtcode, evtcontent, evtsdate, evtedate, exisdate, exiedate, exiname, exiperson,idir, imgname, reprice, isshow;
+	private Date startdate, enddate, edate, sdate ;
 	public int getExino() {
 		return exino;
 	}
@@ -21,12 +20,6 @@ public class EventVO {
 	}
 	public void setExiecno(int exiecno) {
 		this.exiecno = exiecno;
-	}
-	public int getExiexpno() {
-		return exiexpno;
-	}
-	public void setExiexpno(int exiexpno) {
-		this.exiexpno = exiexpno;
 	}
 	public int getEvtno() {
 		return evtno;
@@ -52,6 +45,12 @@ public class EventVO {
 	public void setRno(int rno) {
 		this.rno = rno;
 	}
+	public int getExiexpno() {
+		return exiexpno;
+	}
+	public void setExiexpno(int exiexpno) {
+		this.exiexpno = exiexpno;
+	}
 	public String getEvtcode() {
 		return evtcode;
 	}
@@ -64,28 +63,29 @@ public class EventVO {
 	public void setEvtcontent(String evtcontent) {
 		this.evtcontent = evtcontent;
 	}
-	public String getSdate() {
-		return sdate;
+	public String getEvtsdate() {
+		return evtsdate;
 	}
-	public void setSdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy/ MM/ dd");
-		sdate = form.format(startdate);
+	public void setEvtsdate(String evtsdate) {
+		this.evtsdate = evtsdate;
 	}
-	
-	public void setSdate(String sdate) {
-		this.sdate = sdate;
+	public String getEvtedate() {
+		return evtedate;
 	}
-	
-	public String getEdate() {
-		return edate;
+	public void setEvtedate(String evtedate) {
+		this.evtedate = evtedate;
 	}
-	public void setEdate() {
-		SimpleDateFormat form = new SimpleDateFormat("yyyy/ MM/ dd/");
-		edate = form.format(enddate);
+	public String getExisdate() {
+		return exisdate;
 	}
-	
-	public void setEdate(String edate) {
-		this.edate = edate;
+	public void setExisdate(String exisdate) {
+		this.exisdate = exisdate;
+	}
+	public String getExiedate() {
+		return exiedate;
+	}
+	public void setExiedate(String exiedate) {
+		this.exiedate = exiedate;
 	}
 	public String getExiname() {
 		return exiname;
@@ -122,22 +122,37 @@ public class EventVO {
 	}
 	public void setStartdate(Date startdate) {
 		this.startdate = startdate;
-		setSdate();
+		exisdate = setStrDate(startdate);
 	}
-	
 	public Date getEnddate() {
 		return enddate;
 	}
 	public void setEnddate(Date enddate) {
 		this.enddate = enddate;
-		setEdate();
+		exiedate = setStrDate(enddate);
 	}
-	@Override
-	public String toString() {
-		return "evtno=" + evtno + ", evtexino=" + evtexino + ", exiprice=" + exiprice + ", rno=" + rno
-				+ ", evtcode=" + evtcode + ", evtcontent=" + evtcontent + ", sdate=" + sdate + ", edate=" + edate
-				+ ", exiname=" + exiname + ", exiperson=" + exiperson + ", idir=" + idir + ", imgname=" + imgname
-				+ ", reprice=" + reprice + ", startdate=" + startdate + ", enddate=" + enddate ;
+	public Date getEdate() {
+		return edate;
+	}
+	public void setEdate(Date edate) {
+		this.edate = edate;
+		evtedate = setStrDate(edate);
+	}
+	public Date getSdate() {
+		return sdate;
+	}
+	public void setSdate(Date sdate) {
+		this.sdate = sdate;
+		evtsdate = setStrDate(sdate);
+	}
+	public String setStrDate(Date d) {
+		return new SimpleDateFormat("yyyy/MM/dd").format(d);
+	}
+	public String getIsshow() {
+		return isshow;
+	}
+	public void setIsshow(String isshow) {
+		this.isshow = isshow;
 	}
 	
 }

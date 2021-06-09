@@ -13,9 +13,11 @@
 .won{
 	text-decoration: line-through;
 }
-.exlist:hover {
-	border: 1px solid navy;
+.exlist{
+	width: 230px;
+	height:380px;
 }
+
 </style>
 </head>   
 <script type="text/javascript">
@@ -45,48 +47,41 @@
       <jsp:param name="" value="" />
    </jsp:include>
    
-   <form method="POST" action="/moa/subpage/eventpage.moa" id="frm" name="frm">
+   <form method="POST" action="/moa/subpage/eventpageAdmin.moa" id="frm" name="frm">
   		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
   		<input type="hidden" name="bno" id="bno">
   </form> 
 
-	<div class="w3-content mxw900 ">
-      <hr class="w3-darkgrey ">
-      <div class="w3-content mxw900 ">
-         <div class="w3-content m3 w3-margin-top w3-margin-bottom inblock">
-            <h1 class="w3-col w3-margin-top w3-margin-left mgb20 inblock w3-left ">이벤트</h1>
-         	<h6 class="w3-margin-left w3-text-red "><small>이벤트 관리자 페이지.</small></h6>
+<div class="w3-content mxw900 ">
+     <div class="w3-content mxw900 ">
+         <div class="w3-col  w3-margin-top w3-margin-bottom w3-panel w3-border-grey w3-topbar w3-bottombar inblock">
+            <h1 class="w3-col mgt30 w3-margin-left mgb20 inblock w3-left  ">이벤트</h1>
+         	<h6 class="w3-margin-left  w3-text-red"><small><strong>이벤트 관리자 페이지.</strong></small></h6>
+         	<div class="w3-col w3-right ">
+         		<div class="w3-text-right w3-right w3-button w3-border mgb20 w3-padding w3-dark-grey w3-round-large addEvent" >이벤트 등록</div>
+        	</div>
          </div>
-         
-         <div class="w3-col w3-right w3-border-bottom">
-         	<div class="w3-text-right w3-right w3-button w3-border mgb20 w3-padding w3-dark-grey w3-round-large addEvent" >이벤트 등록</div>
-         </div>
-        
-      </div>
-      <div class="w3-content w3-margin w3-center">
-      
+     </div>
+      <div class="w3-content w3-margin w3-center ">
  <c:forEach var="data" items="${LIST}">    
-      <div class="w3-content inblock  w3-round w3-margin-top w3-padding w3-text-left exlist">
-			 <div class="w3-margin-right  line">
+     	 <div class="w3-content inblock  w3-round w3-margin-left mgt30 w3-card-2 w3-border w3-border-blue-grey exlist">
 			  <img src="${data.idir}${data.imgname}" 
-			  		class="img-rounded w3-round" alt="Cinque Terre" width="100" height="136"> 
-			  <h6 class="w3-margin-top w3-margin-left w3-text-grey title">${data.exiname}</h6>
-			  <p class=" w3-margin-top w3-margin-left">${data.exiperson}</p> 
-		 <c:if test="${data.evtcode == 'D' }">	  
+			  					class="img-rounded w3-round mgt30" alt="Cinque Terre" width="100" height="136"> 
+			  <h6 class="mgt30 w3-margin-left w3-text-grey title"><small>${data.exiname}</small></h6>
+			  <p class=" w3-margin-top w3-margin-left"><small>${data.exiperson}</small></p> 
+<c:if test="${data.evtcode == 'D' }">	  
 			  <p class=" w3-margin-left inblock won">${data.exiprice}</p>  
 			  <p class=" w3-margin-left inblock">${data.reprice}</p>    
-		</c:if>	          
-		 <c:if test="${data.evtcode == 'P' }">	  
-			  <p class=" w3-margin-left inblock ">${data.exiprice}</p>  
-			  <p class=" w3-margin-left inblock ">티켓 ${data.evtcontent}</p>  
-		</c:if>	         
-			  <p class=" w3-margin-left w3-text-grey">${data.edate}</p>            
-			</div>
-      </div>
+</c:if>	          
+<c:if test="${data.evtcode == 'P' }">	  
+			  <p class=" mgl10 inblock ">${data.exiprice}</p>  
+			  <p class=" mgl10 inblock ">티켓 ${data.evtcontent}</p>  
+</c:if>	         
+			  <div class=" mgl10 w3-text-grey">${data.sdate}</div>            
+			  <div class=" mgl10 w3-text-grey w3-margin-bottom">${data.edate}</div>            
+			
+      	</div>
  </c:forEach>   
- 
-      
-      
     </div>
   </div>
       

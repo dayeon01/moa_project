@@ -13,8 +13,12 @@
 .won{
 	text-decoration: line-through;
 }
-.exlist:hover {
-	border: 1px solid navy;
+.exlist{
+	cursor:pointer;
+}
+
+.exlist{
+	width:360px;
 }
 </style>
 </head>   
@@ -41,9 +45,6 @@
 		}); 
 		
 		
-		
-		
-		
 		$('.w3-button.pbtn').click(function(){
 	    	 var pno =$(this).html();
 	    	 
@@ -55,45 +56,6 @@
 	    	 $('#nowPage').val(pno);
 	    	 $('#frm').submit();
 	      });
-		
-	/* 	$(document).ready(function() {
-			if(${PAGE.startPage} == 1){
-				$('#pre').removeClass('page-item');
-			}
-			if(${PAGE.endPage} == ${PAGE.totalPage}){
-				$('#nex').removeClass('page-item');
-			}	
-			if($('#pnum${PAGE.nowPage}>a').html()== ${PAGE.nowPage}){
-				$('#pnum${PAGE.nowPage}>a').addClass('w3-blue');
-			}
-			
-			$('.page-item').click(function(){
-				var sid = $(this).attr('id');
-				
-				switch(sid){
-				case 'pre':
-						$('#nowPage').val('${PAGE.startPage - 1}');
-					break;
-				case 'nex':
-						$('#nowPage').val('${PAGE.endPage + 1}');
-					break;
-				default:
-					tmp=$(this).children().html();
-						$('#nowPage').val(tmp);
-						break;
-				}
-				$('#frm').attr('action', '/moa/review/qnaList.moa');
-				$('#frm').submit();
-			});
-			
-			$('.trow').click(function(){		
-				$('#nowPage').val( '${PAGE.nowPage}');
-				
-				var bno = $(this).attr('id');
-				bno = bno.substring(1);
-				$('#bno').val(bno);
-				$('#frm').submit();
-			}); */
 	});
 </script>
 <body>
@@ -108,33 +70,31 @@
   </form> 
 
 	<div class="w3-content mxw900 ">
-      <div class="w3-col mgt20 w3-right w3-border-top w3-border-bottom"> </div>
       <div class="w3-content mxw900 ">
-         <div class="w3-content m3 w3-margin-top w3-margin-bottom inblock">
-            <h1 class="w3-col w3-margin-top w3-margin-left mgb20 inblock w3-left ">이벤트</h1>
-         	<h6 class="w3-margin-left w3-text-grey"><small>전시 이벤트 홈페이지 입니다. 이벤트 종료 날짜를 잘 확인해주세요.</small></h6>
+         <div class="w3-col  w3-margin-top mgb20 pdb20 w3-panel w3-border-grey w3-topbar w3-bottombar inblock">
+            <h1 class="w3-col mgt30 w3-margin-left mgb20 inblock w3-left  ">이벤트</h1>
+         	<h6 class="w3-margin-left mgt30 mgb20 w3-text-grey"><small >전시 이벤트 홈페이지 입니다. 이벤트 종료 날짜를 잘 확인해주세요.</small></h6>
          </div>
-         <div class="w3-col w3-right w3-border-top w3-border-bottom"> </div>
       </div>
       <div class="w3-content w3-margin w3-center">
-      
  <c:forEach var="data" items="${LIST}">    
-      <div class="w3-content inblock  w3-round w3-margin-top w3-padding w3-text-left exlist">
-			 <div class="w3-margin-right  line">
-			  <img src="${data.idir}${data.imgname}" 
-			  		class="img-rounded w3-round" alt="Cinque Terre" width="200" height="236"> 
-			  <h5 class="w3-margin-top w3-margin-left w3-text-grey title">${data.exiname}</h5>
-			  <p class=" w3-margin-top w3-margin-left">${data.exiperson}</p> 
-		 <c:if test="${data.evtcode == 'D' }">	  
-			  <p class=" w3-margin-left inblock won">${data.exiprice}</p>  
-			  <p class=" w3-margin-left inblock">${data.reprice}</p>    
-		</c:if>	          
-		 <c:if test="${data.evtcode == 'P' }">	  
-			  <p class=" w3-margin-left inblock ">${data.exiprice}</p>  
-			  <p class=" w3-margin-left inblock ">티켓 ${data.evtcontent}</p>  
-		</c:if>	         
-			  <p class=" w3-margin-left w3-text-grey">${data.edate}</p>            
-			</div>
+      <div class="w3-content inblock  w3-round mgt30 mgb20 mgl20 w3-padding w3-text-left w3-border w3-border-blue-grey w3-hover-shadow  exlist">
+		<div class="w3-margin-right  line">
+		  <img src="${data.idir}${data.imgname}" 
+		  		class="img-rounded w3-round mgl20 mgt20" alt="Cinque Terre" width="180" height="216"> 
+		  <h5 class="w3-margin-top w3-margin-left w3-text-grey title">${data.exiname}</h5>
+		  <p class=" w3-margin-top w3-margin-left">${data.exiperson}</p> 
+ <c:if test="${data.evtcode == 'D' }">	  
+		  <p class=" w3-margin-left inblock won">${data.exiprice}</p>  
+		  <p class=" w3-margin-left inblock">${data.reprice}</p>    
+</c:if>	          
+ <c:if test="${data.evtcode == 'P' }">	  
+		  <p class=" w3-margin-left inblock ">${data.exiprice}</p>  
+		  <p class=" w3-margin-left inblock ">티켓 ${data.evtcontent}</p>  
+</c:if>	         
+		  <div class=" w3-margin-left w3-text-grey">${data.sdate}</div>            
+		  <div class=" w3-margin-left w3-text-grey">${data.edate}</div>            
+		</div>
       </div>
  </c:forEach>   
  

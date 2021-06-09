@@ -25,8 +25,8 @@ public class SubPageDao {
 		return sqlSession.selectList("sbSQL.eventList",page);
 	}
 
-	//전시 정보 total 리스트 조회 전담 처리 함수
-	public List getExhiList(PageUtil page) {
+	//이벤트, 일반 전시 전체 정보 리스트 조회 전담 처리 함수
+	public List allExhiList(PageUtil page) {
 		return sqlSession.selectList("sbSQL.allExhiList", page);
 	}
 	
@@ -37,10 +37,9 @@ public class SubPageDao {
 	}
 	
 	//이벤트 전시 삭제 전담 처리 함수
-	public int getEvtDel(int evtno) {
-		return sqlSession.update("sbSQL.evtDel", evtno);
+	public int getEvtDel(int evtexino) {
+		return sqlSession.update("sbSQL.evtDel", evtexino);
 	}
-	
 	
 	
 	
