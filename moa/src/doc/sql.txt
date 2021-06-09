@@ -64,15 +64,17 @@ MODIFY exino CONSTRAINT REB_EXINO_NN NOT NULL;
 
 ALTER TABLE rboard DROP COLUMN rbview;
 
+
+DROP table upfile;
 CREATE TABLE upfile(
 fno NUMBER(6)													
     CONSTRAINT UPF_NO_PK PRIMARY KEY,
 fbno NUMBER(6)					
     CONSTRAINT UPF_FBNO_FK REFERENCES exinfo(exino),
-oriname VARCHAR2(20),						
-savename VARCHAR2(20),                    
+oriname VARCHAR2(50),						
+savename VARCHAR2(50),                    
 len NUMBER(20),                                     		
-dir VARCHAR2(20), 
+dir VARCHAR2(50), 
 fdate DATE default sysdate,					                                                     
 isShow CHAR(1) default 'Y'						
     CONSTRAINT UPF_IS_CK CHECK(isShow IN('Y', 'N'))

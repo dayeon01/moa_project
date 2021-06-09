@@ -1,0 +1,281 @@
+****************************다연********************************
+
+# 스프링 예제 요청설계
+
+1. 메인 페이지 요청 1
+	
+	요청내용	:	/moa/
+	파라미터	:	무
+	컨트롤러	:	com.mono.home.MainController
+	처리함수	:	getMain()
+	뷰			:	/WEB-INF/views/main.jsp
+
+2. 메인 페이지 요청 2
+	
+	요청내용	:	/moa/main.moa
+	파라미터	:	무
+	컨트롤러	:	com.mono.moa.controller.MainMoa
+	처리함수	:	MainExi()
+	뷰			:	/WEB-INF/views/main.jsp
+	
+===========================================================================
+
+****************************다연********************************
+
+
+****************************진석********************************
+
+############# 회원관련 요청 ###############################################
+
+1. 로그인 뷰 요청
+	
+	요청내용	:	/moa/member/login.moa
+	파라미터	:	무
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	getLogin()
+	뷰			:	/WEB-INF/views/member/login.jsp
+
+2. 로그인 처리 요청
+	
+	요청내용	:	/moa/member/loginProc.moa
+	파라미터	:	id, pw
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	loginProc()
+	뷰			:	Redirect ]
+						성공 : /moa/
+						실패 : /moa/member/login.moa
+
+3. 로그아웃 처리 요청
+	
+	요청내용	:	/moa/member/logout.moa
+	파라미터	:	무 (session.getAttribute("SID"))
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	logout()
+	뷰			:	Redirect ] /moa/
+	
+4. 회원가입 폼 보기 요청
+
+	요청내용	:	/moa/member/join.moa
+	파라미터	:	무
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	join()
+	뷰			:	/WEB-INF/views/member/join.jsp
+	
+5. id 체크 처리 요청
+	
+	요청내용	:	/moa/member/idCheck.moa
+	파라미터	:	id
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	idCheck()
+	뷰			:	ajax	- json || text
+	
+6. 회원가입 처리 요청
+
+	요청내용	:	/moa/member/joinProc.moa
+	파라미터	:	id, name, password, email, tel, birth
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	joinProc()
+	뷰			:	redirect ]
+						성공	: /moa/
+						실패	: /moa/member/join.moa	
+	
+7. 마이페이지 보기 요청
+
+	요청내용	:	/moa/member/myPage.moa
+	파라미터	:	무 (session.getAttribute("SID"))
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	myPage()
+	뷰			:	/WEB-INF/views/member/myPage.jsp
+	
+8. 회원정보 보기 요청
+
+	요청내용	:	/moa/member/myInfo.moa
+	파라미터	:	무 (session.getAttribute("SID"))
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	myInfo()
+	뷰			:	/WEB-INF/views/member/myInfo.jsp	
+	
+9. 회원정보 수정 폼보기 요청
+
+	요청내용	:	/moa/member/myInfoEdit.moa
+	파라미터	:	무 (session.getAttribute("SID"))
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	myInfoEdit()
+	뷰			:	/WEB-INF/views/member/myInfoEdit.jsp	
+	
+10. 내정보 수정 처리 요청
+
+	요청내용	:	/moa/member/myInfoEditProc.moa
+	파라미터	:	MemberVO(pw, mail, tel, gen, birth)
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	myInfoEditProc()
+	뷰			:	
+					redirect ]
+						성공	: /moa/member/myInfo.moa
+						실패	: /moa/member/myInfoEdit.moa	
+	
+11. 회원정보 삭제 폼보기 요청
+
+	요청내용	:	/moa/member/myInfoDel.moa
+	파라미터	:	무 (session.getAttribute("SID"))
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	myInfoDel()
+	뷰			:	/WEB-INF/views/member/myInfoDel.jsp
+	
+12. 회원정보 삭제 처리 요청
+
+	요청내용	:	/moa/member/myInfoDelProc.moa
+	파라미터	:	무 (session.getAttribute("SID"))
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	myInfoDelProc()
+	뷰			:	
+					redirect ]
+						성공	: /moa/
+						실패	: /moa/member/myInfoDel.moa	
+						
+13. 회원아이디 찾기 폼보기 요청
+
+	요청내용	:	/moa/member/loginFindId.moa
+	파라미터	:	무
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	loginFindId()
+	뷰			:	/WEB-INF/views/member/loginFindId.jsp
+		
+14. 회원아이디 찾기 처리 요청
+
+	요청내용	:	/moa/member/loginFindIdProc.moa
+	파라미터	:	mVO(name, tel)
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	loginFindIdProc()
+	뷰			:	ajax	- json || text	
+	
+15. 회원비밀번호 찾기 폼보기 요청
+
+	요청내용	:	/moa/member/loginFindPw.moa
+	파라미터	:	무
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	loginFindPw()
+	뷰			:	/WEB-INF/views/member/loginFindPw.jsp
+		
+16. 회원비밀번호 찾기 처리 요청
+
+	요청내용	:	/moa/member/loginFindPwProc.moa
+	파라미터	:	mVO(id, tel)
+	컨트롤러	:	com.mono.moa.controller.Member
+	처리함수	:	loginFindPwProc()
+	뷰			:	ajax	- json || text	
+	
+
+############################################################################
+
+# 	QnA 관련 요청 설계 #
+
+1. QnA 리스트 보기 요청
+	
+	요청내용	:	/moa/review/qnaList.moa
+	파라미터	:	PageUtil page, session.getAttribute("SID")
+	컨트롤러	:	com.mono.moa.controller.Review
+	처리함수	:	getList()
+	뷰			:	
+					id = admin : /WEB-INF/views/review/qnaListAdmin.jsp
+					id != admin : /WEB-INF/views/review/qnaList.jsp
+
+2. QnA 리스트 상세보기 요청
+	
+	요청내용	:	/moa/review/qnaListDetail.moa
+	파라미터	:	rVO (bno), nowPage, session.getAttribute("SID")
+	컨트롤러	:	com.mono.moa.controller.eview
+	처리함수	:	getListDetail()
+	뷰			:	
+					id = admin : /WEB-INF/views/review/qnaListDetailAdmin.jsp
+					id != admin : /WEB-INF/views/review/qnaListDetail.jsp
+
+3. QnA 글쓰기 폼보기 요청
+	
+	요청내용	:	/moa/review/qnaWrite.moa
+	파라미터	:	무
+	컨트롤러	:	com.mono.moa.controller.Review
+	처리함수	:	qnaWrite()
+	뷰			:	/WEB-INF/views/review/qnaWrite.jsp
+
+4. QnA 글쓰기 처리 요청
+	
+	요청내용	:	/moa/review/qnaWriteProc.moa
+	파라미터	:	무 session.getAttribute("SID")
+	컨트롤러	:	com.mono.moa.controller.Review
+	처리함수	:	qnaWriteProc()
+	뷰			:	
+					redirect ]
+						성공	: /moa/review/qnaList.moa
+						실패	: /moa/review/qnaWrite.moa
+						
+5. QnA 글수정 폼보기 요청
+	
+	요청내용	:	/moa/review/qnaEdit.moa
+	파라미터	:	rVO (bno)
+	컨트롤러	:	com.mono.moa.controller.Review
+	처리함수	:	qnaEdit()
+	뷰			:	/WEB-INF/views/review/qnaEdit.jsp
+
+6. QnA 글수정 처리 요청
+	
+	요청내용	:	/moa/review/qnaEditProc.moa
+	파라미터	:	rVO (title, body)
+	컨트롤러	:	com.mono.moa.controller.Review
+	처리함수	:	qnaEditProc()
+	뷰			:	"PATH", "/moa/review/qnaList.moa"
+					/WEB-INF/views/review/redirectView.jsp
+					
+7. QnA 글삭제 처리 요청
+	
+	요청내용	:	/moa/review/qnaDel.moa
+	파라미터	:	rVO (bno)
+	컨트롤러	:	com.mono.moa.controller.Review
+	처리함수	:	qnaDel()
+	뷰			:	/moa/review/qnaList.moa
+	
+	
+############################################################################
+
+# 	리뷰게시판 관련 #
+
+
+1. 리뷰 리스트 보기 요청
+	
+	요청내용	:	/moa/star/reviewList.moa
+	파라미터	:	nowPage
+	컨트롤러	:	com.mono.moa.controller.Star
+	처리함수	:	getList()
+	뷰			:	/WEB-INF/views/star/reviewList.jsp
+
+
+2. 리뷰 리스트 상세보기 요청
+	
+	요청내용	:	/moa/star/reviewListDetail.moa
+	파라미터	:	nowPage, rVO(bno)
+	컨트롤러	:	com.mono.moa.controller.Star
+	처리함수	:	getListDetail()
+	뷰			:	/WEB-INF/views/star/reviewListDetail.jsp
+	
+	
+3. 리뷰 글쓰기 처리 요청
+	
+	요청내용	:	/moa/star/reviewWriteProc.moa
+	파라미터	:	rVO(title, body, star, File)
+	컨트롤러	:	com.mono.moa.controller.Star
+	처리함수	:	reviewWriteProc()					
+	뷰			:	"PATH", "/moa/star/reviewListDetail.moa"
+					/WEB-INF/views/star/redirectView.jsp
+					
+4. 리뷰 글삭제 처리 요청
+	
+	요청내용	:	/moa/star/reviewDel.moa
+	파라미터	:	bno, reno
+	컨트롤러	:	com.mono.moa.controller.Star
+	처리함수	:	reviewDel()					
+	뷰			:	"PATH", "/moa/star/reviewListDetail.moa"
+					/WEB-INF/views/star/redirectView.jsp
+					
+					
+****************************진석********************************
+	

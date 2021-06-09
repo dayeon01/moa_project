@@ -5,6 +5,8 @@
 
 <mapper namespace="mSQL">
 
+
+	<!-- 아이디 중복검사 -->
 	<select id="idCheck" resultType="int" parameterType="string">
 		SELECT
 			count(*)
@@ -14,6 +16,7 @@
 			id = #{sid}
 	</select>
 	
+	<!-- 로그인 검사 -->
 	<select id="getLogin" resultType="int" parameterType="mVO">
 		SELECT
 			count(*)
@@ -25,6 +28,7 @@
 			AND pw = #{pw}
 	</select>
 	
+	<!-- 회원추가 -->
 	<insert id="addMember" parameterType="mVO">
 		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
 			SELECT
@@ -40,6 +44,7 @@
 		)
 	</insert>
 	
+	<!-- 나의정보 조회 -->
 	<select id="getMyInfo" resultType="mVO" parameterType="string">
 		SELECT
 			mno, id, pw, name, email, tel, gen, birth, jdate
@@ -49,6 +54,7 @@
 			id=#{id}
 	</select>
 	
+	<!-- 나의 정보 수정 -->
 	<update id="myInfoEdit" parameterType="mVO">
 		UPDATE
 			member
@@ -64,6 +70,7 @@
 			id = #{id}
 	</update>
 	
+	<!-- 나의 정보 삭제 -->
 	<update id="myInfoDel" parameterType="string">
 		UPDATE
 			member
@@ -74,6 +81,7 @@
 			id = #{id}
 	</update>
 	
+	<!-- 아이디 찾기 -->
 	<select id="loginFindId" resultType="mVO" parameterType="mVO">
 		SELECT
 			id, email
@@ -85,6 +93,7 @@
 			AND isshow='Y'
 	</select>
 	
+	<!-- 비밀번호 찾기 -->
 	<select id="loginFindPw" resultType="String" parameterType="mVO">
 		SELECT
 			email
@@ -96,7 +105,8 @@
 			AND isshow='Y'
 	</select>
 	
-		<update id="editPw" parameterType="mVO">
+	<!-- 임시비밀번호 저장 -->
+	<update id="editPw" parameterType="mVO">
 		UPDATE
 			member
 		<set>

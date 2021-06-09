@@ -1,6 +1,6 @@
 package com.mono.moa.controller;
 
-import java.util.HashMap;
+import java.util.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -22,26 +22,30 @@ public class Member {
 	@Autowired
 	MemberDao mDao;
 	
+	// 로그인 폼보기
 	@RequestMapping("/login.moa")
 	public ModelAndView getLogin(HttpSession session, ModelAndView mv, RedirectView rv) {	
+		
+		// 로그인 검사
 		if(isLogin(session)) {	
 			rv.setUrl("/moa/");
-			mv.setView(rv);
+			mv.setView(rv);	
 		} else {
 			String view = "member/login";
 			mv.setViewName(view);
 		}
-	
+		
 		return mv;
 	}
 	
-	@RequestMapping("/loginProc.moa")
-	public ModelAndView loginProc( MemberVO mVO, ModelAndView mv, 
-										HttpSession session, RedirectView rv) {
+	// 로그인 처리
+	@RequestMapping("/loginProc.moa")      
+	public ModelAndView loginProc( MemberVO mVO /*(id, pw)*/, 
+								ModelAndView mv, HttpSession session, RedirectView rv) {
 		String view = "/moa/";
 		if(!isLogin(session)) {
 
-			int cnt = mDao.getLogin(mVO);
+			int cnt = mDao.getLogin(mVO) /*(id, pw)*/;
 			
 			if(cnt == 1) {
 				session.setAttribute("SID", mVO.getId());
@@ -58,6 +62,8 @@ public class Member {
 		return mv;
 	}
 	
+	
+	//로그아웃 처리
 	@RequestMapping("/logout.moa")
 	public ModelAndView logout(HttpSession session, ModelAndView mv, RedirectView rv) {
 		session.removeAttribute("SID");
@@ -66,6 +72,8 @@ public class Member {
 		return mv;
 	}
 	
+	
+	//회원가입 폼보기
 	@RequestMapping("/join.moa")
 	public ModelAndView join(ModelAndView mv, RedirectView rv, HttpSession session) {
 
@@ -81,9 +89,10 @@ public class Member {
 		return mv;
 	}
 	
+	// 회원가입 요청처리
 	@RequestMapping("/joinProc.moa")
-	public ModelAndView joinProc(MemberVO mVO, ModelAndView mv, 
-									HttpSession session, RedirectView rv) {
+	public ModelAndView joinProc(MemberVO mVO /*(name, id, pw, tel, email, gen, birth)*/
+								,ModelAndView mv, HttpSession session, RedirectView rv) {
 		if(isLogin(session)) {
 			rv.setUrl("/moa/");
 			mv.setView(rv);
@@ -103,7 +112,7 @@ public class Member {
 		return mv;
 	}
 	
-
+	// 아이디 중복검사
 	@RequestMapping("/idCheck.moa")
 	@ResponseBody
 	public HashMap<String, String> idCheck(String id) {
@@ -117,6 +126,8 @@ public class Member {
 		return map;
 	}
 	
+	
+	// 마이페이지 폼보기
 	@RequestMapping("/myPage.moa")
 	public ModelAndView myPage(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
@@ -130,6 +141,7 @@ public class Member {
 		return mv;
 	}
 	
+	// 내정보 조회
 	@RequestMapping("/myInfo.moa")
 	public ModelAndView myInfo(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
@@ -146,6 +158,8 @@ public class Member {
 		return mv;
 	}
 	
+	
+	// 내 정보 수정
 	@RequestMapping("/myInfoEdit.moa")
 	public ModelAndView myInfoEdit(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
@@ -162,9 +176,10 @@ public class Member {
 		return mv;
 	}
 	
+	// 내정보 수정처리
 	@RequestMapping("/myInfoEditProc.moa")
-	public ModelAndView myInfoEdit(ModelAndView mv, RedirectView rv, 
-									HttpSession session, MemberVO mVO) {
+	public ModelAndView myInfoEdit(MemberVO mVO /* name, pw, tel, email, gen, birth */
+								,ModelAndView mv, RedirectView rv, HttpSession session) {
 		
 		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
@@ -182,6 +197,8 @@ public class Member {
 		return mv;
 	}
 	
+	
+	//회원탈퇴 폼보기
 	@RequestMapping("/myInfoDel.moa")
 	public ModelAndView myInfoDel(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
@@ -192,15 +209,18 @@ public class Member {
 		}
 		String id = (String) session.getAttribute("SID");
 		MemberVO mVO = mDao.getMyInfo(id);
+		/* mno, id, pw, name, email, tel, gen, birth, jdate */
 		
 		mv.addObject("DATA", mVO);
 		mv.setViewName("member/myInfoDel");
 		return mv;
 	}
 	
+	
+	//회원탈퇴 처리요청
 	@RequestMapping("/myInfoDelProc.moa")
-	public ModelAndView myInfoDelProc(ModelAndView mv, RedirectView rv, 
-									HttpSession session, MemberVO mVO) {
+	public ModelAndView myInfoDelProc(MemberVO mVO /* id, name, pw */
+								,ModelAndView mv, RedirectView rv, HttpSession session ) {
 		
 		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
@@ -218,6 +238,7 @@ public class Member {
 		return mv;
 	}
 	
+	// 아이디 찾기 폼보기
 	@RequestMapping("/loginFindId.moa")
 	public ModelAndView loginFindId(HttpSession session, ModelAndView mv, RedirectView rv) {
 		
@@ -232,11 +253,13 @@ public class Member {
 		return mv;
 	}
 	
+	//아이디 찾기 처리요청
 	@RequestMapping("/loginFindIdProc.moa")
 	@ResponseBody
-	public HashMap<String, String> loginFindIdProc(MemberVO mVO) {
+	public HashMap<String, String> loginFindIdProc(MemberVO mVO /* name, tel */) {
 		
 		MemberVO tVO = mDao.loginFindId(mVO);
+		/* id, email */
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "NO");
@@ -250,7 +273,7 @@ public class Member {
 		return map;
 	}
 	
-	
+	//비밀번호 찾기 폼보기
 	@RequestMapping("/loginFindPw.moa")
 	public ModelAndView loginFindPw(HttpSession session, ModelAndView mv, RedirectView rv) {
 		
@@ -265,9 +288,10 @@ public class Member {
 		return mv;
 	}
 	
+	// 비밀번호 찾기 요청처리
 	@RequestMapping("/loginFindPwProc.moa")
 	@ResponseBody
-	public HashMap<String, String> loginFindPwProc(MemberVO mVO) {
+	public HashMap<String, String> loginFindPwProc(MemberVO mVO /* id, email */) {
 		String email = mDao.loginFindPw(mVO);
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "NO");
@@ -283,6 +307,7 @@ public class Member {
 		return map;
 	}
 	
+	// 로그인 검사
 	public boolean isLogin(HttpSession session) {
 		String sid = (String) session.getAttribute("SID");
 		

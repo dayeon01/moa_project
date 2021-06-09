@@ -94,7 +94,7 @@ $('#nowPage').val('${PAGE.nowPage}');
 											<th scope="col">전시명</th>
 											<th scope="col">시작일</th>
 											<th scope="col">종료일</th>
-											<th scope="col">평점</th>
+										
 										</tr>
 									</thead>
 									<tbody>
@@ -106,7 +106,7 @@ $('#nowPage').val('${PAGE.nowPage}');
 											<td>${list.body}</td>
 											<td>${list.wdate}</td>
 											<td>${list.redate}</td>
-											<td>4.5</td>
+									
 										</tr>
 									</c:forEach>		
 										

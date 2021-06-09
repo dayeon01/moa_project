@@ -5,6 +5,7 @@
 
 <mapper namespace="sSQL">
 
+	<!-- 전시정보 전체갯수 조회 -->
 	<select id="getTotal" resultType="int">
 		SELECT
 			count(*)
@@ -14,6 +15,7 @@
 			isShow = 'Y'
 	</select>
 	
+	<!-- 전시정보 리스트 조회 -->
 	<select id="reviewList" resultType="rVO" parameterType="page">
 		SELECT
 			rno, bno, title, body, wdate, redate
@@ -34,6 +36,7 @@
 		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>
 	
+	<!-- 전시정보 리스트 상세조회 -->
 	<select id="reviewListDetail" resultType="rVO" parameterType="rVO">
 		SELECT
 		    exino bno, exiperson title, exiname body, exisdate wdate, exiedate redate, idir dir, imgname savename
@@ -45,6 +48,24 @@
             AND exino = #{bno}
 	</select>
 	
+	<!-- 전시정보 댓글 유무조회 -->
+	<select id="getReview" resultType="int" parameterType="rVO">
+		SELECT
+			count(*)
+		FROM
+			rboard
+		WHERE
+			isShow = 'Y'
+			AND exino = #{bno}
+			AND rbmno = (SELECT
+							mno
+						FROM
+							member
+						WHERE
+							id=#{id})
+	</select>
+	
+	<!-- 전시정보 댓글 조회 -->
 	<select id="replyList" resultType="rVO" parameterType="rVO">
 		SELECT
 		    id, rbno bno, rbmno mno, rbdate wdate, rbtitle title, rbbody body, star, exino
@@ -58,6 +79,7 @@
         	rbdate DESC
 	</select>
 	
+	<!-- 전시정보 댓글 추가 -->
 	<insert id="addReply" parameterType="rVO">
 		<selectKey keyProperty="rno" resultType="int" order="BEFORE">
 			SELECT
@@ -73,11 +95,11 @@
 						FROM
 							member
 						WHERE
-							id=#{id}), sysdate, #{title}, #{body}, 4, #{bno}
+							id=#{id}), sysdate, #{title}, #{body}, #{star}, #{bno}
 		)
 	</insert>
 	
-	
+	<!-- 전시정보 댓글 파일추가 -->
 	<insert id="addFile" parameterType="fVO">
 		<selectKey keyProperty="fno" resultType="int" order="BEFORE">
 			SELECT
@@ -88,14 +110,11 @@
 		INSERT INTO
 		    upfile(fno, oriname, savename, len, dir, fbno)
 		VALUES(
-		    #{fno}, #{oriname}, #{savename}, #{len}, #{dir}, 
-		    (SELECT
-				NVL(MAX(rbno), 100001)
-			FROM
-				rboard)
+		    #{fno}, #{oriname}, #{savename}, #{len}, #{dir}, #{bno}
 		)
 	</insert>
 	
+	<!-- 전시정보 댓글 파일 조회 -->
 	<select id="subFile" resultType="fVO" parameterType="int">
 		SELECT
 		    fno, savename
@@ -106,4 +125,39 @@
 		    AND isshow = 'Y'
 	</select>
 	
+	<!-- 전시정보 댓글 삭제 -->
+	<update id="reviewDel" parameterType="int">
+		UPDATE
+			rboard
+		<set>
+			isshow='N'
+		</set>
+		WHERE
+			rbno = #{bno}
+	</update>
+	
+	<!-- 전시정보 댓글 파일 삭제 -->
+	<update id="delSub" parameterType="int">
+		UPDATE
+		    upfile
+		SET
+		    isshow = 'N'
+		WHERE
+		    fbno = #{bno}
+	</update>
+	
+	<!-- 전시정보 댓글 결과조회 -->
+	<select id="reviewResult" resultType="rVO" parameterType="rVO">
+		SELECT
+			total, round((sum/total)*20,2) star
+		FROM
+			(
+			SELECT
+				sum(star) sum, count(*) total
+			FROM
+				rboard
+			where isshow = 'Y'
+			AND exino = #{bno}
+			)
+	</select>
 </mapper>

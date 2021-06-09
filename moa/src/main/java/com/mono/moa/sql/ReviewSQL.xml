@@ -5,6 +5,7 @@
 
 <mapper namespace="reSQL">
 
+	<!-- Qna 리스트 개수조회 -->
 	<select id="getTotal" resultType="int" parameterType="rVO">
 		SELECT
 			count(*)
@@ -24,6 +25,7 @@
 		
 	</select>
 	
+	<!-- Qna 리스트 조회 -->
 	<select id="qnaList" resultType="rVO" parameterType="page">
 		SELECT
 			rno, bno, title, body, mno, wdate, reply, redate
@@ -53,6 +55,7 @@
 		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>
 	
+	<!-- Qna 리스트 상세조회 -->
 	<select id="qnaListDetail" resultType="rVO" parameterType="rVO">
 		SELECT
 			iqbno bno, iqtitle title, iqbody body, iqmno mno, iqwdate wdate, iqreply reply, iqredate redate
@@ -62,6 +65,7 @@
 			iqbno = #{bno}
 	</select>
 	
+	<!-- Qna 게시글 작성자 아이디 조회 -->
 	<select id="getId" resultType="string" parameterType="int">
 		SELECT
 			id
@@ -71,6 +75,7 @@
 			mno = (SELECT iqmno FROM iqboard WHERE iqbno = #{bno})
 	</select>
 	
+	<!-- Qna 리스트 글쓰기 추가 -->
 	<insert id="qnaWrite" parameterType="rVO">
 		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
 			SELECT
@@ -90,6 +95,7 @@
 		)
 	</insert>
 	
+	<!-- Qna 리스트 관리자 댓글추가 -->
 	<update id="qnaWriteAdmin" parameterType="rVO">
 		UPDATE
 			iqboard
@@ -101,6 +107,7 @@
 			iqbno = #{bno}
 	</update>
 	
+	<!-- Qna 글수정-->
 	<update id="qnaEdit" parameterType="rVO">
 		UPDATE
 			iqboard
@@ -112,6 +119,7 @@
 			iqbno = #{bno}
 	</update>
 	
+	<!-- Qna 댓글 수정 관리자 -->
 	<update id="qnaEditAdmin" parameterType="rVO">
 		UPDATE
 			iqboard
@@ -122,6 +130,7 @@
 			iqbno = #{bno}
 	</update>
 	
+	<!-- Qna 글삭제 -->
 	<update id="qnaDel" parameterType="int">
 		UPDATE
 			iqboard

@@ -9,8 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class ReviewVO {
 
-	private int rno, bno, mno, upno, nowPage, exino;
-	private String id, name, title, body, sdate, reply, savename, dir, star;
+	private int rno, bno, mno, upno, nowPage, exino, star, total, cnt;
+	private String id, name, title, body, sdate, reply, savename, dir;
 	private Date wdate;
 	private Date redate;
 	private Time wtime;
@@ -21,6 +21,18 @@ public class ReviewVO {
 	
 	
 	
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+	public int getTotal() {
+		return total;
+	}
+	public void setTotal(int total) {
+		this.total = total;
+	}
 	public ArrayList<FileVO> getFlist() {
 		return flist;
 	}
@@ -45,10 +57,11 @@ public class ReviewVO {
 	public void setExino(int exino) {
 		this.exino = exino;
 	}
-	public String getStar() {
+	
+	public int getStar() {
 		return star;
 	}
-	public void setStar(String star) {
+	public void setStar(int star) {
 		this.star = star;
 	}
 	public ArrayList<ReviewVO> getList() {

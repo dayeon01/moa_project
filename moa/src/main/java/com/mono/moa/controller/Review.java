@@ -24,6 +24,7 @@ public class Review {
 	@Autowired
 	PageUtil page;
 	
+	// 문의 리스트 보기
 	@RequestMapping("/qnaList.moa")
 	public ModelAndView getList(PageUtil page, ModelAndView mv, HttpSession session, RedirectView rv) {
 		
@@ -41,7 +42,8 @@ public class Review {
 		page.setPage(nowPage, total, 1, 3);
 		page.setId(id);
 
-		List list = reDao.qnaList(page);
+		List list = reDao.qnaList(page); 
+		/* rno, bno, title, body, mno, wdate, reply, redate */
 
 		mv.addObject("LIST", list);
 		mv.addObject("PAGE", page);
@@ -54,9 +56,10 @@ public class Review {
 		return mv;
 	}
 	
+	// 문의 리스트 상세보기
 	@RequestMapping("/qnaListDetail.moa")
-	public ModelAndView getListDetail(int nowPage, ReviewVO rVO, 
-									ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView getListDetail(int nowPage, ReviewVO rVO /* bno */ 
+									, ModelAndView mv, HttpSession session, RedirectView rv) {
 		
 		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
@@ -65,8 +68,9 @@ public class Review {
 		}
 		
 		String id = (String) session.getAttribute("SID");
-		rVO.setId(id);
 		rVO = reDao.qnaListDetail(rVO);
+		/* bno, title, body, mno, wdate, reply, redate */
+		
 		rVO.setId(reDao.getId(rVO.getBno()));
 		mv.addObject("DATA", rVO);
 		mv.addObject("nowPage", nowPage);
@@ -80,23 +84,26 @@ public class Review {
 		return mv;
 	}
 	
+	// 문의글 쓰기 폼보기
 	@RequestMapping("/qnaWrite.moa")
-	public ModelAndView qnaWrite(int nowPage, ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView qnaWrite(ModelAndView mv, HttpSession session, RedirectView rv) {
 		
 		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
 			mv.setView(rv);
 			return mv;
 		}
-		mv.addObject("nowPage", nowPage);
+
 		mv.setViewName("review/qnaWrite");
 		
 		return mv;
 	}
 	
+	
+	// 문의글 쓰기 처리요청
 	@RequestMapping("/qnaWriteProc.moa")
-	public ModelAndView qnaWriteProc(int nowPage, ReviewVO rVO, ModelAndView mv, 
-									HttpSession session, RedirectView rv) {
+	public ModelAndView qnaWriteProc(ReviewVO rVO /* title, body / admin-nowPage, bno, reply */
+									,int nowPage, ModelAndView mv, HttpSession session, RedirectView rv) {
 		if(!isLogin(session)) {
 			rv.setUrl("/moa/");
 			mv.setView(rv);
@@ -115,6 +122,7 @@ public class Review {
 		}
 		
 		String view = "/moa/review/qnaList.moa";
+		
 		if(cnt != 1) {
 			view = "/moa/review/qnaWrite.moa";
 		}
@@ -123,8 +131,10 @@ public class Review {
 		return mv;
 	}
 	
+	// 문의글 수정 폼보기
 	@RequestMapping("/qnaEdit.moa")
-	public ModelAndView qnaEdit(int nowPage, ReviewVO rVO, ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView qnaEdit(int nowPage, ReviewVO rVO /* bno */
+								, ModelAndView mv, HttpSession session, RedirectView rv) {
 		
 		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
@@ -140,6 +150,7 @@ public class Review {
 		return mv;
 	}
 	
+	// 문의글 수정처리 요청
 	@RequestMapping("/qnaEditProc.moa")
 	public ModelAndView qnaEditProc(int nowPage, ReviewVO rVO, ModelAndView mv, HttpSession session, RedirectView rv) {
 		
@@ -163,6 +174,8 @@ public class Review {
 		return mv;
 	}
 	
+	
+	// 문의글 삭제요청
 	@RequestMapping("/qnaDel.moa")
 	public ModelAndView myInfoDelProc(int bno, ModelAndView mv, RedirectView rv, 
 									HttpSession session, MemberVO mVO) {
@@ -180,6 +193,7 @@ public class Review {
 		return mv;
 	}
 	
+	// 로그인 검사
 	public boolean isLogin(HttpSession session) {
 		String sid = (String) session.getAttribute("SID");
 		
