@@ -22,45 +22,49 @@ isShow CHAR(1) DEFAULT 'Y'
     CONSTRAINT IQB_SHOW_NN NOT NULL
 );
 
+
 INSERT INTO
     iqboard(iqbno, iqmno, iqtitle, iqbody)
 VALUES(
     (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
-    1015, '문의제목1', '문의답글1'
+    1001, '문의제목1', '문의답글1'
 );
 
 INSERT INTO
     iqboard(iqbno, iqmno, iqtitle, iqbody)
 VALUES(
     (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
-    1015, '문의제목2', '문의답글2'
+    1001, '문의제목2', '문의답글2'
 );
 
 INSERT INTO
     iqboard(iqbno, iqmno, iqtitle, iqbody)
 VALUES(
     (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
-    1015, '문의제목3', '문의답글3'
+    1001, '문의제목3', '문의답글3'
 );
 
 INSERT INTO
     iqboard(iqbno, iqmno, iqtitle, iqbody)
 VALUES(
     (SELECT NVL(MAX(iqbno) + 1, 10001) FROM iqboard), 
-    1015, '문의제목4', '문의답글4'
+    1001, '문의제목4', '문의답글4'
 );
 
 
 
--- 2012-06-07
+-- 2021-06-07
 -- 진석
 
 ALTER TABLE rboard
 ADD exino number(5) constraint 
 REB_EXINO_FR REFERENCES exinfo(exino);
 
+update rboard set exino=10013;
+
 ALTER TABLE rboard
 MODIFY exino CONSTRAINT REB_EXINO_NN NOT NULL;
+
 
 ALTER TABLE rboard DROP COLUMN rbview;
 
