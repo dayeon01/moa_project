@@ -6,8 +6,8 @@ import java.sql.Time;
 import java.text.*;
 
 public class EventVO {
-	private int exino,exiecno, evtno, evtexino, exiprice, rno, exiexpno;
-	private String evtcode, evtcontent, evtsdate, evtedate, exisdate, exiedate, exiname, exiperson,idir, imgname, reprice, isshow;
+	private int exino,exiecno, evtno, evtexino, exiprice, rno, exiexpno, expno;
+	private String evtcode, evtcontent, evtsdate, evtedate, exisdate, exiedate, exiname, exiperson,idir, imgname, reprice, isshow,  expname, exptime, expsite, exptel, exploc, expdir, expimgname;
 	private Date startdate, enddate, edate, sdate ;
 	public int getExino() {
 		return exino;
@@ -154,5 +154,55 @@ public class EventVO {
 	public void setIsshow(String isshow) {
 		this.isshow = isshow;
 	}
+	public int getExpno() {
+		return expno;
+	}
+	public void setExpno(int expno) {
+		this.expno = expno;
+	}
+	public String getExpname() {
+		return expname;
+	}
+	public void setExpname(String expname) {
+		this.expname = expname;
+	}
+	public String getExptime() {
+		return exptime;
+	}
+	public void setExptime(String exptime) {
+		this.exptime = exptime;
+	}
+	public String getExpsite() {
+		return expsite;
+	}
+	public void setExpsite(String expsite) {
+		this.expsite = expsite;
+	}
+	public String getExptel() {
+		return exptel;
+	}
+	public void setExptel(String exptel) {
+		this.exptel = exptel;
+	}
+	public String getExploc() {
+		return exploc;
+	}
+	public void setExploc(String exploc) {
+		this.exploc = exploc;
+	}
+	public String getExpdir() {
+		return expdir;
+	}
+	public void setExpdir(String expdir) {
+		this.expdir = expdir;
+	}
+	public String getExpimgname() {
+		return expimgname;
+	}
+	public void setExpimgname(String expimgname) {
+		this.expimgname = expimgname;
+	}
+	
+	
 	
 }

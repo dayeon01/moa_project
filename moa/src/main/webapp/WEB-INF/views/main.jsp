@@ -2,28 +2,31 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 	<jsp:include page="a_nav/head.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
 	
-<!-- 
-<link href="/moa/css/calendar/calendar.css" rel="stylesheet">
-<link href='/moa/css/calendar/core-main.css' rel='stylesheet' />
-<link href='/moa/css/calendar/daygrid-main.css' rel='stylesheet' />
 
-<script type="text/javascript">
-		var arr = ${ARR};
-</script>
-<script src="/moa/js/calendar/calendar.js"></script>
-<script src='/moa/js/calendar/core.main.js'></script>
-<script src='/moa/js/calendar/interaction.main.js'></script>
-<script src='/moa/js/calendar/daygrid.main.js'></script> 
--->
 
 </head>
-<body>
+<script type="text/javascript">
 
+	$(document).ready(function(){
+		$('.eibox').click(function(){
+			var tno = $(this).attr('id').substring(3);
+			$('#exino').val(tno);
+			$('#frm').submit();
+			
+		});
+	});
+</script>
+<body>
+	<form method="POST" action="/moa/exhibit/exhDetail.moa" id="frm">
+		<input type="hidden" name="exino" id="exino" value="0" >
+	</form>
+	
 <!-- Navigator -->
 	<jsp:include page="a_nav/nav.jsp">
 		<jsp:param name="" value="" />
@@ -67,11 +70,11 @@
             
 <!-- 최근전시정보리스트 -->
 <c:forEach var="data" items="${LIST}">
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="col-lg-4 col-sm-6 mb-4 eibox" id="box${data.exino}">
                 <div class="card h-100">
                     <a href="#!"><img class="card-img-top" src="${data.idir}${data.imgname}" alt="poster"></a>
                     <div class="card-body">
-                        <h4 class="card-title"><a href="#!">${data.exiname}</a></h4>
+                        <h4 class="card-title" id="n${data.exiname}"><a href="#!">${data.exiname}</a></h4>
                         <p class="card-text">작가: ${data.exiperson}</p>
                         <p class="card-text">시작날짜: ${data.startdate}</p>
                         <p class="card-text">종료날짜: ${data.enddate}</p>
@@ -90,20 +93,7 @@
 <!-- Features Section-->
 <section class="py-5 user-source">
    
-<%--
-      	<!-- 그래프 -->
-        <jsp:include page="a_nav/chart.jsp">
-			<jsp:param name="" value="" />
-		</jsp:include>
- --%>
-		
-		<!-- 달력 -->
-		<div id="wrap"><div id='calendar'></div></div>
-<%--
-		<jsp:include page="a_nav/calendar.jsp">
-			<jsp:param name="" value="" />
-		</jsp:include>
- --%>
+
  
 </section>
 <hr class="my-0">

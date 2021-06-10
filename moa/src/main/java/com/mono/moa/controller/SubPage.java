@@ -24,6 +24,8 @@ public class SubPage {
 	MenuPageDao mpDao;
 	@Autowired
 	MemberDao mDao;
+	@Autowired
+	ExhibitDao eDao;
 	
 	
 	
@@ -81,7 +83,7 @@ public class SubPage {
 	}
 	
 	@RequestMapping("/addEvent.moa")
-	//이벤트 등록 폼 보기 요청
+	//이벤트 폼 보기 요청
 	public ModelAndView addEvent(ModelAndView mv, PageUtil page, EventVO eVO, RedirectView rv, HttpSession session) {
 		String sid = (String) session.getAttribute("SID");
 		if(sid == null) {
@@ -163,6 +165,11 @@ public class SubPage {
 	}
 	
 	
+	
+	
+	
+	
+	
 	// ----------------------------------------
 	// 검색페이지
 	@RequestMapping("/searchpage.moa")
@@ -212,5 +219,20 @@ public class SubPage {
 
 		return mv;
 	}
+	
+	
+	
+	//결제페이지----------------------------------------------
+	//결제페이지 폼보기
+		@RequestMapping("/paypage.moa")
+		public ModelAndView payPage(ModelAndView mv, HttpSession session, RedirectView rv, EventVO eVO) {
+			System.out.println("######## eVO.exino : " + eVO.getExino());
+			EventVO data = eDao.getExhDetail(eVO.getExino());
+			
+			mv.addObject("DATA", data);
+			System.out.println(data);
+			mv.setViewName("subpage/paypage");
+			return mv;
+		}
 	
 }

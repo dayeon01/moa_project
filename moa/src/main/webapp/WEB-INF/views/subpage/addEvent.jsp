@@ -64,7 +64,7 @@ input{
 
 			});
 		 
-		 $( '.delbtn').click(function(){
+		 $('.delbtn').click(function(){
 			 var tno = $(this).next().val();
 			alert(tno);
 			$('#add' + tno).attr('action', '/moa/subpage/eventDelProc.moa');

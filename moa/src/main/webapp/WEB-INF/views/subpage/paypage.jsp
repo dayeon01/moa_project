@@ -49,11 +49,24 @@
 	width: 60px;
 	height: 31px;
 }
+.mgb40 {
+	margin-bottom: 40px;
+}
 
 </style>
 	
 <script type="text/javascript">
-
+	$(document).ready(function(){
+		$('.paybtn').prev().prev().children().next().click(function(){
+			var no = $(this).val()
+			var p = $('.price').attr('id').substring(1);
+			var check = document.getElementById('ptotal').value=no*p
+			
+		$(this).click(function(){
+			$('#')
+			});
+		});
+	});
 </script>
 </head>
 <body>
@@ -62,30 +75,62 @@
 		<jsp:param name="" value="" />
 	</jsp:include>	
 
-	<hr class="w3-content  mxw900 ">
-		<div class="w3-content w3-margin-top ">
-			<h1 class="w3-content w3-margin-left pdl40 w3-padding w3-text-left">결제</h1>
+	<div class="w3-content mxw900 ">
+		<div class="w3-content mxw900 ">
+			<div class="w3-col  w3-margin-top mgb20 pdb20 w3-panel w3-border-grey w3-topbar w3-bottombar inblock">
+	            <h1 class="w3-col mgt30 w3-margin-left mgb20 inblock w3-left">결제</h1>
+	         	<h6 class="w3-col w3-margin-left mgt30 mgb20 w3-text-grey"><small>결제 페이지.</small></h6>
+	   		 </div>
+	   	</div>	 
+   		  <div class="w3-content w3-margin w3-center">
+		<div class="w3-col w3-border">
+			<div class="w3-border  boxx" >
+				<div class="inblock pdAll30 w3-border w3-border-light-grey w3-round-large ">
+				 	<img src="${DATA.idir}${DATA.imgname}" 
+					  		class="img-rounded w3-round mgb40" alt="Cinque Terre" width="280" height="480"> 
+				</div>
+<form method="POST" action="/moa/member/myPage.moa" id="frm" class="inblock mgt30 w3-margin-left ">
+				<div class="inblock pdt30 ">
+					<h2 class="w3-text-dark-grey mgb20" id="name">[${DATA.exiname}]</h2>
+					<h4 class="w3-text-grey mgt30 mgb20" id="person">${DATA.exiperson}</h4>
+					<div class="w3-text-grey mgt30 mgb20" >일정 : ${DATA.exisdate} ~ ${DATA.exiedate}</div>
+					<div class="w3-text-grey mgt10 mgb20 price" id="p${DATA.exiprice}">가 격 : ${DATA.exiprice} won</div>
+					 <div class="mgt10">
+					 	  	<label class="w3-margin-right w3-text-grey">수  량 :</label>
+						 	<input type="number" pattern="[0-9]+" name="ticket" id="ticket" min="0" max="99" 
+						 				class="w3-border w3-center" placeholder="0">
+					 </div>   
+					 <div class="mgt10">
+					 	  	<label class=" w3-text-grey">결제 금액 :</label>
+						 	<input type="text" id="ptotal"  name="ptotal" value=""
+						 				class="w3-text-grey" style="width:60px;"readonly>
+					 </div>   
+					<h3 class="inblock w3-button w3-margin-top w3-blue-grey w3-hover-blue-grey w3-card-2 mgl30 mgb60 w3-round w3-right paybtn" 
+							style=width:400px;height:50px; id="pay${DATA.exino }">결제</h3>
+				</div>
+</form>			
+			</div>
 		</div>
-	<hr class="w3-content  mxw900 ">
-		<div class="w3-content">
-		
+   	</div>
+   	</div>	 
+			<!-- <div class="w3-content">
 			<div class="w3-content mxw800 ">
-			     <div class="w3-col w3-margin-top  w3-padding w3-text-left imgbox">
+		     	<div class="w3-col w3-margin-top  w3-padding w3-text-left imgbox">
 					 <div class="w3-content inblock pdll0 w3-padding-left">
 					 	 <img src="../img/exh_img_title/jang.gif" class="img-rounded w3-round" alt="Cinque Terre" width="200" height="236"> 
 					</div>
 				</div>
-				
-			     <div class="w3-col mgt40  imgbox">
+		     	<div class="w3-col mgt40  imgbox">
 					  <h3 class="w3-margin-top mgl40 w3-text-grey title">다시 안녕</h3>
 					  <p class="mgt20 mgl50">&lt;장 줄리안&gt;</p>            
 					  <p class=" mgl50 ">₩ 25000</p>            
 					  <p class="mgl0 w3-text-grey">2021.05.15 ~ 2021.08.15</p>        
 				</div>
-			     <div class="w3-col mgt40   w3-text-left imgbox1">
+			    <div class="w3-col mgt40   w3-text-left imgbox1">
 					 <div class="w3-content inblock pdll0 ">
 					 	  <div class="mgt10">
 					 	  	<label class="w3-margin-right w3-magin-bottom">유  아</label>
+						 	<input type="number" id="num" name="num" min="0" max="10">
 					 	  </div>         
 					 	  <div class="mgt20">
 					 	  	<label class="w3-margin-right w3-magin-bottom">청소년</label>
@@ -163,13 +208,18 @@
 					<div class="w3-col w3-button mgt60 mgb60 mgl70 w3-round w3-blue w3-hover-blue w3-round pbtn ftw" id="pbtn">결제하기</div>
 				</div>
 							
-		</div>		
-<%-- <!-- Footer-->
-<footer class="py-5 bg-blight">
-    <jsp:include page="../a_nav/footer.jsp">
-		<jsp:param name="" value="" />
-	</jsp:include> 
-</footer> --%>
+		</div>	
+		</div>
+	</div>	 -->
+		
+<div class="w3-col w3-margin-top">
+ <!-- Footer-->
+	<footer class="py-5 bg-blight">
+	    <jsp:include page="../a_nav/footer.jsp">
+			<jsp:param name="" value="" />
+		</jsp:include> 
+	</footer>
+</div>		
 	
 </body>
 </html>

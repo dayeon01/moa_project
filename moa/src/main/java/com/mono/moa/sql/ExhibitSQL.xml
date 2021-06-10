@@ -5,4 +5,54 @@
 
 <mapper namespace="eSQL">
 
+	<!-- 이벤트, 일반전시 조회 질의명령 -->
+	<select id="exhList" resultType="evnVO" >
+	    SELECT
+		    evtexino, exino, exiecno, exiperson, exiname, exisdate startdate, exiedate enddate, exiprice, exiage, exiexpno, idir, imgname, sdate, edate, isshow
+		FROM
+		        (
+		        SELECT
+		            ROWNUM rno, NVL(evtexino, -1) evtexino, exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname, sdate, edate, isshow
+		        FROM
+		                (  SELECT
+		                       NVL(evtexino, -1) evtexino, exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname, sdate, edate, event.isshow
+		                    FROM
+		                        exinfo, image, event
+		                    WHERE
+		                        imgno = exino
+		                        AND evtexino(+) = exino
+		                        AND exinfo.isshow = 'Y'
+		                        AND image.isshow = 'Y'
+		                )
+		        )   
+	</select>
+	
+	
+	<!-- 전시 상세 보기 질의명령 -->
+	<select id="exhDetail" resultType="evnVO" parameterType="int">
+	     SELECT
+		    evtexino, exino, exiecno, exiperson, exiname, exisdate startdate, exiedate enddate, exiprice, exiage, exiexpno, idir, imgname, sdate, edate, isshow, expno, expname, exptime,  NVL(expsite,'전화문의') expsite, NVL(exptel,'사이트문의') exptel, exploc, expdir, expimgname
+ 		  FROM
+		        (
+		        SELECT
+		            ROWNUM rno, NVL(evtexino, -1) evtexino, exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname, sdate, edate, isshow, expno, expname, exptime, expsite, exptel, exploc, expdir, expimgname
+		        FROM
+		                (  SELECT
+		                       NVL(evtexino, -1) evtexino, exino, exiecno, exiperson, exiname, exisdate, exiedate, exiprice, exiage, exiexpno, idir, imgname, sdate, edate, event.isshow, expno, expname, exptime, expsite, exptel, exploc, expdir, expimgname
+		                    FROM
+		                        exinfo, image, event, explace
+		                    WHERE
+		                        imgno = exino
+		                        AND expno = exiexpno 
+		                        AND evtexino(+) = exino
+		                        AND exinfo.isshow = 'Y'
+		                        AND image.isshow = 'Y'
+		                )
+		        )   
+       WHERE
+            exino = #{exino}
+	</select>
+	
+	
+
 </mapper>

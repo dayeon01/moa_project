@@ -11,4 +11,11 @@ VALUES(
 
 --0607
 alter table event modify (isshow default 'Y');
+
+--0610
+alter table pay drop column capay;    
+alter table pay drop column ppcode;  
+alter table pay drop column popay; 
+alter table pay add ticket NUMBER(2) constraint PAY_TICK_NN NOT NULL;
+alter table pay add pexino NUMBER(5) constraint pay_exino_FK references exinfo (exino);
 commit;
