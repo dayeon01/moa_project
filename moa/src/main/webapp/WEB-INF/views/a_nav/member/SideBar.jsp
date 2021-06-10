@@ -3,8 +3,8 @@
  <div class="col-lg-3 mb-4">
 	  <div class="list-group">
 	      <a class="list-group-item" href="/moa/member/myPage.moa">메인</a>
-	      <a class="list-group-item" href="/moa/mypage/myPageCheck.moa">구매확인/취소</a>
-	      <a class="list-group-item" href="/moa/mypage/myPageJim.moa">찜 목록</a>
+	      <a class="list-group-item" href="/moa/survey/surveyMap.moa">전시지도</a>
+	      <a class="list-group-item" href="/moa/survey/surveyList.moa">설문조사</a>
 	      <a class="list-group-item" href="/moa/star/reviewList.moa">리뷰 리스트</a>
 	      <a class="list-group-item" href="/moa/review/qnaList.moa">1:1 문의</a>
 	      <a class="list-group-item" href="/moa/member/myInfo.moa">회원정보 보기</a>

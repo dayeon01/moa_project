@@ -83,3 +83,7 @@ fdate DATE default sysdate,
 isShow CHAR(1) default 'Y'						
     CONSTRAINT UPF_IS_CK CHECK(isShow IN('Y', 'N'))
 );
+
+
+
+-- 2021 06 10 survey

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="svSQL">
+
+	<!-- 진행중인 설문조사 리스트 -->
+	<select id="ingSrvy" resultType="svVO">
+		SELECT
+			sino, title, startdate, enddate
+		FROM
+			surveyInfo
+		WHERE
+			sysdate BETWEEN startdate AND enddate
+	</select>
+	
+	<!-- 설문조사 문제 리스트 -->
+	<select id="selQuest" resultType="svVO" parameterType="int">
+		SELECT
+			sqno qno, sqbody body, sq_sino sino, sqgroup 
+		FROM
+			surveyQuest
+		WHERE
+			sq_sino = #{sino}
+			AND sqno = sqgroup
+		ORDER BY
+			sqgroup ASC
+	</select>
+	
+	<!-- 설문조사 답안 리스트 -->
+	<select id="selEx" resultType="svVO" parameterType="int">
+		SELECT
+			sqno qno, sqbody ex, exno, sq_sino sino, sqgroup 
+		FROM
+			surveyQuest
+		WHERE
+			sqgroup = #{qno}
+			AND exno is NOT NULL
+		ORDER BY
+			exno ASC
+	</select>
+	
+	<!-- 설문조사 결과추가 -->
+	<insert id="addAnswer" parameterType="svVO">
+		INSERT INTO
+			survey(sno, smno, srv_qno)
+		VALUES(
+			(SELECT NVL(MAX(sno) + 1, 100001) FROM survey),
+			(SELECT mno FROM member WHERE id = #{id}),
+			#{qno}
+		)	
+	</insert>
+	
+	<!-- 응답 보기 결과 -->
+	<select id="resultEx" resultType="svVO" parameterType="svVO">
+		SELECT
+		    sqno qno, exno, sqbody ex, NVL(cnt, 0) cnt, total totalCnt, ROUND(NVL(cnt, 0) / total * 100, 2) per
+		FROM
+		    surveyQuest,
+		    (
+		        SELECT
+		            srv_qno, count(*) cnt
+		        FROM
+		            survey
+		        GROUP BY
+		            srv_qno
+		    ),
+		    (
+		        SELECT
+		            count(*) total
+		        FROM
+		            (
+		                SELECT
+		                    smno
+		                FROM
+		                    survey, surveyQuest
+		                WHERE
+		                    srv_qno = sqno
+		                    AND sq_sino = #{sino}
+		                GROUP BY
+		                    smno
+		            )    
+		    )
+		WHERE
+		    sqno = srv_qno(+)
+		    AND sqgroup = #{sqgroup}
+		    AND exno IS NOT NULL
+		ORDER BY
+		    exno
+	</select>
+	
+	<!-- 설문 참여여부 확인 -->
+	<select id="answerCount" resultType="int" parameterType="svVO">
+		SELECT
+    		count(*)
+		FROM
+		    (
+		    SELECT
+		    	smno
+		    FROM
+		        survey, surveyQuest
+		    WHERE 
+		        sqno = srv_qno
+		        AND sq_sino = #{sino}
+		    GROUP BY  
+		        smno
+		    HAVING
+		         smno = (
+		                    SELECT
+		                        mno
+		                    FROM
+		                        member
+		                    WHERE
+		                        id = #{id}
+		                )
+		    )
+	</select>
+	
+	<!-- 전시맵 정보 -->
+	<select id="getMapList" resultType="svVO">
+		SELECT
+			exiname id, expname title, exploc body, exisdate startdate, exiedate enddate
+		FROM
+			exinfo, explace
+		WHERE
+			sysdate BETWEEN exisdate AND exiedate
+		AND exiexpno=expno
+	</select>
+</mapper>
