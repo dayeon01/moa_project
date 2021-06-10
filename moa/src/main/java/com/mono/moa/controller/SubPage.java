@@ -226,7 +226,7 @@ public class SubPage {
 	//결제페이지 폼보기
 		@RequestMapping("/paypage.moa")
 		public ModelAndView payPage(ModelAndView mv, HttpSession session, RedirectView rv, EventVO eVO) {
-			System.out.println("######## eVO.exino : " + eVO.getExino());
+			/* System.out.println("######## eVO.exino : " + eVO.getExino()); */
 			EventVO data = eDao.getExhDetail(eVO.getExino());
 			
 			mv.addObject("DATA", data);
@@ -234,5 +234,41 @@ public class SubPage {
 			mv.setViewName("subpage/paypage");
 			return mv;
 		}
+		
+		//결제 처리 
+		@RequestMapping("/payProc.moa")
+		public ModelAndView payProc(ModelAndView mv, RedirectView rv, HttpSession session, MemberVO mVO, PayVO pVO, EventVO eVO) {
+			String sid = (String)session.getAttribute("SID");
+			if(sid == null) {
+				rv.setUrl("/moa/member/login.moa");
+				mv.setView(rv);
+				return mv;
+			}
+			
+			MemberVO memb = mDao.getMyInfo(sid);
+			List exinfo = eDao.getExhList();
+			
+			return mv;
+		}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
