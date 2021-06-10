@@ -53,19 +53,36 @@ public class SubPageDao {
 	
 	
 	
+	//전시 분류이름 조회 전담 처리 함수
+	public List selClass() {
+		return sqlSession.selectList("sbSQL.selClass");
+		
+	}
 	
+	//전시 지역이름 조회 전담 처리 함수
+	public List selCity() {
+		return sqlSession.selectList("sbSQL.selCity");
+		
+	}
 	
+	//전시 시작월 조회 전담 처리 함수
+	public List sDate() {
+		return sqlSession.selectList("sbSQL.sDate");
+		
+	}
 	
+	//전시 마감월 조회 전담 처리 함수
+	public List eDate() {
+		return sqlSession.selectList("sbSQL.eDate");
+		
+	}
 	
+	//전시 결과 조회 전담 처리함수
+	public List selResult(ExinfoVO eVO) {
+		return sqlSession.selectList("sbSQL.selResult", eVO);
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	
 	

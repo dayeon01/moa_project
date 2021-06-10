@@ -1,0 +1,14 @@
+alter table
+    explace
+add
+    excity varchar2(4 char);
+    
+update explace set excity = '서울' where explono = 10;
+update explace set excity = '경기' where explono = 20;
+update explace set excity = '부산' where explono = 30;
+update explace set excity = '대구' where explono = 40;
+
+alter table
+    explace
+modify
+    excity constraint EXP_CITY_NN not null;

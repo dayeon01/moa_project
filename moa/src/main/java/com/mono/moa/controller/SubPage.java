@@ -162,22 +162,55 @@ public class SubPage {
 		return mv;
 	}
 	
+	
+	// ----------------------------------------
+	// 검색페이지
+	@RequestMapping("/searchpage.moa")
+	public ModelAndView search(ExinfoVO eVO, PageUtil page, ModelAndView mv) {
+
+		/*
+		 * // 페이징 처리 int nowPage = page.getNowPage(); if (nowPage == 0) { nowPage = 1; }
+		 * 
+		 * int total = mpDao.getTotal();
+		 * 
+		 * page.setPage(nowPage, total, 9, 3);
+		 */
+		
+
+		// 검색 데이터
+		List list = sbDao.selClass();
+		List city = sbDao.selCity();
+		
+				 
+		mv.addObject("LIST", list);
+		mv.addObject("CITY", city);	
+		
+		System.out.println("######### list : " + list);
+		System.out.println("######### city : " + city);
+		
+		
+		// 결과 처리			
+		List elist = null;
+		
+		
+		if(eVO.getSelClass() != null && eVO.getSelCity() != null && eVO.getsMonth() != 0 && eVO.geteMonth() != 0) {		
+			
+			elist = sbDao.selResult(eVO);
+			System.out.println("######### eVO : " + eVO);
+			
+			mv.addObject("RST", elist); 
+			
+			System.out.println("######### elist : " + elist);
+			
+			
+			mv.setViewName("subpage/searchpage");
+			
+		} else {
+			// 데이터 호출되지 않을때 dao 금지
+			elist = null;		
+		}
+
+		return mv;
+	}
+	
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

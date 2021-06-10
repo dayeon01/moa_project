@@ -18,11 +18,25 @@
 		case '고객센터' : $('.navShow').children().eq(3).addClass('w3-light-grey').children().addClass('w3-text-pink'); break;
 		case '이벤트' : $('.navShow').children().eq(3).addClass('w3-light-grey').children().addClass('w3-text-pink'); break;
 		}
+		
+		$('.s-btn').click(function(){
+			var tmp = $('.s-text').val();
+			// alert(tmp);
+			
+			// $('#s-btn').val(tmp);
+			
+			$('#frm3').attr('action', '/moa/subpage/searchpage.moa')
+			$('#frm3').submit();
+		});
 	});
 	
 </script>
 
 <nav>
+<!-- <form method="POST" action="/moa/subpage/searchpage.moa" id="frm3" name="frm">
+	<input type="hidden" name="n-btn" id="n-btn">
+</form> -->
+
     <div class="user-con">
         <a class="logo" href="/moa/main.moa">MOA</a>
         <div class="snb">
@@ -42,34 +56,12 @@
                 <li class="user-li user-orange"><a class="user-a" href="/moa/menupage/menu1.moa">일반 전시</a></li>                  
                 <li class="user-li user-orange"><a class="user-a" href="/moa/menupage/menu2.moa">미술전</a></li>
                 <li class="user-li user-orange"><a class="user-a" href="/moa/menupage/menu3.moa">테마전</a></li>
+                <li class="user-li user-orange"><a class="user-a" href="/moa/subpage/searchpage.moa">상세 검색</a></li>
             </ul>
         </div>
-        <div class="user-ipt" onclick="location.href='/moa/subpage/searchpage.moa';">
-            <input class="user-input" type="text" placeholder="검색어를 입력하세요.">
-        </div>
+        <!-- <div class="user-ipt">
+            <input class="user-input s-text" type="text" placeholder="검색어를 입력하세요.">
+            <button type="submit" class="btn btn-primary n-btn">검색</button>
+        </div> -->
     </div>
 </nav>
-
-<%-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-        <a class="f-size" href="/moa/main.moa">MOA</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav ml-auto navShow">
-                <li class="nav-item"><a class="nav-link <%=active %>" href="/moa/member/login.moa">로그인</a></li>
-                <li class="nav-item"><a class="nav-link <%=active %>" href="/moa/member/logout.moa">로그아웃</a></li>                  
-                <li class="nav-item"><a class="nav-link <%=active %>" href="/moa/member/join.moa">회원가입</a></li>
-                <li class="nav-item"><a class="nav-link <%=active %>" href="/moa/member/myPage.moa">마이페이지</a></li>
-                <li class="nav-item"><a class="nav-link <%=active %>" href="#">고객센터</a></li>
-                <li class="nav-item"><a class="nav-link <%=active %>"  href="#">이벤트</a></li>
-            </ul>
-        </div>
-        <div class="gnb">
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link gnb-hover" href="#">일반 전시</a></li>                  
-                <li class="nav-item"><a class="nav-link gnb-hover" href="#">미술전</a></li>
-                <li class="nav-item"><a class="nav-link gnb-hover" href="#">테마전</a></li>
-            </ul>
-        </div>
-    </div>
-</nav> --%>

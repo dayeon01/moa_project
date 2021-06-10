@@ -7,183 +7,187 @@
 		<jsp:param name="" value="" />
 	</jsp:include>
 </head>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+	/* 	$('#nowPage').val('${PAGE.nowPage}');
+		
+		if('${PAGE.startPage}' == 1){
+			$('#pre').removeClass('page-item');
+		}
+		if('${PAGE.endPage}' == '${PAGE.totalPage}'){
+			$('#nex').removeClass('page-item');
+		}	
+		if($('#pnum${PAGE.nowPage}>a').html()== '${PAGE.nowPage}'){
+			$('#pnum${PAGE.nowPage}>a').addClass('w3-blue');
+		}
+		
+		$('.page-item').click(function(){
+			var sid = $(this).attr('id');
+			
+			switch(sid){
+			case 'pre':
+					$('#nowPage').val('${PAGE.startPage - 1}');
+				break;
+			case 'nex':
+					$('#nowPage').val('${PAGE.endPage + 1}');
+				break;
+			default:
+				tmp=$(this).children().html();
+					$('#nowPage').val(tmp);
+			}
+		 	$('#frm').attr('action', '/moa/subpage/searchpage.moa'); 
+			$('#frm').submit();
+		}); */
+		
+		 $('.s-btn').click(function(){
+			$('#sResult').css('display','block');
+			var tmp = $('input[type="radio"]:checked').val();
+			var tmp2 = $('.city').val();
+			var tmp3 = $('.smonth').val();
+			var tmp4 = $('.emonth').val();
+			// alert(tmp + ' ' +tmp2 + ' ' +tmp3 + ' ' +tmp4);
+			
+			$('#selClass').val(tmp);
+			$('#selCity').val(tmp2);
+			$('#sMonth').val(tmp3);
+			$('#eMont').val(tmp4);
+			
+			//$('#frm').attr('action', '/moa/subpage/searchpage.moa');
+			$('#frm').submit();
+		});
+	});
+</script>
+
 <body>
 <!-- Navigator -->
 	<jsp:include page="../a_nav/nav.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
 	
-<!-- Page Content-->
+	
+<!-- 데이터 전송 -->	
+
 <section class="py-5">
 	<div class="container">
-	    <!-- Page Heading/Breadcrumbs-->
+<form method="POST" action="/moa/subpage/searchpage.moa" id="frm" name="frm">
+
+
+<%--  	
+	<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
+	<input type="hidden" name="selClass" id="selClass">
+	<input type="hidden" name="selCity" id="selCity">
+	<input type="hidden" name="sMonth" id="sMonth">
+	<input type="hidden" name="eMonth" id="eMonth">
+--%>
+
+<!-- 검색창 -->
         <h1>
             상세 검색
         </h1>
+        
         <ol class="breadcrumb mb-4" style="height:230px;">
+<c:forEach var="data" items="${LIST}">
         <div class="form-check">
-			<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
-			<label class="form-check-label" for="exampleRadios1">
-			  미술전
+			<input class="form-check-input" type="radio" name="selClass" value="${data.ecno}">
+
+			<label class="form-check-label">
+			  ${data.ecnaming}전
 			</label>
 		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-			<label class="form-check-label" for="exampleRadios2">
-			  사진전
-			</label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-			<label class="form-check-label" for="exampleRadios2">
-			  테마전
-			</label>
-		</div>
+</c:forEach>
+		
 		<div class="form-group">
 			<label for="exampleSelect1" class="form-label">지역</label>
-		      <select class="form-select" id="exampleSelect1">
-		        <option>서울</option>
-		        <option>경기</option>
-		        <option>부산</option>
-		        <option>대구</option>
+		      <select class="form-select city" id="exampleSelect2" name="selCity">
+<c:forEach var="data" items="${CITY}">
+		        <option value="${data.explono}">${data.excity}</option>
+</c:forEach>
 		      </select>
 		</div>
 		
 		<div class="form-mon">
 			<div class="form-group month">
 				<label for="exampleSelect1" class="form-label">시작하는 달</label>
-			      <select class="form-select" id="exampleSelect1">
-			        <option>1월</option>
-			        <option>2월</option>
-			        <option>3월</option>
-			        <option>4월</option>
-			        <option>5월</option>
-			        <option>6월</option>
-			        <option>7월</option>
-			        <option>8월</option>
-			        <option>9월</option>
-			        <option>10월</option>
-			        <option>11월</option>
-			        <option>12월</option>
+			      <select class="form-select smonth" id="exampleSelect3" name="sMonth">
+			        <option value="1">1월</option>
+			        <option value="2">2월</option>
+			        <option value="3">3월</option>
+			        <option value="4">4월</option>
+			        <option value="5">5월</option>
+			        <option value="6">6월</option>
+			        <option value="7">7월</option>
+			        <option value="8">8월</option>
+			        <option value="9">9월</option>
+			        <option value="10">10월</option>
+			        <option value="11">11월</option>
+			        <option value="12">12월</option>
 			      </select>
 			</div>
 			<div class="form-group month m-left">
 				<label for="exampleSelect1" class="form-label">~ 종료하는 달</label>
-			      <select class="form-select" id="exampleSelect1">
-			        <option>1월</option>
-			        <option>2월</option>
-			        <option>3월</option>
-			        <option>4월</option>
-			        <option>5월</option>
-			        <option>6월</option>
-			        <option>7월</option>
-			        <option>8월</option>
-			        <option>9월</option>
-			        <option>10월</option>
-			        <option>11월</option>
-			        <option>12월</option>
+			      <select class="form-select emonth" id="exampleSelect4" name="eMonth">
+			        <option value="1">1월</option>
+			        <option value="2">2월</option>
+			        <option value="3">3월</option>
+			        <option value="4">4월</option>
+			        <option value="5">5월</option>
+			        <option value="6">6월</option>
+			        <option value="7">7월</option>
+			        <option value="8">8월</option>
+			        <option value="9">9월</option>
+			        <option value="10">10월</option>
+			        <option value="11">11월</option>
+			        <option value="12">12월</option>
 			      </select>
 			</div>
 		</div>
-		<button type="button" class="btn btn-primary btn-lg s-btn">검색하기</button>
+		<button type="submit" class="btn btn-primary btn-lg s-btn">검색하기</button>
+        </ol>
+</form>
 		
 
-        </ol>
-        
+    
         <!-- 검색결과 -->
+      
+        <div id="sResult">
         <div class="row">
+<c:forEach var="data" items="${RST}">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
+                    <a href="#!"><img class="card-img-top" src="${data.idir}${data.imgname}" alt="..." /></a>
                     <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project One</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
+                        <h4 class="card-title"><a href="#!">${data.exiname}</a></h4>
+                        <p class="card-text">작가: ${data.exiperson}</p>
+                        <p class="card-text">시작날짜: ${data.startdate}</p>
+                        <p class="card-text">종료날짜: ${data.enddate}</p>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
-                    <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project Two</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
-                    <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project Three</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
-                    <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project Four</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
-                    <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project Five</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
-                    <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project Six</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
-                    <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project Seven</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
-                <div class="card h-100">
-                    <a href="#!"><img class="card-img-top" src="https://via.placeholder.com/700x400" alt="..." /></a>
-                    <div class="card-body">
-                        <h4 class="card-title"><a href="#!">Project Eight</a></h4>
-                        <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius adipisci dicta dignissimos neque animi ea, veritatis, provident hic consequatur ut esse! Commodi ea consequatur accusantium, beatae qui deserunt tenetur ipsa.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+</c:forEach>
+       
         
-        <!-- 페이징 -->
-        <ul class="pagination justify-content-center">
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Previous">
-                    <span aria-hidden="true">«</span>
-                    <span class="sr-only">Previous</span>
-                </a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#!">1</a></li>
-            <li class="page-item"><a class="page-link" href="#!">2</a></li>
-            <li class="page-item"><a class="page-link" href="#!">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#" aria-label="Next">
-                    <span aria-hidden="true">»</span>
-                    <span class="sr-only">Next</span>
-                </a>
-            </li>
-        </ul>
+	       <%--  <!-- 페이징 처리 -->
+	        <div class="user-paging">
+			<ul class="pagination justify-content-center">
+					<li class="page-item" id="pre"><a class="page-link"
+						href="#" aria-label="Previous"> <span aria-hidden="true">«</span>
+							<span class="sr-only">Previous</span>
+					</a></li>
+					<c:forEach var="page" begin="${PAGE.startPage}"
+						end="${PAGE.endPage}">
+						<li class="page-item" id="pnum${page}"><a
+							class="page-link" href="#">${page}</a></li>
+					</c:forEach>
+					<li class="page-item" id="nex"><a class="page-link"
+						href="#" aria-label="Next"> <span aria-hidden="true">»</span>
+							<span class="sr-only">Next</span>
+					</a></li>
+				</ul>
+			</div>  --%>
+			
+        </div>
+        </div>
     </div>
 </section>
 

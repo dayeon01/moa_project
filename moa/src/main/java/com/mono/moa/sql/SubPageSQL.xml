@@ -101,6 +101,90 @@
 			evtexino = #{evtexino}
 	</update>
 	
+	<!-- 전시 분류이름 조회 -->
+	<select id="selClass" resultType="eVO">
+		SELECT
+		    ecno, ecnaming
+		FROM
+		    exclass
+	</select>
 	
+	<!-- 전시 지역이름 조회 -->
+	<select id="selCity" resultType="eVO">
+		SELECT
+		    distinct explono, excity
+		FROM
+		    explace
+		order by
+		    explono
+	</select>
+	
+	<!-- 전시 시작월 조회 -->
+	<select id="sDate" resultType="eVO">
+		SELECT
+		    distinct TO_NUMBER(TO_CHAR(exisdate, 'MM')) sMonth
+		FROM 
+		    exinfo
+	</select>
+	
+	<!-- 전시 마감월 조회 -->
+	<select id="eDate" resultType="eVO">
+		SELECT
+		    distinct TO_NUMBER(TO_CHAR(exiedate, 'MM')) eMonth
+		FROM 
+		    exinfo
+	</select>
+	
+	<!-- 전시 결과 조회 -->
+	<select id="selResult" resultType="eVO" parameterType="eVO">
+		SELECT
+		    exiecno, exiperson, exiname, exisdate, exiedate, exiexpno, idir, imgname, 
+		    ecno, ecnaming, explono, excity, sMonth, eMonth
+		FROM
+		    (
+		        SELECT
+		            ROWNUM rno, exiecno, exiperson, exiname, exisdate, exiedate, exiexpno, idir, imgname, 
+				    ecno, ecnaming, explono, excity, sMonth, eMonth
+		        FROM
+		            (
+		                SELECT
+		                    exiecno, exiperson, exiname, exisdate, exiedate, exiexpno, idir, imgname, 
+						    ecno, ecnaming, explono, excity, 
+						    TO_NUMBER(TO_CHAR(exisdate, 'MM')) sMonth, TO_NUMBER(TO_CHAR(exiedate, 'MM')) eMonth
+		                FROM
+		                    exinfo i, image img, exclass c, explace p
+		                WHERE
+		                    i.exino = img.imgno
+		                    AND i.exiecno = c.ecno
+		                    AND i.exiexpno = p.expno
+		                    
+		                    AND i.isshow = 'Y'
+		                    AND img.isshow = 'Y'
+		                    
+		                    AND ecnaming = (
+		                    	SELECT
+								    distinct ecnaming
+								FROM
+								    exclass
+		                    	WHERE
+		                    		ecno = #{selClass}	
+		                    )
+		                    AND excity = (
+		                    	SELECT
+								    distinct excity
+								FROM
+								    explace
+		                    	WHERE
+		                    		explono = #{selCity}	
+		                    )
+		                    AND TO_NUMBER(TO_CHAR(exisdate, 'MM')) between #{sMonth} and 12
+		                    AND TO_NUMBER(TO_CHAR(exiedate, 'MM')) between 1 and #{eMonth}
+		                ORDER BY
+		                    exisdate DESC
+		            )
+		    )
+		WHERE
+		    rno BETWEEN 1 AND 23
+	</select>
 	
 </mapper>
