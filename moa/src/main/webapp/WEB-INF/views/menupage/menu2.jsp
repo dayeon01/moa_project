@@ -40,6 +40,12 @@
 			$('#frm').attr('action', '/moa/menupage/menu2.moa');
 			$('#frm').submit();
 		});
+		
+		$('.eibox').click(function(){
+			var tno = $(this).attr('id').substring(3);
+			$('#exino').val(tno);
+			$('#frm2').submit();		
+		});
 	});
 </script>
 
@@ -55,17 +61,21 @@
 	<input type="hidden" name="nowPage" id="nowPage">
 </form>
 
+<form method="POST" action="/moa/exhibit/exhDetail.moa" id="frm2">
+	<input type="hidden" name="exino" id="exino" value="0" >
+</form>
+
 <section class="py-5 bg-light inGnbPage">
     <div class="container menu-h">
         <h2 class="mb-4">미술전</h2>
         <div class="row">
         
 <c:forEach var="data" items="${LIST}">        
-            <div class="col-lg-4 col-sm-6 mb-4">
+            <div class="col-lg-4 col-sm-6 mb-4 eibox" id="box${data.exino}">
                 <div class="card h-100">
                     <a href="#!"><img class="card-img-top" src="${data.idir}${data.imgname}" alt="poster"></a>
                     <div class="card-body">
-                        <h4 class="card-title"><a href="#!">${data.exiname}</a></h4>
+                        <h4 class="card-title" id="n${data.exiname}"><a href="#!">${data.exiname}</a></h4>
                         <p class="card-text">작가: ${data.exiperson}</p>
                         <p class="card-text">시작날짜: ${data.startdate}</p>
                         <p class="card-text">종료날짜: ${data.enddate}</p>
