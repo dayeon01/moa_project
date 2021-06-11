@@ -112,7 +112,7 @@ public class Member {
 		return mv;
 	}
 	
-	// 아이디 중복검사
+	// 아이디, 메일, 전화번호 중복검사
 	@RequestMapping("/ukCheck.moa")
 	@ResponseBody
 	public HashMap<String, String> ukCheck(MemberVO mVO) {
