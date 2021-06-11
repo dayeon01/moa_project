@@ -120,11 +120,12 @@
 	<!-- 전시맵 정보 -->
 	<select id="getMapList" resultType="svVO">
 		SELECT
-			exiname id, expname title, exploc body, exisdate startdate, exiedate enddate
+			exino exno, exiname id, expname title, exploc body, exisdate startdate, exiedate enddate
 		FROM
 			exinfo, explace
 		WHERE
 			sysdate BETWEEN exisdate AND exiedate
 		AND exiexpno=expno
+		ORDER BY body asc
 	</select>
 </mapper>

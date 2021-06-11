@@ -34,6 +34,7 @@ public class Survey {
 		Gson gson = new GsonBuilder().create();
 		String ListJson = gson.toJson(list);
 		mv.addObject("LIST", ListJson);
+		mv.addObject("LIST_A", list);
 		mv.addObject("LEN", list.size());
 		mv.setViewName("survey/surveyMap");
 		System.out.println(ListJson);
