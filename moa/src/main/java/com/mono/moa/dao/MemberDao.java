@@ -11,8 +11,8 @@ public class MemberDao {
 	
 	
 	// 아이디 체크
-	public int idCheck(String sid) {
-		return sqlSession.selectOne("mSQL.idCheck", sid);
+	public int ukCheck(MemberVO mVO) {
+		return sqlSession.selectOne("mSQL.ukCheck", mVO);
 	}
 	
 	// 로그인 아이디 비번 검사

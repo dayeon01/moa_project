@@ -113,13 +113,14 @@ public class Member {
 	}
 	
 	// 아이디 중복검사
-	@RequestMapping("/idCheck.moa")
+	@RequestMapping("/ukCheck.moa")
 	@ResponseBody
-	public HashMap<String, String> idCheck(String id) {
-		int cnt = mDao.idCheck(id);
-
+	public HashMap<String, String> ukCheck(MemberVO mVO) {
+		int cnt = mDao.ukCheck(mVO);
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "NO");
+		map.put("cnt", cnt+"");
 		if(cnt != 1) {
 			map.put("result", "OK");
 		}		

@@ -42,20 +42,23 @@
 			}
 	});
 	
-	$('#idck').click(function() {
-		var sid = $('#id').val();
+	$('.ukcheck').click(function() {
+		var sid = $(this).attr('id');
+		var name = $('#'+sid).prev().val();
 		$.ajax({
-				url : '/moa/member/idCheck.moa',
+				url : '/moa/member/ukCheck.moa',
 				type : 'post',
 				dataType : 'json',
 				data : {
-					id : sid
+					id : sid,
+					name : name
 				},
 				success : function(data) {
+			
 					if (data.result == 'OK') {
-						$('#idmsg').removeClass('w3-text-orange').addClass('w3-text-blue').html('*** 사용 가능한 아이디 입니다. ***');
-						} else {
-						$('#idmsg').removeClass('w3-text-blue').addClass('w3-text-red').html('*** 중복된 아이디 입니다. ***');
+						$('#'+sid).parent().next().removeClass('w3-text-orange').addClass('w3-text-blue').html('*** 사용 가능 ***');
+					} else {
+						$('#'+sid).parent().next().removeClass('w3-text-blue').addClass('w3-text-red').html('*** 중복 입니다. ***');
 					}
 				},
 				error : function() {
@@ -63,6 +66,7 @@
 				}
 		});
 	});
+	
 	
 	function pwCk(){
 		var spw = $('#pw').val();
@@ -102,8 +106,10 @@
 	$('#tel').keyup(function(){
 		if(telCk()){
 			$('#telmsg').removeClass('w3-text-red').addClass('w3-text-green').html('올바른 핸드폰 번호입니다.');
+			$('#telck').prop('disabled', false);
 		} else {
 			$('#telmsg').removeClass('w3-text-green').addClass('w3-text-red').html('휴대폰 번호 11자리(숫자만) 를 입력하세요 ');
+			$('#telck').prop('disabled', true);
 		}
 	});
 	
@@ -115,8 +121,10 @@
 	$('#email').keyup(function(){
 		if(emailCk()){
 			$('#emailmsg').removeClass('w3-text-red').addClass('w3-text-green').html('유효한 메일계정입니다.');
+			$('#emailck').prop('disabled', false);
 		} else {
 			$('#emailmsg').removeClass('w3-text-green').addClass('w3-text-red').html('메일형식에 맞지 않습니다.');
+			$('#emailck').prop('disabled', true);
 		}
 	});
 	
@@ -174,11 +182,21 @@
 			return;
 		}
 		
+		
 		if(!(nameCk() && idCk() && pwCk() && repwCk() && telCk() && emailCk() && birthCk())){
 			alert('유효하지 않은 입력값이 있습니다. 다시 확인해주세요');
 			return;
-		} else if ($('#idmsg').html().indexOf('중복') > -1 ){
-			alert('아이디 중복체크를 확인해주세요!');
+		}
+		
+		var el = $('.help-block');
+		var cnt = 0;
+		for(var i=0; i<el.length; i++){
+			if(el.eq(i).html().indexOf('*** 사용') > -1){
+				cnt++;
+			}
+		}
+		if(cnt != 3){
+			alert('중복체크를 모두 완료해주세요');
 			return;
 		}
 		
@@ -224,7 +242,7 @@
 						<label for="id">아이디 : </label>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" id="id" name="id">
-							<button class="btn btn-primary" type="button" id="idck"
+							<button class="btn btn-primary ukcheck" type="button" id="idck"
 								disabled>중복체크</button>
 						</div>
 						<p class="help-block" id="idmsg"></p>
@@ -244,12 +262,16 @@
 						<label for="tel">전화번호 : </label>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" id="tel" name="tel">
+							<button class="btn btn-primary ukcheck" type="button" id="telck"
+								disabled>중복체크</button>
 						</div>
 						<p class="help-block" id="telmsg"></p>
 
 						<label for="email">이메일 : </label>
 						<div class="input-group mb-3">
 							<input type="text" class="form-control" id="email" name="email">
+							<button class="btn btn-primary ukcheck" type="button" id="emailck"
+								disabled>중복체크</button>
 						</div>
 						<p class="help-block" id="emailmsg"></p>
 
