@@ -52,6 +52,32 @@
 		    AND code = 'N'
 	</select>
 	
+	<!-- 메인페이지 이벤트게시판 제목 조회 질의명령 -->
+	<select id="mainEvent" resultType="evnVO">
+		SELECT
+			 evtno, evtexino, exiname, exiperson
+		FROM		    
+		    (
+		        SELECT
+		            ROWNUM rno, evtno, evtexino, evtcontent,evtcode, sdate, edate, exiname, exiprice, exiperson, idir, imgname
+		        FROM
+		            (
+		                SELECT
+		                     evtno, evtexino, evtcode, evtcontent, sdate, edate, exiname, exiprice, exiperson, idir, imgname
+		                FROM
+		                     event, exinfo, image
+		                WHERE
+		                     evtexino(+) = exino
+		                     AND imgno = exino
+		                     AND event.isShow = 'Y' 
+		                     AND exinfo.isShow = 'Y' 
+		                     AND image.isShow = 'Y' 
+		            )
+		    )
+		WHERE
+		    rno BETWEEN 1 AND 2
+	</select>
+	
 	<!-- 일반전시 정보 조회 질의명령  -->
 	<select id="exiList" resultType="eVO" parameterType="page">
 		SELECT

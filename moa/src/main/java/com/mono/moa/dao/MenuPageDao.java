@@ -27,6 +27,11 @@ public class MenuPageDao {
 		return sqlSession.selectList("mpSQL.mainNotice");
 	}
 	
+	// 메인페이지 이벤트 게시판제목 조회 전담 처리함수
+	public List mainEvent() {
+		return sqlSession.selectList("mpSQL.mainEvent");
+	}
+	
 	// 일반전시 리스트 조회 전담 처리함수
 	public List getExiList(PageUtil page) {
 		return sqlSession.selectList("mpSQL.exiList", page);

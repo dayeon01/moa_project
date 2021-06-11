@@ -115,7 +115,9 @@
             <div class="col-lg-4">
                 <div class="card h-100">
                     <h4 class="card-header">이벤트</h4>
-                    <div class="card-body"><p class="card-text">이벤트.</p></div>
+<c:forEach var="data" items="${EVT}">
+                    <div class="card-body nbody"><p class="card-text ntitle">${data.exiname}</p></div>
+</c:forEach>
                     <div class="card-footer"><a class="btn btn-primary" href="/moa/subpage/eventpage.moa">더보기</a></div>
                 </div>
             </div>

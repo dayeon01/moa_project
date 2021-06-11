@@ -37,9 +37,11 @@ public class MainMoa {
 	public ModelAndView mainExi(ModelAndView mv) {
 		List list = mDao.mainExi();
 		List brd = mDao.mainNotice();
+		List evt = mDao.mainEvent();
 
 		mv.addObject("LIST", list);
 		mv.addObject("BRD", brd);
+		mv.addObject("EVT", evt);
 		mv.setViewName("main");
 		return mv;
 	}
