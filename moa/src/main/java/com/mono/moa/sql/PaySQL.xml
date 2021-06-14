@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="paySQL">
+
+ <insert id="addpay" parameterType="payVO">
+       <selectKey keyProperty="ptno" resultType="int" order="BEFORE">
+         SELECT
+            NVL(MAX(ptno) + 1, 100001)
+         FROM
+            pay
+      </selectKey> 
+      INSERT INTO
+         pay(pno, pmno, ptno, ptotal, paydate, ticket, pexino  )
+      VALUES(
+           ( SELECT NVL(MAX(pno) + 1, 100001) FROM pay),
+    #{mno}, #{ptno}, #{ptotal}, sysdate, #{ticket}, #{exino}
+      )
+  </insert>
+
+
+<!-- 	<insert id="addpay" parameterType="payVO">
+		 <selectKey keyColumn="pno,ptno" keyProperty="pno,ptno" resultType="hashmap" order="BEFORE">
+			SELECT
+				NVL(MAX(pno) + 1, 000001),
+				NVL(MAX(ptno) + 1, 100001)
+			FROM
+				pay
+		</selectKey> 
+		INSERT INTO
+			pay(pno, pmno, ptno, ptotal, paydate, ticket, pexino  )
+		VALUES(
+				#{pno}, #{mno}, #{ptno}, #{ptotal}, sysdate, #{ticket}, #{exino}
+		)
+	
+	</insert> -->
+</mapper>

@@ -13,6 +13,7 @@
 <link rel="stylesheet" type="text/css" href="/moa/css/user2.css">
 <script type="text/javascript" src="/moa/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/moa/js/w3color.js"></script>
+<script type="text/javascript" src="https://service.iamport.kr/js/iamport.payment-1.1.2.js"></script>
 
 <style type="text/css">
 .imgbox{
@@ -44,17 +45,74 @@
 </style>
 	
 <script type="text/javascript">
-	$(document).ready(function(){
-		$('.paybtn').prev().prev().children().next().click(function(){
-			var no = $(this).val()
-			var p = $('.price').attr('id').substring(1);
-			var check = document.getElementById('ptotal').value=no*p
+$(document).ready(function(){
+	
+ 	 $('.paybtn').prev().prev().children().next().click(function(){
+		var no = $(this).val()
+		var p = $('.price').attr('id').substring(1);
+		var check = document.getElementById('ptotal').value=no*p;
+		
+	$('.paybtn').click(function(){
+		
+	var IMP = window.IMP;
+	IMP.init('imp71302798');
+	var msg;
+	
+	IMP.request_pay({
+		pg: 'kakaopay',
+		pay_method: 'card',
+		merchant_uid : 'merchant_' + new Date().getTime(),
+		name : '${DATA.exiname}',
+		amount : check,
+		buyer_name : '${MEMB.name}',
+		buyer_tel : '${MEMB.tel}',
+		buyer_postcode: '123-456',
+	}, function(rsp){
+		if(rsp.success) {
+			$.ajax({
+				url: "http://localhost/moa/pay/paypage.moa",
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					imp_uid :  rsp.imp_uid,
+					merchant_uri : rsp.merchant_uri,
+					pexino : ${DATA.exino},
+					ptotal : check,
+					ticket : no,
+				 	pmno :  ${MEMB.mno}
+					 
+				}
 			
-		$(this).click(function(){
-			$('#')
+			}).don(function(data){
+				if(data.everythings_fine){
+					msg = '결제가 완료되었습니다.';
+					msg += '\n고유ID' + rsp.imp_uid;
+					msg +='\n상점 거래ID'+ rsp.merchant_uri;
+					msg +='\결제 금액' + rsp.paid_amount;
+					msg += '카드 승인번호 :' + rsp.apply_num;
+					alert(msg);
+				} else{
+					//결제 x
+				}
 			});
-		});
+			//성공시 이동할 페이지
+			location.href="/moa/main.moa"+msg;
+		}else{ 
+			 msg = '결제에 실패하였습니다.';
+			msg += '\n에러내용:' + rsp.error_msg; 
+			//실패시 이동할 페이지
+			location.href="/moa/payFail.moa";
+			alert(msg);
+		}
 	});
+
+	});
+ 	});  
+	
+}); 
+
+
+
 </script>
 </head>
 <body>
@@ -62,12 +120,14 @@
 	<jsp:include page="../a_nav/nav.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>	
-
+<%-- <form method="POST" action="/moa/member/login.moa" id="frm" name="frm">
+	<input type="hidden" id="id" value="${MEMB.id}">
+</form> --%>
 	<div class="w3-content mxw900 ">
 		<div class="w3-content mxw900 ">
 			<div class="w3-col  w3-margin-top mgb20 pdb20 w3-panel w3-border-grey w3-topbar w3-bottombar inblock">
 	            <h1 class="w3-col mgt30 w3-margin-left mgb20 inblock w3-left">결제</h1>
-	         	<h6 class="w3-col w3-margin-left mgt30 mgb20 w3-text-grey"><small>결제 페이지.</small></h6>
+	         	<h6 class="w3-col w3-margin-left mgt30 mgb20 w3-text-grey" ><small>결제 페이지.</small></h6>
 	   		 </div>
 	   	</div>	 
    		  <div class="w3-content w3-margin w3-center">
@@ -77,7 +137,6 @@
 				 	<img src="${DATA.idir}${DATA.imgname}" 
 					  		class="img-rounded w3-round mgb40" alt="Cinque Terre" width="280" height="480"> 
 				</div>
-<form method="POST" action="/moa/member/myPage.moa" id="frm" class="inblock mgt30 w3-margin-left ">
 				<div class="inblock pdt30 ">
 					<h2 class="w3-text-dark-grey mgb20" id="name">[${DATA.exiname}]</h2>
 					<h4 class="w3-text-grey mgt30 mgb20" id="person">${DATA.exiperson}</h4>
@@ -91,12 +150,12 @@
 					 <div class="mgt10">
 					 	  	<label class=" w3-text-grey">결제 금액 :</label>
 						 	<input type="text" id="ptotal"  name="ptotal" value=""
-						 				class="w3-text-grey" style="width:60px;"readonly>
+						 				class="w3-text-grey ptotal" style="width:60px;"readonly>
 					 </div>   
-					<h3 class="inblock w3-button w3-margin-top w3-blue-grey w3-hover-blue-grey w3-card-2 mgl30 mgb60 w3-round w3-right paybtn" 
+					<h3 class="inblock w3-button w3-margin-top w3-blue-grey w3-hover-blue-grey w3-card-2 mgl40 mgb60 w3-round w3-right paybtn" 
 							style=width:400px;height:50px; id="pay${DATA.exino }">결제</h3>
 				</div>
-</form>			
+		
 			</div>
 		</div>
    	</div>

@@ -18,4 +18,14 @@ alter table pay drop column ppcode;
 alter table pay drop column popay; 
 alter table pay add ticket NUMBER(2) constraint PAY_TICK_NN NOT NULL;
 alter table pay add pexino NUMBER(5) constraint pay_exino_FK references exinfo (exino);
+
+
+
+--0614
+drop table paycancle;
+
+ALTER TABLE PAY MODIFY pno VARCHAR2(25);
+ALTER TABLE PAY MODIFY ptno VARCHAR2(25);
+ALTER TABLE PAY RENAME COLUMN pno TO imp_uid;
+ALTER TABLE PAY RENAME COLUMN ptno TO merchant_uri;
 commit;

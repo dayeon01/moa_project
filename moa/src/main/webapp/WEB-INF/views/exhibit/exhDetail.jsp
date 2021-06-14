@@ -27,7 +27,6 @@
 		$('.paybtn').click(function(){
 			var tno = $(this).attr('id').substring(3);
 			$('#exino').val(tno);
-			alert(tno);
 			 $('#frm').submit(); 
 		});
 	});
@@ -39,7 +38,7 @@
 		<jsp:param name="" value="" />
 	</jsp:include>
 	
-   	<form method="POST" action="/moa/subpage/paypage.moa" id="frm">
+   	<form method="POST" action="/moa/pay/paypage.moa" id="frm">
    		<input type="hidden" name="exino" id="exino" value="0">
     </form> 
 	
@@ -66,7 +65,7 @@
 					<div class="w3-text-grey mgt30 mgb20">일정 : ${DATA.exisdate} ~ ${DATA.exiedate}</div>
 					<div class="w3-text-grey mgt30 mgb20">가격 : ${DATA.exiprice} won</div>
 					<div class="w3-text-grey mgt30 mgb20">장소: ${DATA.expname} </div>
-					<h3 class="inblock w3-button w3-margin-top w3-blue-grey w3-hover-blue-grey w3-card-2 mgl20 mgb60 w3-right paybtn" 
+					<h3 class="inblock w3-button w3-margin-top w3-blue-grey w3-hover-blue-grey w3-card-2 mgl30 mgb60 w3-right paybtn" 
 							style=width:400px;height:50px; id="pay${DATA.exino}">예매하기</h3>
 				</div>
 			</div>

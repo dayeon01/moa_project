@@ -17,6 +17,7 @@
 	<bean id="reDao" class="com.mono.moa.dao.ReviewDao" />
 	<bean id="sbDao" class="com.mono.moa.dao.SubPageDao" />
 	<bean id="sDao" class="com.mono.moa.dao.StarDao" />
-	<!-- <bean id="svDao" class="com.mono.moa.dao.SurveyDao" /> -->
+	<bean id="svDao" class="com.mono.moa.dao.SurveyDao" />
+	<bean id="payDao" class="com.mono.moa.dao.PayDao" />
 	
 </beans>

@@ -39,6 +39,7 @@
 		<mapper resource="com/mono/moa/sql/SubPageSQL.xml" />
 		<mapper resource="com/mono/moa/sql/StarSQL.xml" />
 		<mapper resource="com/mono/moa/sql/SurveySQL.xml" />
+		<mapper resource="com/mono/moa/sql/PaySQL.xml" />
 	</mappers> 
 
 </configuration>

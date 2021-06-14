@@ -4,9 +4,29 @@ import java.sql.*;
 
 public class PayVO {
 	
-	private int pno, pmno, ptno, ticket, pexino;
+	private int pno, pmno, ptno, ticket, pexino, mno, imp_uid, merchant_uri;
 	private String ptotal, sdate;
 	private Date paydate;
+	
+	
+	public int getImp_uid() {
+		return imp_uid;
+	}
+	public void setImp_uid(int imp_uid) {
+		this.imp_uid = imp_uid;
+	}
+	public int getMerchant_uri() {
+		return merchant_uri;
+	}
+	public void setMerchant_uri(int merchant_uri) {
+		this.merchant_uri = merchant_uri;
+	}
+	public int getMno() {
+		return mno;
+	}
+	public void setMno(int mno) {
+		this.mno = mno;
+	}
 	public int getPno() {
 		return pno;
 	}
@@ -58,8 +78,10 @@ public class PayVO {
 	@Override
 	public String toString() {
 		return "PayVO [pno=" + pno + ", pmno=" + pmno + ", ptno=" + ptno + ", ticket=" + ticket + ", pexino=" + pexino
-				+ ", ptotal=" + ptotal + ", sdate=" + sdate + ", paydate=" + paydate + "]";
+				+ ", mno=" + mno + ", imp_uid=" + imp_uid + ", merchant_uri=" + merchant_uri + ", ptotal=" + ptotal
+				+ ", sdate=" + sdate + ", paydate=" + paydate + "]";
 	}
+	
 	
 	
 
