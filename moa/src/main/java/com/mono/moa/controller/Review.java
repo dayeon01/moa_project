@@ -83,7 +83,7 @@ public class Review {
 	
 	// 문의글 쓰기 폼보기
 	@RequestMapping("/qnaWrite.moa")
-	public ModelAndView qnaWrite(ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView qnaWrite(int nowPage, ModelAndView mv, HttpSession session, RedirectView rv) {
 		
 		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
@@ -92,6 +92,7 @@ public class Review {
 		}
 
 		mv.setViewName("review/qnaWrite");
+		mv.addObject("nowPage", nowPage);
 		
 		return mv;
 	}

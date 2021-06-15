@@ -54,6 +54,7 @@ $(document).ready(function() {
 		var bno = $(this).attr('id');
 		bno = bno.substring(1);
 		$('#bno').val(bno);
+		$('#nowPage').val('${PAGE.nowPage}');
 		$('#frm').attr('action', '/moa/review/qnaWrite.moa');
 		$('#frm').submit();
 	});
