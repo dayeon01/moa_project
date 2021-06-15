@@ -68,10 +68,30 @@
 	margin-bottom: 40px;
 }
 
+.countDown {
+	font-size: 50px;
+	text-align: center;
+	}
+
+
 </style>
 <script type="text/javascript">
 		$(document).ready(function(){
-		location.href="/moa/main.moa";  
+		       
+			var n = 3;            // 변수를 지정해준다. 
+		    function countDown(){   //함수를 호출해준다. 
+		        n--;               //1씩 감소하는 감소함수를 넣어준다.   
+		        $('.countDown').text(n); // p.countUp에 카운트를 시킬 숫자을 넣어준다. 
+			}
+		    setInterval(countDown,1000);
+		    
+		    
+		    var move = function() {
+		    	location.href="/moa/main.moa";  
+		    }
+
+		    setTimeout(move, 3000);	    
+			
 		});
 </script>
 </head>
@@ -89,6 +109,7 @@
 					결제가 취소되었습니다.</br>
 					<small>메인화면으로 이동합니다.</small>
 				</div>
+				<p class="countDown">3</p> 
 			</div>
 		</div>	
 		</div>
