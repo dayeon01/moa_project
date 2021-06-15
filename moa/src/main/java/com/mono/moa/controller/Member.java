@@ -42,7 +42,7 @@ public class Member {
 	@RequestMapping("/loginProc.moa")      
 	public ModelAndView loginProc( MemberVO mVO /*(id, pw)*/, 
 								ModelAndView mv, HttpSession session, RedirectView rv) {
-		String view = "/moa/";
+		String view = "/moa/main.moa";
 		if(!isLogin(session)) {
 
 			int cnt = mDao.getLogin(mVO) /*(id, pw)*/;
@@ -67,7 +67,7 @@ public class Member {
 	@RequestMapping("/logout.moa")
 	public ModelAndView logout(HttpSession session, ModelAndView mv, RedirectView rv) {
 		session.removeAttribute("SID");
-		rv.setUrl("/moa/");
+		rv.setUrl("/moa/main.moa");
 		mv.setView(rv);
 		return mv;
 	}
@@ -78,7 +78,7 @@ public class Member {
 	public ModelAndView join(ModelAndView mv, RedirectView rv, HttpSession session) {
 
 		if(isLogin(session)) {
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main");
 			mv.setView(rv);
 			return mv;
 		}
@@ -94,7 +94,7 @@ public class Member {
 	public ModelAndView joinProc(MemberVO mVO /*(name, id, pw, tel, email, gen, birth)*/
 								,ModelAndView mv, HttpSession session, RedirectView rv) {
 		if(isLogin(session)) {
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}
@@ -103,7 +103,7 @@ public class Member {
 		
 		if(cnt == 1) {
 			session.setAttribute("SID", mVO.getId());
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 		} else {
 			rv.setUrl("/moa/member/join.moa");
 		}
@@ -133,7 +133,7 @@ public class Member {
 	public ModelAndView myPage(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
 		if(!isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}
@@ -147,7 +147,7 @@ public class Member {
 	public ModelAndView myInfo(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
 		if(!isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}
@@ -165,7 +165,7 @@ public class Member {
 	public ModelAndView myInfoEdit(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
 		if(!isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}
@@ -183,7 +183,7 @@ public class Member {
 								,ModelAndView mv, RedirectView rv, HttpSession session) {
 		
 		if(!isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}
@@ -204,7 +204,7 @@ public class Member {
 	public ModelAndView myInfoDel(ModelAndView mv, RedirectView rv, HttpSession session) {
 		
 		if(!isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}
@@ -224,7 +224,7 @@ public class Member {
 								,ModelAndView mv, RedirectView rv, HttpSession session ) {
 		
 		if(!isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}
@@ -244,7 +244,7 @@ public class Member {
 	public ModelAndView loginFindId(HttpSession session, ModelAndView mv, RedirectView rv) {
 		
 		if(isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 		} else {
 			String view = "member/loginFindId";
@@ -279,7 +279,7 @@ public class Member {
 	public ModelAndView loginFindPw(HttpSession session, ModelAndView mv, RedirectView rv) {
 		
 		if(isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 		} else {
 			String view = "member/loginFindPw";

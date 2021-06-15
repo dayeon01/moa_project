@@ -71,7 +71,7 @@
 </style>
 <script type="text/javascript">
 		$(document).ready(function(){
-			/* location.href="/moa/main.moa";  */
+		location.href="/moa/main.moa";  
 		});
 </script>
 </head>
