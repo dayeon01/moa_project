@@ -128,19 +128,7 @@ public class Member {
 	}
 	
 	
-	// 마이페이지 폼보기
-	@RequestMapping("/myPage.moa")
-	public ModelAndView myPage(ModelAndView mv, RedirectView rv, HttpSession session) {
-		
-		if(!isLogin(session)) {	
-			rv.setUrl("/moa/main.moa");
-			mv.setView(rv);
-			return mv;
-		}
-		mv.addObject(session.getAttribute("SID"));
-		mv.setViewName("member/myPage");
-		return mv;
-	}
+	
 	
 	// 내정보 조회
 	@RequestMapping("/myInfo.moa")

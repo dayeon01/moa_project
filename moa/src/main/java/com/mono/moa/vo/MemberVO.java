@@ -59,14 +59,19 @@ public class MemberVO {
 	public void setBirth(String birth) {
 		this.birth = birth.trim();
 	}
+	public String setStrDate(Date d) {
+		return new SimpleDateFormat("yyyy/MM/dd").format(d);
+	}
 	public String getSdate() {
 		return sdate;
 	}
-	public void setSdate() {
-	SimpleDateFormat form1 = new SimpleDateFormat("yyyy/MM/dd");
-	SimpleDateFormat form2 = new SimpleDateFormat(" HH:mm:ss");
-	sdate = form1.format(jDate) + form2.format(jTime);
-	}
+
+	/*
+	 * public void setSdate() { SimpleDateFormat form1 = new
+	 * SimpleDateFormat("yyyy/MM/dd"); SimpleDateFormat form2 = new
+	 * SimpleDateFormat(" HH:mm:ss"); sdate = form1.format(jDate) +
+	 * form2.format(jTime); }
+	 */
 	public void setSdate(String sdate) {
 		this.sdate = sdate;
 	}
@@ -74,14 +79,14 @@ public class MemberVO {
 		return jDate;
 	}
 	public void setjDate(Date jDate) {
-		this.jDate = jDate;
+		sdate = setStrDate(jDate);
 	}
 	public Time getjTime() {
 		return jTime;
 	}
 	public void setjTime(Time jTime) {
 		this.jTime = jTime;
-		setSdate();
+		
 	}
 	@Override
 	public String toString() {

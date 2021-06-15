@@ -9,7 +9,11 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 </head>
-
+<style type="text/css">
+.tlist{
+	cursor: pointer;
+}
+</style>
 <script>
 $(document).ready(function() {
 

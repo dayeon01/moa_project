@@ -18,13 +18,6 @@ import com.mono.moa.vo.*;
 @RequestMapping("/pay")
 
 public class Pay {
-	public static final String IMPORT_TOKEN_URL = "https://api.iamport.kr/users/getToken"; 
-	public static final String IMPORT_PAYMENTINFO_URL = "https://api.iamport.kr/payments/find/"; 
-	public static final String IMPORT_CANCEL_URL = "https://api.iamport.kr/payments/cancel"; 
-	public static final String IMPORT_PREPARE_URL = "https://api.iamport.kr/payments/prepare";
-
-	public static final String KEY = "0212558148262524";
-	public static final String SECRET = "phaaeLmg2wyD5oLxgZdvyuUgEhhU1fIqxSAMDX3GtBjz057g4lLCQGTuXboZq7pYZ0KDYNjspD2pI9FN";
 	
 @Autowired
 ExhibitDao eDao;
@@ -66,10 +59,10 @@ PayDao pDao;
 			int addp = pDao.addpayinfo(payVO);
 			
 			if(addp == 1) {
-				rv.setUrl("/moa/member/myPage.moa");
-				mv.setView(rv);
+				mv.setViewName("/mypage/myPage");
 			}else {
 				rv.setUrl("/moa/pay/payFail.moa");
+				mv.setView(rv);
 			}
 			
 			return mv;

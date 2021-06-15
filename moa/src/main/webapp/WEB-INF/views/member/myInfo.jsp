@@ -45,7 +45,7 @@ $(document).ready(function() {
 						<!-- Content Column-->
 						<div class="col-lg-6 mb-4">
 							<h3>${DATA.name}님의
-								회원정보 <br><small>(가입일 : ${DATA.sdate})</small>
+								회원정보 <br><small class="w3-text-grey">(가입일 : ${DATA.sdate})</small>
 							</h3> <br>					
 							<form method="post" id="frm" name="frm"
 								action="/moa/member/myInfo.moa">

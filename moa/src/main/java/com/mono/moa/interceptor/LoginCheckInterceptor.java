@@ -11,7 +11,6 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 			throws Exception {
 		// 할일
 		// 세션에 로그인 정보가 있는지 꺼낸다.
-		System.out.println("############### 인터셉터 작동 ####################");
 		String sid = (String) request.getSession().getAttribute("SID");
 		if(sid == null) {
 			// 로그인이 안된 경우

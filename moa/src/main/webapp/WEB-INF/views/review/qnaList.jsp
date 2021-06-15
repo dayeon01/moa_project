@@ -9,6 +9,11 @@
 	</jsp:include>
 </head>
 
+<style type="text/css">
+.trow{
+	cursor: pointer;
+}
+</style>
 <script>
 $(document).ready(function() {
 	

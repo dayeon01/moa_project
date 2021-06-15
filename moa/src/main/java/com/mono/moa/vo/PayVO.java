@@ -4,11 +4,17 @@ import java.sql.*;
 
 public class PayVO {
 	
-	private int pno, pmno, ptno, ticket, pexino, mno;
-	private String total, sdate, imp_uid, merchant_uid;
+	private int  pmno, ptno, ticket, pexino, mno, exiprice, exino;
+	private String total, sdate, imp_uid, merchant_uid, idir, imgname, exiname ;
 	private Date paydate;
 	
 	
+	public int getExino() {
+		return exino;
+	}
+	public void setExino(int exino) {
+		this.exino = exino;
+	}
 	public String getImp_uid() {
 		return imp_uid;
 	}
@@ -26,12 +32,6 @@ public class PayVO {
 	}
 	public void setMno(int mno) {
 		this.mno = mno;
-	}
-	public int getPno() {
-		return pno;
-	}
-	public void setPno(int pno) {
-		this.pno = pno;
 	}
 	public int getPmno() {
 		return pmno;
@@ -75,11 +75,37 @@ public class PayVO {
 	public void setPaydate(Date paydate) {
 		this.paydate = paydate;
 	}
+	public int getExiprice() {
+		return exiprice;
+	}
+	public void setExiprice(int exiprice) {
+		this.exiprice = exiprice;
+	}
+	public String getIdir() {
+		return idir;
+	}
+	public void setIdir(String idir) {
+		this.idir = idir;
+	}
+	public String getImgname() {
+		return imgname;
+	}
+	public void setImgname(String imgname) {
+		this.imgname = imgname;
+	}
+	
+	public String getExiname() {
+		return exiname;
+	}
+	public void setExiname(String exiname) {
+		this.exiname = exiname;
+	}
 	@Override
 	public String toString() {
-		return "PayVO [pno=" + pno + ", pmno=" + pmno + ", ptno=" + ptno + ", ticket=" + ticket + ", pexino=" + pexino
-				+ ", mno=" + mno + ", total=" + total + ", sdate=" + sdate + ", imp_uid=" + imp_uid + ", merchant_uid="
-				+ merchant_uid + ", paydate=" + paydate + "]";
+		return "PayVO [pmno=" + pmno + ", ptno=" + ptno + ", ticket=" + ticket + ", pexino=" + pexino + ", mno=" + mno
+				+ ", exiprice=" + exiprice + ", total=" + total + ", sdate=" + sdate + ", imp_uid=" + imp_uid
+				+ ", merchant_uid=" + merchant_uid + ", idir=" + idir + ", imgname=" + imgname + ", exiname=" + exiname
+				+ ", paydate=" + paydate + "]";
 	}
 	
 	

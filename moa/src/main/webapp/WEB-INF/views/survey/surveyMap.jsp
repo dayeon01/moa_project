@@ -9,7 +9,11 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 </head>
-
+<style type="text/css">
+.tlist{
+	cursor: pointer;
+}
+</style>
 
 
 <script>
@@ -122,8 +126,6 @@ for(i = 0 ; i < arr.length ; i++ ){
 });   
 }
 </script>		
-					
-					
 						
 						<table class="table table-hover">
 									<thead>
@@ -159,12 +161,7 @@ for(i = 0 ; i < arr.length ; i++ ){
 		</div>
 	</section>
 
-	<!-- Footer-->
-	<footer class="py-5 bg-blight">
-		<jsp:include page="../a_nav/footer.jsp">
-			<jsp:param name="" value="" />
-		</jsp:include>
-	</footer>
+	
 
 </body>
 </html>

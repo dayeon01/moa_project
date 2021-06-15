@@ -2,7 +2,7 @@
  
  <div class="col-lg-3 mb-4">
 	  <div class="list-group">
-	      <a class="list-group-item" href="/moa/member/myPage.moa">메인</a>
+	      <a class="list-group-item" href="/moa/myPage/myPage.moa">결제내역</a>
 	      <a class="list-group-item" href="/moa/survey/surveyMap.moa">전시지도</a>
 	      <a class="list-group-item" href="/moa/survey/surveyList.moa">설문조사</a>
 	      <a class="list-group-item" href="/moa/star/reviewList.moa">리뷰 리스트</a>

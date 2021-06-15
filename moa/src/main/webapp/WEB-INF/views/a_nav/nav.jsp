@@ -12,11 +12,11 @@
 		}
 		
 		switch('<%=active%>'){
-		case '로그인' : $('.navShow').children().eq(0).addClass('w3-light-grey').children().addClass('w3-text-pink'); break;
-		case '회원가입' : $('.navShow').children().eq(2).addClass('w3-light-grey').children().addClass('w3-text-pink'); break;
-		case '마이페이지' : $('.navShow').children().eq(3).addClass('w3-light-grey').children().addClass('w3-text-pink'); break;
-		case '고객센터' : $('.navShow').children().eq(3).addClass('w3-light-grey').children().addClass('w3-text-pink'); break;
-		case '이벤트' : $('.navShow').children().eq(3).addClass('w3-light-grey').children().addClass('w3-text-pink'); break;
+		case '로그인' : $('.navShow').children().eq(0).addClass().children().addClass('w3-text-light-grey'); break;
+		case '회원가입' : $('.navShow').children().eq(2).addClass().children().addClass('w3-text-light-grey'); break;
+		case '마이페이지' : $('.navShow').children().eq(3).addClass().children().addClass('w3-text-light-grey'); break;
+		case '고객센터' : $('.navShow').children().eq(3).addClass().children().addClass('w3-text-light-grey'); break;
+		case '이벤트' : $('.navShow').children().eq(3).addClass().children().addClass('w3-text-light-grey'); break;
 		}
 		
 		$('.s-btn').click(function(){
@@ -44,7 +44,7 @@
                 <li class="user-li"><a class="user-a" href="/moa/member/login.moa">로그인</a></li>                  
                 <li class="user-li"><a class="user-a" href="/moa/member/logout.moa">로그아웃</a></li>                  
                 <li class="user-li"><a class="user-a" href="/moa/member/join.moa">회원가입</a></li>
-                <li class="user-li"><a class="user-a" href="/moa/member/myPage.moa">마이페이지</a></li>
+                <li class="user-li"><a class="user-a" href="/moa/myPage/myPage.moa">마이페이지</a></li>
                 <li class="user-li"><a class="user-a" href="/moa/board/allboardlist.moa">고객센터</a></li>
                 <li class="user-li"><a class="user-a" href="/moa/subpage/eventpage.moa">이벤트</a></li>
             </ul>
@@ -53,10 +53,10 @@
     <div class="user-con user-con-gnb">
         <div class="gnb">
             <ul class="user-gnb">
-                <li class="user-li user-orange"><a class="user-a" href="/moa/menupage/menu1.moa">일반 전시</a></li>                  
-                <li class="user-li user-orange"><a class="user-a" href="/moa/menupage/menu2.moa">미술전</a></li>
-                <li class="user-li user-orange"><a class="user-a" href="/moa/menupage/menu3.moa">테마전</a></li>
-                <li class="user-li user-orange"><a class="user-a" href="/moa/subpage/searchpage.moa">상세 검색</a></li>
+                <li class="user-li user-grey"><a class="user-a" href="/moa/menupage/menu1.moa">일반 전시</a></li>                  
+                <li class="user-li user-grey"><a class="user-a" href="/moa/menupage/menu2.moa">미술전</a></li>
+                <li class="user-li user-grey"><a class="user-a" href="/moa/menupage/menu3.moa">테마전</a></li>
+                <li class="user-li user-grey"><a class="user-a" href="/moa/subpage/searchpage.moa">상세 검색</a></li>
             </ul>
         </div>
         <!-- <div class="user-ipt">

@@ -9,9 +9,11 @@
 	<jsp:param name="" value="" />
 </jsp:include>
 </head>
-
-
-
+<style type="text/css">
+.tlist {
+	cursor: pointer;
+}
+</style>
 <script>
 $(document).ready(function() {
 	$('.tlist').click(function(){
@@ -62,8 +64,6 @@ $(document).ready(function() {
 											<th scope="col">설문명</th>
 											<th scope="col">시작일</th>
 											<th scope="col">종료일</th>
-											
-										
 										</tr>
 									</thead>
 									<tbody>
@@ -87,13 +87,7 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</section>
-
-	<!-- Footer-->
-	<footer class="py-5 bg-blight">
-		<jsp:include page="../a_nav/footer.jsp">
-			<jsp:param name="" value="" />
-		</jsp:include>
-	</footer>
+	
 
 </body>
 </html>
