@@ -28,7 +28,7 @@ public class Member {
 		
 		// 로그인 검사
 		if(isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);	
 		} else {
 			String view = "member/login";
@@ -210,7 +210,6 @@ public class Member {
 		}
 		String id = (String) session.getAttribute("SID");
 		MemberVO mVO = mDao.getMyInfo(id);
-		/* mno, id, pw, name, email, tel, gen, birth, jdate */
 		
 		mv.addObject("DATA", mVO);
 		mv.setViewName("member/myInfoDel");
@@ -260,7 +259,6 @@ public class Member {
 	public HashMap<String, String> loginFindIdProc(MemberVO mVO /* name, tel */) {
 		
 		MemberVO tVO = mDao.loginFindId(mVO);
-		/* id, email */
 		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("result", "NO");

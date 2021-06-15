@@ -71,18 +71,18 @@ $(document).ready(function(){
 		if(rsp.success) {
 			var imp_uid =  rsp.imp_uid;
 			var merchant_uid = rsp.merchant_uid;
-			var pexino = ${DATA.exino};
+			var pexino = '${DATA.exino}';
 			var ptotal = check;
 			var ticket = no;
-			var pmno = ${MEMB.mno};
-			
-			
+			var pmno = '${MEMB.mno}';
+			/*
 			msg = '결제가 완료되었습니다.';
 			msg += '\n고유ID' + rsp.imp_uid;
 			msg +='\n상점 거래ID'+ rsp.merchant_uri;
 			msg +='\결제 금액' + rsp.paid_amount;
 			msg += '카드 승인번호 :' + rsp.apply_num;
 			alert(msg);
+			*/
 			$('#pexino').val(pexino);
 			$('#total').val(ptotal);
 			$('#pmno').val(pmno);
@@ -92,28 +92,8 @@ $(document).ready(function(){
 			
 			alert('exino : ' + $('#pexino').val() + '\nimp_uid : ' + $('#imp_uid').val() + '\nmerchat_uid : ' + $('#merchant_uid').val());
 			
-			//$('#frm').submit();
-			/*
-			$.ajax({
-				url: "/moa/pay/paypage.moa",
-				type: 'POST',
-				dataType: 'json',
-				data: { 
-					imp_uid :  imp_uid,
-					merchant_uid : merchant_uid,
-					pexino : pexino,
-					ptotal : check,
-					ticket : no,
-				 	pmno :  pmno
-				} 
-			 
-			}).done(function(data){
-				if(data.everythings_fine){
-				} else{
-					//결제 x
-				}
-			});
-			*/
+			$('#frm').submit();
+			
 			//성공시 이동할 페이지
 			//location.href="/moa/main.moa"+msg;
 		} else { 
@@ -141,10 +121,10 @@ $(document).ready(function(){
 	</jsp:include>	
 	
 <form method="POST" action="/moa/pay/paySuccess.moa" id="frm" name="frm">
-	<input type="hidden"  name="pexino" id="pexino" value=" ${DATA.exino }">
-	<input type="hidden"  name="total" id="total" value=" check">
-	<input type="hidden"  name="ticket" id="ticket" value=" no">
-	<input type="hidden"  name="pmno" id="pmno" value=" ${MEMB.mno}">
+	<input type="hidden"  name="pexino" id="pexino" value="${DATA.exino }">
+	<input type="hidden"  name="total" id="total" value="check">
+	<input type="hidden"  name="ticket" id="ticket" value="no">
+	<input type="hidden"  name="pmno" id="pmno" value="${MEMB.mno}">
 	<input type="hidden"  name="imp_uid" id="imp_uid" value="#">
 	<input type="hidden"  name="merchant_uid" id="merchant_uid" value="#">
 </form>

@@ -4,22 +4,22 @@ import java.sql.*;
 
 public class PayVO {
 	
-	private int pno, pmno, ptno, ticket, pexino, mno, imp_uid, merchant_uri;
-	private String ptotal, sdate;
+	private int pno, pmno, ptno, ticket, pexino, mno;
+	private String total, sdate, imp_uid, merchant_uid;
 	private Date paydate;
 	
 	
-	public int getImp_uid() {
+	public String getImp_uid() {
 		return imp_uid;
 	}
-	public void setImp_uid(int imp_uid) {
+	public void setImp_uid(String imp_uid) {
 		this.imp_uid = imp_uid;
 	}
-	public int getMerchant_uri() {
-		return merchant_uri;
+	public String getMerchant_uid() {
+		return merchant_uid;
 	}
-	public void setMerchant_uri(int merchant_uri) {
-		this.merchant_uri = merchant_uri;
+	public void setMerchant_uid(String merchant_uid) {
+		this.merchant_uid = merchant_uid;
 	}
 	public int getMno() {
 		return mno;
@@ -57,11 +57,11 @@ public class PayVO {
 	public void setPexino(int pexino) {
 		this.pexino = pexino;
 	}
-	public String getPtotal() {
-		return ptotal;
+	public String getTotal() {
+		return total;
 	}
-	public void setPtotal(String ptotal) {
-		this.ptotal = ptotal;
+	public void setTotal(String total) {
+		this.total = total;
 	}
 	public String getSdate() {
 		return sdate;
@@ -78,9 +78,10 @@ public class PayVO {
 	@Override
 	public String toString() {
 		return "PayVO [pno=" + pno + ", pmno=" + pmno + ", ptno=" + ptno + ", ticket=" + ticket + ", pexino=" + pexino
-				+ ", mno=" + mno + ", imp_uid=" + imp_uid + ", merchant_uri=" + merchant_uri + ", ptotal=" + ptotal
-				+ ", sdate=" + sdate + ", paydate=" + paydate + "]";
+				+ ", mno=" + mno + ", total=" + total + ", sdate=" + sdate + ", imp_uid=" + imp_uid + ", merchant_uid="
+				+ merchant_uid + ", paydate=" + paydate + "]";
 	}
+	
 	
 	
 	

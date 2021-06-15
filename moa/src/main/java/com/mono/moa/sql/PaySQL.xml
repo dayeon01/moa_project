@@ -7,17 +7,10 @@
 <mapper namespace="paySQL">
 
  <insert id="addpay" parameterType="payVO">
-       <selectKey keyProperty="ptno" resultType="int" order="BEFORE">
-         SELECT
-            NVL(MAX(ptno) + 1, 100001)
-         FROM
-            pay
-      </selectKey> 
       INSERT INTO
-         pay(pno, pmno, ptno, ptotal, paydate, ticket, pexino  )
+         pay(imp_uid, pmno, merchant_uid, ptotal, paydate, ticket, pexino  )
       VALUES(
-           ( SELECT NVL(MAX(pno) + 1, 100001) FROM pay),
-    #{mno}, #{ptno}, #{ptotal}, sysdate, #{ticket}, #{exino}
+           #{imp_uid}, #{pmno}, #{merchant_uid}, #{total}, sysdate, #{ticket}, #{pexino}
       )
   </insert>
 

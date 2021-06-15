@@ -43,7 +43,6 @@ public class Review {
 		page.setId(id);
 
 		List list = reDao.qnaList(page); 
-		/* rno, bno, title, body, mno, wdate, reply, redate */
 
 		mv.addObject("LIST", list);
 		mv.addObject("PAGE", page);
@@ -58,8 +57,7 @@ public class Review {
 	
 	// 문의 리스트 상세보기
 	@RequestMapping("/qnaListDetail.moa")
-	public ModelAndView getListDetail(int nowPage, ReviewVO rVO /* bno */ 
-									, ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView getListDetail(int nowPage, ReviewVO rVO, ModelAndView mv, HttpSession session, RedirectView rv) {
 		
 		if(!isLogin(session)) {	
 			rv.setUrl("/moa/");
@@ -69,7 +67,6 @@ public class Review {
 		
 		String id = (String) session.getAttribute("SID");
 		rVO = reDao.qnaListDetail(rVO);
-		/* bno, title, body, mno, wdate, reply, redate */
 		
 		rVO.setId(reDao.getId(rVO.getBno()));
 		mv.addObject("DATA", rVO);
@@ -102,8 +99,7 @@ public class Review {
 	
 	// 문의글 쓰기 처리요청
 	@RequestMapping("/qnaWriteProc.moa")
-	public ModelAndView qnaWriteProc(ReviewVO rVO /* title, body / admin-nowPage, bno, reply */
-									,int nowPage, ModelAndView mv, HttpSession session, RedirectView rv) {
+	public ModelAndView qnaWriteProc(ReviewVO rVO, int nowPage, ModelAndView mv, HttpSession session, RedirectView rv) {
 		if(!isLogin(session)) {
 			rv.setUrl("/moa/");
 			mv.setView(rv);

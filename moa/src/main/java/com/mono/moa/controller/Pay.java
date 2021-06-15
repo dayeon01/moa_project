@@ -52,7 +52,6 @@ PayDao pDao;
 			
 			mv.addObject("MEMB", memb);
 			mv.addObject("DATA", data);
-			System.out.println("payVO --" + payVO);
 			mv.setViewName("/pay/paypage");
 			return mv;
 		}
@@ -60,16 +59,23 @@ PayDao pDao;
 
 		//결제 성공 데이터 받기
 		@RequestMapping("/paySuccess.moa")
-		public @ResponseBody void addPay(PayVO payVO) {
-			System.out.println("payVO==" + payVO);
+		public ModelAndView addPay(PayVO payVO, ModelAndView mv, HttpSession session, RedirectView rv) {
+			String sid = (String)session.getAttribute("SID");
+			System.out.println("#### payVO : " + payVO);
+			
+			int addp = pDao.addpayinfo(payVO);
+			
+			if(addp == 1) {
+				rv.setUrl("/moa/member/myPage.moa");
+				mv.setView(rv);
+			}else {
+				rv.setUrl("/moa/pay/payFail.moa");
+			}
+			
+			return mv;
 			
 			
 		}
-		
-		
-			
-		
-			
 			
 		//결제취소 폼보기
 			@RequestMapping("/payFail.moa")
