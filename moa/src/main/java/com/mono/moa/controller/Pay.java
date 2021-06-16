@@ -33,7 +33,6 @@ PayDao pDao;
 		//결제페이지 폼보기
 		@RequestMapping("/paypage.moa")
 		public ModelAndView payPage(ModelAndView mv, HttpSession session, RedirectView rv, EventVO eVO, PayVO payVO) {
-			//System.out.println("######## eVO.exino : " + eVO.getExino()); 
 			String sid = (String)session.getAttribute("SID");
 			if(sid ==null) {
 				rv.setUrl("/moa/member/login.moa");
@@ -54,12 +53,12 @@ PayDao pDao;
 		@RequestMapping("/paySuccess.moa")
 		public ModelAndView addPay(PayVO payVO, ModelAndView mv, HttpSession session, RedirectView rv) {
 			String sid = (String)session.getAttribute("SID");
-			System.out.println("#### payVO : " + payVO);
 			
 			int addp = pDao.addpayinfo(payVO);
 			
 			if(addp == 1) {
-				mv.setViewName("/mypage/myPage");
+				rv.setUrl("/moa/myPage/myPage.moa");
+				mv.setView(rv);
 			}else {
 				rv.setUrl("/moa/pay/payFail.moa");
 				mv.setView(rv);

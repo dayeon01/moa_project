@@ -78,35 +78,39 @@ $(document).ready(function() {
 							<jsp:param name="" value="" />
 						</jsp:include>
 						<!-- Content Column-->
-						<div class="col-lg-8 mb-4">
+							<div class="col-lg-6 mb-4">
+							<h3>1:1 문의글 상세보기</h3>
+							<br>
+								<label for="title">제목 : </label>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" id="title" name="title" 
+									placeholder="${DATA.title}" readonly>
+								</div>
+								<p class="help-block" id="titlemsg"></p>
 
-							<table class="table">
-								<thead>
-									<tr>
-										<th scope="col">글번호(${DATA.bno})</th>
-										<th scope="col" colspan=2>제목 : ${DATA.title}</th>
-										<th scope="col">등록일</th>
-									</tr>
-								</thead>
-								<tbody class="w3-margin-top">
-									<tr>
-										<th scope="row">${SID}님의 문의내용</th>
-										<td colspan=2>${DATA.body}</td>
-										<td>${DATA.wdate}</td>
-									</tr>
-									<tr>
-										<th scope="row">관리자 답변</th>
-										<td colspan=2>${DATA.reply}</td>
-										<td>${DATA.redate}</td>
-									</tr>
-								</tbody>
-							</table>
-								<button class="btn btn-primary w3-margin-bottom" id="lbtn">리스트 보기</button> <br>
+								<div class="controls">
+									<label for="body">내용:</label>
+									<textarea class="form-control" id="body" name="body" rows="10"
+										cols="100" required=""
+										data-validation-required-message="Please enter your message"
+										maxlength="999" style="resize: none"
+										placeholder="${DATA.body}" readonly
+										></textarea>
+									<div class="help-block"></div>
+								</div>
+								<br>
+								<label>답변 : </label>
+								<div class="input-group mb-3">
+									<input type="text" class="form-control" id="title" name="title" 
+									placeholder="${DATA.reply}" readonly>
+								</div>
+							
+								<button class="btn btn-primary" id="lbtn">리스트 보기</button>
 								<button class="btn btn-primary" id="wbtn">글작성</button>
 								<button class="btn btn-primary" id="ebtn">수정</button>
 								<button class="btn btn-primary" id="dbtn">삭제</button>
 						</div>
-					</div>
+					
 					
 				</div>
 			</div>

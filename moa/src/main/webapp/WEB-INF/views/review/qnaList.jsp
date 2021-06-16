@@ -115,7 +115,7 @@ $(document).ready(function() {
 											<th scope="row">${data.bno}</th>
 											<td>${data.title}</td>
 											<td>
-											${null eq data.reply ? "미답변" : "답변"}
+											${null eq data.reply ? "미답변" : "답변완료"}
 											</td>
 											<td>${data.wdate}</td>
 										</tr>
@@ -129,11 +129,11 @@ $(document).ready(function() {
 									href="#" aria-label="Previous"> <span aria-hidden="true">«</span>
 										<span class="sr-only">Previous</span>
 								</a></li>
-								<c:forEach var="page" begin="${PAGE.startPage}"
+	<c:forEach var="page" begin="${PAGE.startPage}"
 									end="${PAGE.endPage}">
 									<li class="page-item" id="pnum${page}"><a
 										class="page-link" href="#">${page}</a></li>
-								</c:forEach>
+	</c:forEach>
 								<li class="page-item" id="nex"><a class="page-link"
 									href="#" aria-label="Next"> <span aria-hidden="true">»</span>
 										<span class="sr-only">Next</span>

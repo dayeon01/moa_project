@@ -71,21 +71,21 @@ $(document).ready(function() {
 
 							<table class="table">
 								<thead>
-									<tr>
+									<tr >
 										<th scope="col">글번호(${DATA.bno})</th>
 										<th scope="col" colspan=2>제목 : ${DATA.title}</th>
 										<th scope="col">등록일</th>
 									</tr>
 								</thead>
 								<tbody class="w3-margin-top">
-									<tr>
+									<tr class="w3-light-grey">
 										<th scope="row">ID : ${DATA.id}</th>
 										<td colspan=2>${DATA.body}</td>
 										<td>${DATA.wdate}</td>
 									</tr>
-									<tr>
+									<tr >
 										<th scope="row">관리자 답변</th>
-										<td colspan=2></td>
+										<td colspan=2 ></td>
 										<td>${DATA.redate}</td>
 									</tr>
 								</tbody>

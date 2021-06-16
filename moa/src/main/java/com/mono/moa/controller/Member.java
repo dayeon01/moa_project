@@ -40,12 +40,12 @@ public class Member {
 	
 	// 로그인 처리
 	@RequestMapping("/loginProc.moa")      
-	public ModelAndView loginProc( MemberVO mVO /*(id, pw)*/, 
+	public ModelAndView loginProc( MemberVO mVO , 
 								ModelAndView mv, HttpSession session, RedirectView rv) {
 		String view = "/moa/main.moa";
 		if(!isLogin(session)) {
 
-			int cnt = mDao.getLogin(mVO) /*(id, pw)*/;
+			int cnt = mDao.getLogin(mVO) ;
 			
 			if(cnt == 1) {
 				session.setAttribute("SID", mVO.getId());

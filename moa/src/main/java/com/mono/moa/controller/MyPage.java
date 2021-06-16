@@ -22,20 +22,17 @@ public class MyPage {
 	MemberDao mDao;
 	
 	@RequestMapping("/myPage.moa")
-	public ModelAndView myPayList(ModelAndView mv, HttpSession session, RedirectView rv, PayVO payVO, MemberVO mVO) {
-		String sid = (String)session.getAttribute("SID");
-		if(sid == null) {
+	public ModelAndView myPayList(ModelAndView mv, HttpSession session, RedirectView rv, PayVO payVO) {
+		String id = (String)session.getAttribute("SID");
+		if(id == null) {
 			rv.setUrl("moa/member/login.moa");
 			mv.setView(rv);
 			return mv;
 		}
 		
-		List list = mypDao.getPayList(payVO);
-		MemberVO memb = mDao.getMyInfo(sid);
+		List list = mypDao.getPayList(id);
 		
 		mv.addObject("LIST", list);
-		mv.addObject("MEMB", memb);
-		System.out.println("LIST"+ list);
 		mv.setViewName("mypage/myPage");
 		return mv;
 	}

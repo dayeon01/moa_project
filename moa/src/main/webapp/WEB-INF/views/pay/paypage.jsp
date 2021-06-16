@@ -19,6 +19,12 @@
 .imgbox{
 		width: 260px;
 }
+.pdt50 {
+	padding-top: 50px;
+}
+.pdt25 {
+	padding-top: 25px;
+}
 .imgbox1{
 		width: 100px;
 }
@@ -41,6 +47,9 @@
 .mgb40 {
 	margin-bottom: 40px;
 }
+.mxw1100{
+	max-width: 1100px;	
+}
 
 </style>
 	
@@ -53,7 +62,7 @@ $(document).ready(function(){
 		var check = document.getElementById('ptotal').value=no*p;
 		
 	$('.paybtn').click(function(){
-		
+	
 	var IMP = window.IMP;
 	IMP.init('imp71302798');
 	var msg;
@@ -75,14 +84,7 @@ $(document).ready(function(){
 			var ptotal = check;
 			var ticket = no;
 			var pmno = '${MEMB.mno}';
-			/*
-			msg = '결제가 완료되었습니다.';
-			msg += '\n고유ID' + rsp.imp_uid;
-			msg +='\n상점 거래ID'+ rsp.merchant_uri;
-			msg +='\결제 금액' + rsp.paid_amount;
-			msg += '카드 승인번호 :' + rsp.apply_num;
-			alert(msg);
-			*/
+			
 			$('#pexino').val(pexino);
 			$('#total').val(ptotal);
 			$('#pmno').val(pmno);
@@ -90,24 +92,16 @@ $(document).ready(function(){
 			$('#imp_uid').val(imp_uid);
 			$('#merchant_uid').val(merchant_uid);
 			
-			alert('exino : ' + $('#pexino').val() + '\nimp_uid : ' + $('#imp_uid').val() + '\nmerchat_uid : ' + $('#merchant_uid').val());
-			
-			$('#frm').submit();
-			
-			//성공시 이동할 페이지
-			//location.href="/moa/main.moa"+msg;
+			 $('#frm').submit(); 
 		} else { 
 			 msg = '결제에 실패하였습니다.';
 			msg += '\n에러내용:' + rsp.error_msg; 
 			//실패시 이동할 페이지
 			location.href="/moa/pay/payFail.moa";
-			alert(msg);
 		}
-	});
-
+		});
 	});
  	});  
-	
 }); 
 
 
@@ -128,21 +122,21 @@ $(document).ready(function(){
 	<input type="hidden"  name="imp_uid" id="imp_uid" value="#">
 	<input type="hidden"  name="merchant_uid" id="merchant_uid" value="#">
 </form>
-	<div class="w3-content mxw900 ">
-		<div class="w3-content mxw900 ">
+	<div class="w3-content mxw1100 ">
+		<div class="w3-content mxw1100 ">
 			<div class="w3-col  w3-margin-top mgb20 pdb20 w3-panel w3-border-grey w3-topbar w3-bottombar inblock">
-	            <h1 class="w3-col mgt30 w3-margin-left mgb20 inblock w3-left">결제</h1>
+	            <h1 class="w3-col mgt30 w3-margin-left mgb20 inblock w3-left"><strong>결제</strong></h1>
 	         	<h6 class="w3-col w3-margin-left mgt30 mgb20 w3-text-grey" ><small>결제 페이지.</small></h6>
 	   		 </div>
 	   	</div>	 
    		  <div class="w3-content w3-margin w3-center">
-		<div class="w3-col w3-border">
-			<div class="w3-border  boxx" >
-				<div class="inblock pdAll30 w3-border w3-border-light-grey w3-round-large ">
+		<div class="w3-col pdl10 pdb20  w3-border w3-card-2"">
+			<div class="" >
+				<div class="w3-col pdl10 pdt25 w3-round-large" style="width: 310px; height: 490px;">
 				 	<img src="${DATA.idir}${DATA.imgname}" 
-					  		class="img-rounded w3-round mgb40" alt="Cinque Terre" width="280" height="480"> 
+					  		class="img-rounded w3-round " alt="Cinque Terre" width="280" height="460"> 
 				</div>
-				<div class="inblock pdt30 ">
+				<div class="w3-rest pdt50 ">
 					<h2 class="w3-text-dark-grey mgb20" id="name">[${DATA.exiname}]</h2>
 					<h4 class="w3-text-grey mgt30 mgb20" id="person">${DATA.exiperson}</h4>
 					<div class="w3-text-grey mgt30 mgb20" >일정 : ${DATA.exisdate} ~ ${DATA.exiedate}</div>
@@ -152,12 +146,12 @@ $(document).ready(function(){
 						 	<input type="number" pattern="[0-9]+" name="ticket" id="ticket" min="0" max="99" 
 						 				class="w3-border w3-center" placeholder="0">
 					 </div>   
-					 <div class="mgt10">
+					 <div class="mgt10" id="pp${MEMB.mno}">
 					 	  	<label class=" w3-text-grey">결제 금액 :</label>
 						 	<input type="text" id="ptotal"  name="ptotal" value=""
 						 				class="w3-text-grey ptotal" style="width:60px;"readonly>
 					 </div>   
-					<h3 class="inblock w3-button w3-margin-top w3-blue-grey w3-hover-blue-grey w3-card-2 mgl40 mgb60 w3-round w3-right paybtn" 
+					<h3 class="inblock w3-button w3-margin-top w3-blue-grey w3-hover-blue-grey w3-card-2 mgl40 mgb60 w3-round paybtn" 
 							style=width:400px;height:50px; id="pay${DATA.exino }">결제</h3>
 				</div>
 		

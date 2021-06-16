@@ -11,6 +11,16 @@
 </head>
 
 <style>
+img{
+	cursor: pointer;
+}
+.mgl150 {
+	margin-left: 150px;
+}
+
+.mxw1100{
+	max-width: 1100px;	
+}
 body {
 	font-family: Arial, Helvetica, sans-serif;
 }
@@ -19,6 +29,9 @@ body {
 	border-radius: 5px;
 	cursor: pointer;
 	transition: 0.3s;
+}
+.mgb40{
+	margin-bottom: 40px;
 }
 
 #myImg:hover {
@@ -134,7 +147,7 @@ to {
 			$('#frm').submit();
 		});
 
-		$('.btn-sm').click(function() {
+		$('.dbtn').click(function() {
 			var reno = $(this).attr('id').substring(1);
 			$('#reno').val(reno);
 			$('#frm2').submit();
@@ -176,123 +189,124 @@ to {
 							<!-- Post content-->
 							<article>
 								<!-- Post header-->
-								<header class="mb-4">
+								<header class="mb-4 ">
 									<!-- Post title-->
-									<h1 class="fw-bolder mb-1">리뷰 상세</h1>
+									<h1 class="fw-bolder mb-1 w3-bottombar w3-padding w3-border-light-grey mgt10 ">리뷰</h1>
 								</header>
-								<!-- Preview image figure-->
-								<figure class="mb-2">
-									<img class="img-fluid rounded imgBox100"
-										src="${DATA.dir}${DATA.savename}" alt="...">
-								</figure>
-								<h6 class="fw-bolder mb-3 mt-2">작가: ${DATA.title}</h6>
-								<h6 class="fw-bolder mb-3 mt-2">전시명: ${DATA.body}</h6>
-								<h6 class="fw-bolder mb-3 mt-2">기간: ${DATA.wdate} ~
-									${DATA.redate}</h6>
+						<div class=" mxw500 mgl150 mgb60">
+                         <div class="row  ">
+                        	 <div class="">
+                          	  	<div class="card h-100 shadow border-0">
+                               		 <img class="card-img-top" src="${DATA.dir}${DATA.savename}" alt="...">
+                               		 <div class="card-body p-4">
+	                                    <a class="text-decoration-none link-dark stretched-link img"><h5 class="card-title mb-3">"${DATA.body} "</h5></a>
+	                                    <p class="card-text mb-0">작가 : ${DATA.title}</p>
+	                                    <p class="card-text mb-0">기간 : ${DATA.wdate} ~ ${DATA.redate}</p>
+                             		   </div>
+                            	</div>
+                       		 </div>
+                            </div>
+                        </div>
+				<c:if test="${RESULT.star ne 0.0}">				
 								<!-- Post content-->
 								<section class="mb-5">
-									<h2 class="fw-bolder mb-4 mt-5">리뷰 남기기</h2>
-									<h4>평점 ${RESULT.star/20} (5.0점 만점) / 리뷰개수 ${RESULT.total}</h4>
-									<div class="progress">
-										<div class="progress-bar" role="progressbar"
-											style="width: ${RESULT.star}%;"
-											aria-valuenow="${RESULT.star}" aria-valuemin="0"
-											aria-valuemax="100">${RESULT.star/20}</div>
+									<h2 class="fw-bolder mb-4 mt-5 w3-bottombar w3-border-light-grey">평점</h2>
+									<div class="progress" style="width:300px; height:35px;">
+										<div class="progress-bar progress-bar-striped" role="progressbar"
+												style="width: ${RESULT.star}%;"
+												aria-valuenow="${RESULT.star}" aria-valuemin="0" aria-valuemax="100">
+											${RESULT.star/20}
+										</div>
 									</div>
 								</section>
+				</c:if>				
 							</article>
+	<c:if test="${DATA.cnt ne 1}">
 							<!-- Comments section-->
 							<section>
-								<div class="card bg-light">
-									<div class="card-body">
+								<div class="card bg-light mgb40">
+									<div class="card-body ">
 										<!-- Comment form-->
-									<c:if test="${DATA.cnt ne 1}">
-										<form method="POST" action="/moa/star/reviewWriteProc.moa"
-											id="frm" name="frm" encType="multipart/form-data">
-											<input type="hidden" name="nowPage" id="nowPage"> <input
-												type="hidden" name="bno" id="bno"> <input
-												class="form-control mb-2" id="title" name="title"
-												type="text" placeholder="제목을 입력하세요"
-												data-sb-validations="required" data-sb-can-submit="no">
-											<textarea class="form-control mb-2" rows="3" id="body"
-												name="body" placeholder="내용을 입력하세요"></textarea>
+					<form method="POST" action="/moa/star/reviewWriteProc.moa"
+						id="frm" name="frm" encType="multipart/form-data">
+							<input type="hidden" name="nowPage" id="nowPage"> 
+							<input type="hidden" name="bno" id="bno"> 
+							<input class="form-control mb-2" id="title" name="title"
+									type="text" placeholder="제목을 입력하세요"
+									data-sb-validations="required" data-sb-can-submit="no">
+							<textarea class="form-control mb-2" rows="3" id="body"
+										name="body" placeholder="내용을 입력하세요">
+							</textarea>
+							<div>
+								<h6>평점</h6>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="star"
+										id="inlineRadio1" value="1"> <label
+										class="form-check-label" for="inlineRadio1">1점:
+										불만족</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="star"
+										id="inlineRadio2" value="2"> <label
+										class="form-check-label" for="inlineRadio2">2점: 별로</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="star"
+										id="inlineRadio3" value="3"> <label
+										class="form-check-label" for="inlineRadio3">3점: 보통</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="star"
+										id="inlineRadio4" value="4"> <label
+										class="form-check-label" for="inlineRadio3">4점:
+										괜찮음</label>
+								</div>
+								<div class="form-check form-check-inline">
+									<input class="form-check-input" type="radio" name="star"
+										id="inlineRadio5" value="5"> <label
+										class="form-check-label" for="inlineRadio3">5점:
+										최고추천</label>
+								</div>
+							</div>
 
-											<div>
-												<h6>평점</h6>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="star"
-														id="inlineRadio1" value="1"> <label
-														class="form-check-label" for="inlineRadio1">1점:
-														불만족</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="star"
-														id="inlineRadio2" value="2"> <label
-														class="form-check-label" for="inlineRadio2">2점: 별로</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="star"
-														id="inlineRadio3" value="3"> <label
-														class="form-check-label" for="inlineRadio3">3점: 보통</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="star"
-														id="inlineRadio4" value="4"> <label
-														class="form-check-label" for="inlineRadio3">4점:
-														괜찮음</label>
-												</div>
-												<div class="form-check form-check-inline">
-													<input class="form-check-input" type="radio" name="star"
-														id="inlineRadio5" value="5"> <label
-														class="form-check-label" for="inlineRadio3">5점:
-														최고추천</label>
-												</div>
-											</div>
-
-											<div class="mb-2 mt-2">
-												<input type="file" name="file" /> <input type="file"
-													name="file" />
-											</div>
-
-											
-										</form>
-										<button class="btn btn-primary mb-2 mt-2" id="wbtn">저장</button>
-								</c:if>		
+							<div class="mb-2 mt-2">
+								<input type="file" name="file" /> <input type="file"
+									name="file" />
+							</div>
+			</form>
+							<button class="btn w3-blue-grey w3-right mb-2 mt-2" id="wbtn">저장</button>
+										
 										<!-- Single comment-->
-										<c:forEach var="list" items="${DATA.list}" varStatus="idx">
-											<div class="d-flex mb-2 mt-2" id=b${list.bno}
-												style="padding-left: 20px">
-												<div class="flex-shrink-0">${list.id}</div>
-												<div class="ms-3">
-													<div class="fw-bold">${list.title}
-														/ <small>${list.wdate}</small>
-													</div>
-													${list.body}
-												</div>
-
-												<c:forEach var="flist" items="${list.flist}"
-													varStatus="idx2">
-													<div class="w3-col w3-margin-left imgBox100"
-														id="imgbox${flist.fno}">
-														<img id=img${flist.fno}
-															"  src="/moa/img/upload/${flist.savename}" alt="Snow"
-															style="width: 100%; max-width: 300px">
-													</div>
-
-												</c:forEach>
-
-												<c:if test="${SID eq list.id}">
-													<div class="w3-margin-left">
-														<input type="button" class="btn btn-primary btn-sm mb-2"
-															id="d${list.bno}" value="삭제">
-													</div>
-												</c:if>
-											</div>
-
-										</c:forEach>
 									</div>
 								</div>
 							</section>
+		</c:if>		
+<c:forEach var="list" items="${DATA.list}" varStatus="idx">
+							<div class=" mb-2 mt-2 w3-light-grey w3-round-xlarge" id="b${list.bno}"
+									style="padding-left: 20px; width:80%;">
+								<div class="badge bg-primary bg-gradient rounded-pill mb-2">${list.id}</div><small class="w3-text-grey mgl20">${list.wdate}</small> 
+								<h5 class="w3-col mgl20 fw-bold">${list.title}</h5>
+								<div class=" mgl20 ">
+									${list.body }
+								</div>
+	<c:forEach var="flist" items="${list.flist}" varStatus="idx2">
+									<div class=" inblock  w3-border w3-round w3-margin-left mgb10 mgt10 img100" id="imgbox${flist.fno}" >
+										 <img id="img${flist.fno}" src="/moa/img/upload/${flist.savename}" 
+											alt="Snow" class="w3-round   " style="width:100px;height:100px;"> 
+									</div>
+	</c:forEach> 
+					<div class=""></div>
+							</div>	
+	<c:if test="${SID eq list.id}">
+										
+											<div class="w3-button  w3-round mgl30 w3-blue-grey mb-5 dbtn"
+												id="d${list.bno}" >삭제</div>
+										
+			</c:if>
+	
+							
+			
+</c:forEach>
 
 						</div>
 					</div>
@@ -313,7 +327,7 @@ to {
 
 	<script>
 		$(function() {
-			$('.imgBox100 > img').click(function() {
+			$('.img100 > img').click(function() {
 				var tsrc = $(this).attr('src');
 				var modal = document.getElementById("myModal");
 				modal.style.display = "block";

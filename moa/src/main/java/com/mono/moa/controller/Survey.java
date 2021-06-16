@@ -37,7 +37,6 @@ public class Survey {
 		mv.addObject("LIST_A", list);
 		mv.addObject("LEN", list.size());
 		mv.setViewName("survey/surveyMap");
-		System.out.println(ListJson);
 		return mv;
 	}
 

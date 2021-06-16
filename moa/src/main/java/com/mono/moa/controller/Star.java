@@ -120,7 +120,6 @@ public class Star {
 
 				for(FileVO vo : list) {
 					count += sDao.addFile(vo);
-					System.out.println(count);
 				}
 			} catch (Exception e) {}
 		}

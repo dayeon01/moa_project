@@ -15,19 +15,5 @@
   </insert>
 
 
-<!-- 	<insert id="addpay" parameterType="payVO">
-		 <selectKey keyColumn="pno,ptno" keyProperty="pno,ptno" resultType="hashmap" order="BEFORE">
-			SELECT
-				NVL(MAX(pno) + 1, 000001),
-				NVL(MAX(ptno) + 1, 100001)
-			FROM
-				pay
-		</selectKey> 
-		INSERT INTO
-			pay(pno, pmno, ptno, ptotal, paydate, ticket, pexino  )
-		VALUES(
-				#{pno}, #{mno}, #{ptno}, #{ptotal}, sysdate, #{ticket}, #{exino}
-		)
-	
-	</insert> -->
+
 </mapper>

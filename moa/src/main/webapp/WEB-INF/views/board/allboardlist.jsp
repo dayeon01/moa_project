@@ -12,6 +12,9 @@ select{
    border-style: none;
    
 }
+.mxw1100{
+	max-width: 1100px;
+}
 </style>
 </head>   
 <script type="text/javascript">
@@ -71,9 +74,17 @@ select{
   		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
   		<input type="hidden" name="bno" id="bno">
   </form> 
-   <div class="w3-content mxw800  ">
-      <hr class="w3-darkgrey ">
-      <div class="w3-content mxw800 ">
+  
+   <div class="w3-content  mxw1100  ">
+   <hr class="w3-topbar w3-border-dark-grey ">
+   
+      <!-- div class="w3-content mxw1100 ">
+         <div class="w3-col  w3-margin-top mgb20 pdb20 w3-panel w3-border-grey w3-topbar w3-bottombar inblock">
+            <h1 class="w3-col mgt30 w3-margin-left mgb20 inblock w3-left">전시정보</h1>
+         	<h6 class="w3-col w3-margin-left mgt30 mgb20 w3-text-grey"><small>전시 상세보기 페이지 입니다.</small></h6>
+         </div>
+      </div> -->
+      <div class="w3-content   mxw1100 ">
          <div class="w3-content m3 w3-margin-top w3-margin-bottom inblock">
             <h1 class="w3-col w3-margin-top w3-margin-left mgb60 inblock w3-left ">고객센터</h1>
                <select class="w3-margin-left w3-border w3-border-light-grey w3-round seb" name="board" id="board">
@@ -134,11 +145,7 @@ select{
          </div>
       </div>
    </div>
-    <!-- Footer-->
-   <footer class="py-5 bg-dark">
-       <jsp:include page="../a_nav/footer.jsp">
-         <jsp:param name="" value="" />
-      </jsp:include>
-   </footer>  
+   
+ 
 </body>
 </html>

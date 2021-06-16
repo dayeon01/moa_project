@@ -5,10 +5,16 @@ import java.sql.*;
 public class PayVO {
 	
 	private int  pmno, ptno, ticket, pexino, mno, exiprice, exino;
-	private String total, sdate, imp_uid, merchant_uid, idir, imgname, exiname ;
+	private String total, sdate, imp_uid, merchant_uid, idir, imgname, exiname, id;
 	private Date paydate;
 	
 	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public int getExino() {
 		return exino;
 	}

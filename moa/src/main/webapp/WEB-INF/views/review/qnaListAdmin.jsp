@@ -8,7 +8,14 @@
 		<jsp:param name="" value="" />
 	</jsp:include>
 </head>
-
+<style type="text/css">
+.trow{
+	cursor: pointer;
+}
+.pdl30 {
+	padding-left: 30px;
+}
+</style>
 <script>
 $(document).ready(function() {
 	
@@ -102,7 +109,7 @@ $(document).ready(function() {
 										<tr class="trow" id="b${data.bno}">
 											<th scope="row">${data.bno}</th>
 											<td>${data.title}</td>
-											<td>${null eq data.reply ? "미답변" : "답변"}</td>
+											<td>${null eq data.reply ? "미답변" : "답변완료"}</td>
 											<td>${data.wdate}</td>
 										</tr>
 </c:forEach>

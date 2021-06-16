@@ -56,6 +56,13 @@
 	    	 $('#nowPage').val(pno);
 	    	 $('#frm').submit();
 	      });
+		
+		$('.exlist').click(function(){
+			var no = $(this).attr('id');
+			$('#evtexino').val(no);
+			$('#frm').attr('action', '/moa/subpage/eventDetail.moa');
+			$('#frm').submit();
+		});
 	});
 </script>
 <body>
@@ -66,7 +73,7 @@
    
    <form method="POST" action="/moa/subpage/eventpage.moa" id="frm" name="frm">
   		<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
-  		<input type="hidden" name="bno" id="bno">
+  		<input type="hidden" name="evtexino" id="evtexino" value="0">
   </form> 
 
 	<div class="w3-content mxw900 ">
@@ -78,7 +85,7 @@
       </div>
       <div class="w3-content w3-margin w3-center">
  <c:forEach var="data" items="${LIST}">    
-      <div class="w3-content inblock  w3-round mgt30 mgb20 mgl20 w3-padding w3-text-left w3-border w3-border-blue-grey w3-hover-shadow  exlist">
+      <div class="w3-content inblock  w3-round mgt30 mgb20 mgl20 w3-padding w3-text-left w3-border w3-border-blue-grey w3-hover-shadow  exlist" id="${data.evtexino}">
 		<div class="w3-margin-right  line">
 		  <img src="${data.idir}${data.imgname}" 
 		  		class="img-rounded w3-round mgl20 mgt20" alt="Cinque Terre" width="180" height="216"> 

@@ -15,7 +15,7 @@
 	</select>
 	
 	
-	
+	<!-- 이벤트중인 전시 데이터 조회(회원페이지) -->
 	<select id="eventList" resultType="evnVO" parameterType="page">
 		SELECT
 			 evtno, evtexino, evtcode, evtcontent, sdate, edate, exiname, exiprice, exiperson, idir, imgname,
@@ -45,7 +45,34 @@
 			edate ASC    
 	</select>
 	
-<!-- 이벤트 전시 일반 전시 리스트 전체 조회 -->
+	<!-- 이벤트중인 전시페이지 상세보기 데이터 조회(회원페이지) -->
+	<select id="eventDetailList" resultType="evnVO" parameterType="int">
+		SELECT
+		    evtno, evtexino, exino, exiecno, exiperson, exiname, exisdate startdate, exiedate enddate, evtcontent,evtcode, exiprice,
+            decode(evtcode, 'D',  to_char(exiprice * (to_number(evtcontent) / 100)),'P', exiprice)  reprice, 
+            exiage, exiexpno, idir, imgname, sdate, edate, isshow,expname, exptime, 
+            NVL(expsite,'전화문의') expsite, NVL(exptel,'사이트문의') exptel,exploc, expdir, expimgname
+		FROM
+       		 (
+	            SELECT
+	                 evtno, evtexino, exino, exiecno, exiperson, exiname, exisdate, exiedate, evtcontent, evtcode,exiprice, 
+	                 exiage, exiexpno, idir, imgname, sdate, edate, event.isshow, expname, exptime, expsite, exptel,exploc, expdir, expimgname
+	            FROM
+	                exinfo, image, event, explace
+	            WHERE
+	                imgno = exino
+	                AND evtexino(+) = exino
+	                AND expno = exiexpno 
+	                AND exinfo.isshow = 'Y'
+	                AND image.isshow = 'Y'
+	                AND event.isshow = 'Y'
+       		 )  
+       	WHERE
+       		evtexino = #{evtexino}
+       			 
+	</select>
+	
+<!-- 이벤트 전시, 일반 전시 리스트 전체 조회 -->
 	<select id="allExhiList" resultType="evnVO" parameterType="page">
 		SELECT
 		    evtexino, exino, exiecno, exiperson, exiname, exisdate startdate, exiedate enddate, exiprice, exiage, exiexpno, idir, imgname, sdate, edate, NVL(isshow, -99) isshow

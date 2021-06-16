@@ -146,7 +146,7 @@ public class EventVO {
 		evtsdate = setStrDate(sdate);
 	}
 	public String setStrDate(Date d) {
-		return new SimpleDateFormat("yyyy/MM/dd").format(d);
+		return new SimpleDateFormat("yyyy-MM-dd").format(d);
 	}
 	public String getIsshow() {
 		return isshow;

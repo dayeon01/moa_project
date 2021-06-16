@@ -17,13 +17,13 @@ import com.mono.moa.vo.*;
 @RequestMapping("/exhibit")
 public class Exhibit {
 	@Autowired
-	ExhibitDao exhDao;
+	ExhibitDao eDao;
 	
 	
 	//전시 상세보기 페이지 요청 함수
 	 @RequestMapping("/exhDetail.moa") 
 	public ModelAndView exhDetail(ModelAndView mv, RedirectView rv, int exino) {
-		 EventVO data = exhDao.getExhDetail(exino);
+		 EventVO data = eDao.getExhDetail(exino);
 		
 		
 		mv.addObject("DATA", data);

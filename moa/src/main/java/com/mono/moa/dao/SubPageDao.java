@@ -13,6 +13,8 @@ public class SubPageDao {
 	@Autowired
 	SqlSessionTemplate sqlSession;
 	
+	
+	
 //--------------------------------event-----------------------------------	
 	//이벤트중인 전시 총 갯수 조회 처리 함수
 	public int getTotal() {
@@ -41,7 +43,10 @@ public class SubPageDao {
 		return sqlSession.update("sbSQL.evtDel", evtexino);
 	}
 	
-	
+	//이벤트 상세보기 조회 전담 처리 함수
+	public EventVO getEventDetailList(int evtexino) {
+		return sqlSession.selectOne("sbSQL.eventDetailList", evtexino);
+	}
 	
 	
 	
@@ -83,11 +88,6 @@ public class SubPageDao {
 	}
 	
 
-	
-	
-	
-//---------------------------------pay-----------------------------------
-	
 	
 	
 }

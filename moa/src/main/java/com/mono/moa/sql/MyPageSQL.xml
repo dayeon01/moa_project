@@ -4,15 +4,16 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mypSQL">
-	<select id="payList" resultType="payVO">
-		select
-  			mno, name, exino, exiname, ticket, ptotal total, exiprice, paydate, idir, imgname
-		from
+	<select id="payList" resultType="payVO" parameterType="String">
+		SELECT
+  			id, mno, name, exino, exiname, ticket, ptotal total, exiprice, paydate, idir, imgname
+		FROM
 		    pay, exinfo, image, member
-		where
+		WHERE
 		    exino = pexino
 		    AND exino = imgno
 		    AND image.isshow = 'Y'
 		    AND mno = pmno
+		    AND id = #{id}
 	</select>
 </mapper>
