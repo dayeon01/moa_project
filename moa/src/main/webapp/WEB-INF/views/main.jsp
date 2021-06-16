@@ -102,16 +102,6 @@
 <hr class="my-0">
 
 
-<!-- 
-	달력 섹션
-<section class="py-5 user-source">
-   
-
- 
-</section>
-<hr class="my-0"> -->
-
-
 <!-- 게시판 미리보기 -->
 
 <section class="py-5 bg-white">
