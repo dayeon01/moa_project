@@ -8,7 +8,18 @@
 		<jsp:param name="" value="" />
 	</jsp:include>
 	
+<!-- <link href="/moa/css/calendar/calendar.css" rel="stylesheet">
+<link href='/moa/css/calendar/core-main.css' rel='stylesheet' />
+<link href='/moa/css/calendar/daygrid-main.css' rel='stylesheet' />
 
+
+<script type="text/javascript">
+		var arr = ${ARR};
+</script>
+<script src="/moa/js/calendar/calendar.js"></script>
+<script src='/moa/js/calendar/core.main.js'></script>
+<script src='/moa/js/calendar/interaction.main.js'></script>
+<script src='/moa/js/calendar/daygrid.main.js'></script> -->
 
 </head>
 <script type="text/javascript">
@@ -90,17 +101,20 @@
 
 <hr class="my-0">
 
-<!-- Features Section-->
+
+<!-- 
+	달력 섹션
 <section class="py-5 user-source">
    
 
  
 </section>
-<hr class="my-0">
+<hr class="my-0"> -->
 
-<!-- Page Content-->
 
-<section class="py-5 bg-light">
+<!-- 게시판 미리보기 -->
+
+<section class="py-5 bg-white">
     <div class="container">
         <div class="row">
             <div class="col-lg-4 mb-4 mb-lg-0">

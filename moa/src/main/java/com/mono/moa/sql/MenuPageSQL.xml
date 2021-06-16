@@ -38,7 +38,7 @@
 					)
 			)
 		WHERE
-		    rno BETWEEN 1 AND 3
+		    rno BETWEEN 1 AND 6
 	</select>
 	
 	<!-- 메인페이지 공지사항 제목 조회 질의명령 -->
@@ -157,5 +157,16 @@
 		WHERE
 		    rno BETWEEN #{startCont} AND #{endCont}
 	</select>
+	
+	<!-- 달력 전시일정 조회 질의명령  
+	<select id="calendar" resultType="eVO">
+		SELECT
+		    exino, exiecno, exiperson, exiname, exisdate
+		FROM
+			exinfo
+		WHERE
+		    isshow = 'Y'
+	</select>
+	-->
 
 </mapper>

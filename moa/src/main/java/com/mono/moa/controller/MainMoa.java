@@ -10,7 +10,7 @@ import org.springframework.web.servlet.*;
 import com.mono.moa.dao.*;
 
 /**
- * 	이 클래스는 댓글 게시판 관련 요청 처리 컨트롤러 클래스
+ * 	
  * @author	한수연
  * @since	2021.06.03
  * @version	v.1.0
@@ -38,10 +38,12 @@ public class MainMoa {
 		List list = mDao.mainExi();
 		List brd = mDao.mainNotice();
 		List evt = mDao.mainEvent();
+		/* List cal = mDao.getCalendar(); */
 
 		mv.addObject("LIST", list);
 		mv.addObject("BRD", brd);
 		mv.addObject("EVT", evt);
+		/* mv.addObject("ARR", cal); */
 		mv.setViewName("main");
 		return mv;
 	}

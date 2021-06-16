@@ -7,6 +7,19 @@ import org.springframework.beans.factory.annotation.*;
 
 import com.mono.moa.util.PageUtil;
 
+/**
+ * 
+ * @author	한수연
+ * @since	2021.06.03
+ * @version	v.1.0
+ * @see
+ * 			작업이력 ]
+ * 				2021.06.03
+ * 					- 담당자 	: 한수연
+ * 					- 작업내용 	: 함수 제작
+ *
+ */
+
 public class MenuPageDao {
 
 	@Autowired
@@ -46,4 +59,11 @@ public class MenuPageDao {
 	public List getThemeList(PageUtil page) {
 		return sqlSession.selectList("mpSQL.themeList", page);
 	}
+	
+	/*
+	 * // 달력 전시일정 조회 전담 처리함수 
+	 * public List getCalendar() { 
+	 * return sqlSession.selectList("mpSQL.calendar"); 
+	 * }
+	 */
 }
