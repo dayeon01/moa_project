@@ -118,8 +118,7 @@ $('#nowPage').val('${PAGE.nowPage}');
 								</table>
 								<br>
 							</form>
-							<button class="btn btn-primary" id="lbtn">리스트 보기</button>
-							<button class="btn btn-primary" id="sbtn">저장</button>
+					
 
 						<ul class="pagination justify-content-center">
 								<li class="page-item" id="pre"><a class="page-link"

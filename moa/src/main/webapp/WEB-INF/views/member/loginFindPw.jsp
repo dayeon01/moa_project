@@ -127,10 +127,12 @@
 		</div>
 
 	
-	<!-- Footer-->
+<!-- Footer-->
+<footer class="py-5 bg-blight">
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
+</footer>
 
 </body>
 </html>

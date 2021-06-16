@@ -98,7 +98,7 @@ public class Star {
 		return mv;
 	}
 	
-	
+	//댓글 요청 처리
 	@RequestMapping("/reviewWriteProc.moa")
 	public ModelAndView qnaWriteProc(ReviewVO rVO, ModelAndView mv, 
 									HttpSession session, RedirectView rv) {
@@ -132,7 +132,7 @@ public class Star {
 		return mv;
 	}
 	
-	
+	//댓글 삭제
 	@RequestMapping("/reviewDel.moa")
 	public ModelAndView reviewDel(int bno, int reno, ModelAndView mv, RedirectView rv, 
 									HttpSession session) {
@@ -153,6 +153,7 @@ public class Star {
 		return mv;
 	}
 	
+	//로그인 검사
 	public boolean isLogin(HttpSession session) {
 		String sid = (String) session.getAttribute("SID");
 		

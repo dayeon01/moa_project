@@ -10,7 +10,7 @@
 
 <script>
 	$(document).ready(function() {
-		$('#${DATA.gen.equals("남자") ? "m":"f"}gen').prop('checked',true);
+		$('#${DATA.gen.equals("M") ? "m":"f"}gen').prop('checked',true);
 		
 		function nameCk(){
 			var sname = $('#name').val();
@@ -247,10 +247,12 @@
 		</div>
 	</section>
 
-	<!-- Footer-->
+<!-- Footer-->
+<footer class="py-5 bg-blight">
     <jsp:include page="../a_nav/footer.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
+</footer>
 
 </body>
 </html>

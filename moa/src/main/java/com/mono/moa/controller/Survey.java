@@ -78,6 +78,7 @@ public class Survey {
 		return mv;
 	}
 	
+	//설문 결과 처리
 	@RequestMapping("/surveyProc.moa")
 	public ModelAndView surveyProc(SurveyVO svVO, ModelAndView mv, RedirectView rv, HttpSession session) {
 		
@@ -95,6 +96,7 @@ public class Survey {
 		return mv;
 	}
 	
+	// 설문 결과 조회
 	@RequestMapping(value = "/surveyResult.moa", params= { "title", "sino" })
 	public ModelAndView surveyResult(SurveyVO svVO, ModelAndView mv) {
 		

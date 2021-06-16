@@ -10,7 +10,7 @@
 
 <script>
 $(document).ready(function() {
-	$('#${DATA.gen.equals("남자") ? "m":"f"}gen').prop('checked',true);
+	$('#${DATA.gen.equals("M") ? "m":"f"}gen').prop('checked',true);
 	
 	$('#ebtn').click(function(){
 		$(location).attr('href','/moa/member/myInfoEdit.moa');
