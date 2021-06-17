@@ -7,7 +7,11 @@
 	<jsp:include page="../a_nav/head.jsp">
 		<jsp:param name="" value="" />
 	</jsp:include>
-
+<style type="text/css">
+#ebtn {
+	font-size:20pt;
+}
+</style>
 <script>
 $(document).ready(function() {
 	$('#${DATA.gen.equals("M") ? "m":"f"}gen').prop('checked',true);
@@ -111,7 +115,7 @@ $(document).ready(function() {
 								</div>
 								<p class="help-block" id="birthmsg"></p>
 							</form>
-							<button class="btn btn-primary" id="ebtn">수정하기</button>
+							<button class="btn w3-blue-grey mgl20 mgt30 " style="width:500px;height:50px;" id="ebtn">수정하기</button>
 						</div>
 					</div>
 				</div>

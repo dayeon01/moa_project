@@ -82,68 +82,68 @@
 --%>
 
 <!-- 검색창 -->
-        <h1>
+        <h1 class="w3-padding w3-topbar">
             상세 검색
         </h1>
-        
-        <ol class="breadcrumb mb-4" style="height:230px;">
-<c:forEach var="data" items="${LIST}">
-        <div class="form-check">
+        <button type="submit" class="btn w3-blue-grey s-btn w3-right w3-circle">검색하기</button>
+        <div class="w3-card-4 w3-round-xxlarge mgt60 w3-padding mgb60 pdAll20" style="height:200px;">
+
+		<div class="w3-col ">
+		<div class="w3-col m4 mgt20">
+			<label for="exampleSelect1" class="form-label"><strong>지역</strong></label>
+		    <select class="w3-border w3-round-xxlarge city w3-light-grey mgl20"  style="width:150px;height:30px;"id="exampleSelect2" name="selCity">
+<c:forEach var="data" items="${CITY}">
+		        <option value="${data.explono}">${data.excity}</option>
+</c:forEach>
+		    </select>
+		</div>
+		
+		<div class="w3-col m4 mgt20">
+				<label for="exampleSelect1" class=""><strong>시작</strong> </label>
+			      <select class="w3-border w3-round-xxlarge smonth w3-light-grey mgl20 " style="width:150px;height:30px;" id="exampleSelect3" name="sMonth">
+			        <option value="1">1월</option>
+			        <option value="2">2월</option>
+			        <option value="3">3월</option>
+			        <option value="4">4월</option>
+			        <option value="5">5월</option>
+			        <option value="6">6월</option>
+			        <option value="7">7월</option>
+			        <option value="8">8월</option>
+			        <option value="9">9월</option>
+			        <option value="10">10월</option>
+			        <option value="11">11월</option>
+			        <option value="12">12월</option>
+			      </select>
+		</div>	
+ 		<div class="w3-col m4 mgt20">
+				<label for="exampleSelect1" class="form-label"><strong>종료</strong> </label>
+			      <select class="w3-border w3-round-xxlarge emonth w3-light-grey mgl20" style="width:150px;height:30px;"id="exampleSelect4" name="eMonth">
+			        <option value="1">1월</option>
+			        <option value="2">2월</option>
+			        <option value="3">3월</option>
+			        <option value="4">4월</option>
+			        <option value="5">5월</option>
+			        <option value="6">6월</option>
+			        <option value="7">7월</option>
+			        <option value="8">8월</option>
+			        <option value="9">9월</option>
+			        <option value="10">10월</option>
+			        <option value="11">11월</option>
+			        <option value="12">12월</option>
+			      </select>
+		</div> 
+	</div>	
+ <c:forEach var="data" items="${LIST}">
+        <div class="w3-col mgl20 mgt20">
 			<input class="form-check-input" type="radio" name="selClass" value="${data.ecno}">
 
 			<label class="form-check-label">
 			  ${data.ecnaming}전
 			</label>
 		</div>
-</c:forEach>
+</c:forEach> 
+        </div>
 		
-		<div class="form-group">
-			<label for="exampleSelect1" class="form-label">지역</label>
-		      <select class="form-select city" id="exampleSelect2" name="selCity">
-<c:forEach var="data" items="${CITY}">
-		        <option value="${data.explono}">${data.excity}</option>
-</c:forEach>
-		      </select>
-		</div>
-		
-		<div class="form-mon">
-			<div class="form-group month">
-				<label for="exampleSelect1" class="form-label">시작하는 달</label>
-			      <select class="form-select smonth" id="exampleSelect3" name="sMonth">
-			        <option value="1">1월</option>
-			        <option value="2">2월</option>
-			        <option value="3">3월</option>
-			        <option value="4">4월</option>
-			        <option value="5">5월</option>
-			        <option value="6">6월</option>
-			        <option value="7">7월</option>
-			        <option value="8">8월</option>
-			        <option value="9">9월</option>
-			        <option value="10">10월</option>
-			        <option value="11">11월</option>
-			        <option value="12">12월</option>
-			      </select>
-			</div>
-			<div class="form-group month m-left">
-				<label for="exampleSelect1" class="form-label">~ 종료하는 달</label>
-			      <select class="form-select emonth" id="exampleSelect4" name="eMonth">
-			        <option value="1">1월</option>
-			        <option value="2">2월</option>
-			        <option value="3">3월</option>
-			        <option value="4">4월</option>
-			        <option value="5">5월</option>
-			        <option value="6">6월</option>
-			        <option value="7">7월</option>
-			        <option value="8">8월</option>
-			        <option value="9">9월</option>
-			        <option value="10">10월</option>
-			        <option value="11">11월</option>
-			        <option value="12">12월</option>
-			      </select>
-			</div>
-		</div>
-		<button type="submit" class="btn btn-primary btn-lg s-btn">검색하기</button>
-        </ol>
 </form>
 		
 
@@ -151,7 +151,7 @@
         <!-- 검색결과 -->
       
         <div id="sResult">
-        <div class="row">
+        <div class="row  pdAll20">
 <c:forEach var="data" items="${RST}">
             <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
                 <div class="card h-100">
@@ -191,12 +191,7 @@
     </div>
 </section>
 
-<!-- Footer-->
-<footer class="py-5 bg-blight">
-    <jsp:include page="../a_nav/footer.jsp">
-		<jsp:param name="" value="" />
-	</jsp:include>
-</footer>
+
 
 </body>
 </html>

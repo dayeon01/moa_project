@@ -110,8 +110,8 @@ public class SubPage {
 		return mv;
 	}
 	
-	@RequestMapping("/addEventProc.moa")
 	//이벤트 등록 처리 함수
+	@RequestMapping("/addEventProc.moa")
 	public ModelAndView addEventProc(ModelAndView mv, RedirectView rv, HttpSession session, EventVO evnVO) {
 		String sid = (String) session.getAttribute("SID");
 		if(sid == null) {

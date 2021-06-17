@@ -61,7 +61,7 @@ public class Star {
 									ModelAndView mv, HttpSession session, RedirectView rv) {
 		
 		if(!isLogin(session)) {	
-			rv.setUrl("/moa/");
+			rv.setUrl("/moa/main.moa");
 			mv.setView(rv);
 			return mv;
 		}

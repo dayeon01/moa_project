@@ -78,16 +78,16 @@
 <script type="text/javascript">
 		$(document).ready(function(){
 		       
-			var n = 3;            // 변수를 지정해준다. 
-		    function countDown(){   //함수를 호출해준다. 
-		        n--;               //1씩 감소하는 감소함수를 넣어준다.   
-		        $('.countDown').text(n); // p.countUp에 카운트를 시킬 숫자을 넣어준다. 
+			var n = 3;            
+		    function countDown(){   
+		        n--;                 
+		        $('.countDown').text(n); 
 			}
 		    setInterval(countDown,1000);
 		    
 		    
 		    var move = function() {
-		    	location.href="/moa/main.moa";  
+		    	 location.href="/moa/main.moa";  
 		    }
 
 		    setTimeout(move, 3000);	    

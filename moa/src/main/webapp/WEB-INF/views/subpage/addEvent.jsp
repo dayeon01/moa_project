@@ -59,14 +59,12 @@ input{
 					alert("필수 입력사항을 확인하세요.");
 					return;
 				}
-				alert(tno);
 				 $(this).parent().parent().submit(); 
 
 			});
 		 
 		 $('.delbtn').click(function(){
 			 var tno = $(this).next().val();
-			alert(tno);
 			$('#add' + tno).attr('action', '/moa/subpage/eventDelProc.moa');
 			$('#add'+ tno).submit(); 
 			
@@ -127,12 +125,13 @@ input{
 				 		  <span class="w3-margin-right w3-margin-bottom mgl20"> <small><strong>[이벤트 기간]</strong></small></span>
 				 		  <div class="w3-center w3-round w3-margin-top mgb20  evtsdate">${data.evtsdate }</div>
 				 		  <div class="w3-center w3-round w3-margin-top mgb10 evtsdate">${data.evtedate }</div>
-	<c:if test="${data.isshow eq 'Y'}">
-					 		 <div class="w3-button w3-brown w3-round w3-card-2 mgt30 delbtn"  style="cursor:pointer">삭제하기</div> 
-	</c:if>						
-	<c:if test="${data.isshow eq 'N'}">
+<c:if test="${data.isshow eq 'Y'}">
+					 		 <div class="w3-button w3-brown w3-round w3-card-2 mgt30 delbtn"  
+					 		 		style="cursor:pointer">삭제하기</div> 
+</c:if>						
+<c:if test="${data.isshow eq 'N'}">
 					 		 <h3 class= "w3-text-red mgt30 mgb10" >이벤트종료</h3>
-	</c:if>						
+</c:if>						
 						<input type="hidden" name="evtexino" value="${data.evtexino}"> 
 </c:if>				 		
 						<input type="hidden" name="evtexino" value="${data.exino}">
